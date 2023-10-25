@@ -4,7 +4,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "/mnt/c/Users/aksel/c++/project/build/executable",
+        "program": "/home/niilo/c-project/tower-defense-tran-duong-5/build/executable",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
