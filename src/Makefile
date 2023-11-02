@@ -1,6 +1,6 @@
-compile:./monkey.cpp
-	g++ -c ./monkey.cpp
-	g++ monkey.o -o app -lsfml-graphics -lsfml-window -lsfml-system
+compile:./main.cpp
+	g++ -c ./main.cpp
+	g++ main.o -o app -lsfml-graphics -lsfml-window -lsfml-system
 
 run:
 	./app

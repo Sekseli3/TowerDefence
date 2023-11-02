@@ -18,6 +18,7 @@
 
 # Libraries
 build
+.vscode
 
 # Shared objects (inc. Windows DLLs)
 
