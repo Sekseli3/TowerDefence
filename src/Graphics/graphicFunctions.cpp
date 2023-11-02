@@ -1,4 +1,3 @@
-#include "graphicFunctions.h"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
