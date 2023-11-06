@@ -1,39 +1,63 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include "../Objects/tower.h"
+#include "../tiles.cpp"
 
-void drawTiles(sf::RenderWindow &window,
-                const int tileSize,const int windowWidth, const int windowHeight){
-                    
+//function to draw all the tiles from hardcoded map
+void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight) {
+    //Count how many tiles we can fit in map
     const int mapWidth = windowWidth / tileSize;
     const int mapHeight = windowHeight / tileSize;
-    sf::RectangleShape mapTiles[mapWidth][mapHeight];
 
+
+    // Define a hardcoded map, 0 for water(blue), 1 for grass(green) and other for path(white) 
+    int hardcodedMap[16][12] = {
+        {0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+        {0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1},
+        {1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1},
+        {1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1},
+        {1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1},
+        {0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1},
+        {0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+    //iterate through all the tiles
     for (int x = 0; x < mapWidth; x++) {
         for (int y = 0; y < mapHeight; y++) {
-            sf::RectangleShape& tile = mapTiles[x][y];
-            tile.setSize(sf::Vector2f(tileSize, tileSize));
+            //calculate position
+            sf::Vector2f tilePosition(x * tileSize, y * tileSize);
 
-            // Assign colors to different tiles
-            if (x == mapWidth / 2) {
-                tile.setFillColor(sf::Color::White);
+            // Create a Tile object with the specified color, and tileSize
+            int tileType = hardcodedMap[x][y];
+            sf::Color tileColor;
+            if (tileType == 0) {
+                tileColor = sf::Color::Blue;
+            } else if (tileType == 1) {
+                tileColor = sf::Color::Green;
             } else {
-                // Randomly decide whether to make it green or blue
-                if (std::rand() % 2 == 0) {
-                    tile.setFillColor(sf::Color::Green); // Green for plots of land
-                } else {
-                    tile.setFillColor(sf::Color::Blue); // Blue for lakes
-                    tile.setOutlineColor(sf::Color::Black);
-                    tile.setOutlineThickness(0.8);
-                }
+                tileColor = sf::Color::White;
             }
+            //create tile objects for each tile
+            Tile tile(tilePosition, tileColor, tileSize);
 
-            tile.setPosition(x * tileSize, y * tileSize);
+            // Draw the tile's shape
+            window.draw(tile.getShape());
         }
     }
-            for (int x = 0; x < mapWidth; x++) {
-            for (int y = 0; y < mapHeight; y++) {
-                window.draw(mapTiles[x][y]);
-            }
-        }
 }
+void addTower(sf::RenderWindow &window, Tile tile){
+    Tower tower(tile.getPosition(),30,20,20,50);
+    window.draw(tower.getShape());
+}
+
+
