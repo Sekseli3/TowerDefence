@@ -14,14 +14,14 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
 
     //draw tiles
-    //drawTiles(window,tileSize,windowWidth,windowHeight);
+    drawTiles(window,tileSize,windowWidth,windowHeight);
 
     //Create a arbitary tile to put the tower to
     sf::Vector2f tilePosition(7 * tileSize, 7 * tileSize);
     Tile tile(tilePosition, sf::Color::Black, tileSize);
     //Add tower to tile
     addTower(window,tile);
-    drawGraphics(window,tileSize,windowWidth, windowHeight);
+    //drawGraphics(window,tileSize,windowWidth, windowHeight);
 
     while (window.isOpen()) {
         sf::Event event;
