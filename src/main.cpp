@@ -4,6 +4,7 @@
 #include "Graphics/graphicFunctions.cpp"
 #include "Graphics/GraphicsTest.cpp"
 #include <ctime>
+#include "Objects/enemy.h"
 
 
 int main() {
@@ -22,6 +23,19 @@ int main() {
     //Add tower to tile
     addTower(window,tile);
     //drawGraphics(window,tileSize,windowWidth, windowHeight);
+
+    //add enemy
+    std::vector<Enemy> enemies;
+    sf::Vector2f ePos(0,200);
+    Enemy enemy1(ePos, 15, 20, 20);
+    enemies.push_back(enemy1);
+    sf::Vector2f ePos2(100,200);
+    Enemy enemy2(ePos2, 15, 20, 20);
+    enemies.push_back(enemy2);
+
+    
+
+    drawEnemies(window, enemies);
 
     while (window.isOpen()) {
         sf::Event event;

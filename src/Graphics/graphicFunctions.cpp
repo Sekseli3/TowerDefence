@@ -3,6 +3,7 @@
 #include <ctime>
 #include <vector>
 #include "../Objects/tower.h"
+#include "../Objects/enemy.h"
 #include "../tiles.cpp"
 
 //function to draw all the tiles from hardcoded map
@@ -60,4 +61,8 @@ void addTower(sf::RenderWindow &window, Tile tile){
     window.draw(tower.getShape());
 }
 
-
+void drawEnemies(sf::RenderWindow &window, std::vector<Enemy>& enemies){
+    for (auto& it : enemies) {
+        window.draw(it.getShape());
+    }
+}
