@@ -8,6 +8,7 @@
 #include "../tiles.cpp"
 
 std::vector<Tile> tiles;
+std::vector<Tower> towers;
 bool towerPlacementMode = false;
 TowerType* selectedTowerType = nullptr;
 //function to draw all the tiles from hardcoded map
@@ -64,14 +65,16 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
 
 void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
+    towers.push_back(tower);
     window.draw(tower.getShape());
 }
+
 
 Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
     sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
     Tile tile(tileStartPosition, sf::Color::Black, tileSize);
     Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
-     
+    
     window.draw(enemy.getShape());
     return enemy;
 }
@@ -127,7 +130,14 @@ void placeTower(sf::Event event, sf::RenderWindow &window){
 
         if (closestTile.getColor() == sf::Color::Green) {
             addTower(window, closestTile, *selectedTowerType);
+        
             selectedTowerType = nullptr;
         }
+    }
+}
+
+void drawTowers(sf::RenderWindow &window){
+    for (Tower tower : towers) {
+        window.draw(tower.getShape());
     }
 }

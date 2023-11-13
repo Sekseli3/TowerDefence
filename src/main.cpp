@@ -47,11 +47,11 @@ int main() {
         sf::sleep(sf::seconds(timeStep));
         discreteTime += timeStep;
         //move enemies around
-    window.clear();
+    //window.clear();
 
     //update the map after clearing window
     drawTiles(window,tileSize,windowWidth,windowHeight);
-
+    drawTowers(window);
     //move all enemies
     
     enemy1.moveEnemy(timeStep, window);
