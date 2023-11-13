@@ -9,6 +9,7 @@
 
 std::vector<Tile> tiles;
 std::vector<Tower> towers;
+std::vector<Enemy> enemies;
 bool towerPlacementMode = false;
 TowerType* selectedTowerType = nullptr;
 //function to draw all the tiles from hardcoded map
@@ -74,7 +75,7 @@ Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
     sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
     Tile tile(tileStartPosition, sf::Color::Black, tileSize);
     Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
-    
+    enemies.push_back(enemy);
     window.draw(enemy.getShape());
     return enemy;
 }
