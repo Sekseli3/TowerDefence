@@ -14,8 +14,11 @@ public:
     sf::RectangleShape& getShape() {
         return shape;
     }
-    sf::Vector2f& getPosition(){
+    sf::Vector2f& getPosition() {
         return position;
+    }
+    const sf::Color& getColor() const{
+        return color;
     }
 
 private:
@@ -24,3 +27,20 @@ private:
     sf::Color color;
     int tileSize;
 };
+
+Tile& findClosestTile(std::vector<Tile>& tiles, const sf::Vector2f& position) {
+    Tile* closestTile = nullptr;
+    float minDistance = std::numeric_limits<float>::max();
+
+    for (Tile& tile : tiles) {
+        sf::Vector2f tileCenter = tile.getPosition()+sf::Vector2f(25,25);
+        float distance = std::hypot(position.x - tileCenter.x, position.y - tileCenter.y);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestTile = const_cast<Tile*>(&tile);
+        }
+    }
+
+    return *closestTile;
+}

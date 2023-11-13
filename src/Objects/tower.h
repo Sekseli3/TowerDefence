@@ -1,30 +1,37 @@
-#ifndef TOWER_DEFENCE_2_TOWER_H
-#define TOWER_DEFENCE_2_TOWER_H
+#ifndef TOWER_H
+#define TOWER_H
 
-#include <vector>
-#include <string>
 #include <SFML/Graphics.hpp>
 
-// Deferred declaration
-class TowerType;
 
 /// Tower class
+class TowerType {
+public:
+    TowerType(double radius, int damage, double attack_range, double attack_speed, const sf::Color& color);
+
+    double getRadius() const;
+    int getDamage() const;
+    double getAttackRange() const;
+    double getAttackSpeed() const;
+    const sf::Color& getColor() const;
+
+private:
+    double radius;
+    int damage;
+    double attack_range;
+    double attack_speed;
+    sf::Color color;
+};
 class Tower  {
 public:
-    Tower(const sf::Vector2f& position, double radius, int damage, double attack_range,
-        double attack_speed){
-        shape.setRadius(50);
-        shape.setPosition(position);
-        shape.setFillColor(sf::Color::Black);
-        shape.setOutlineColor(sf::Color::Black);
-        shape.setOutlineThickness(0.8);
-    }
-    //Function to retrieve shape
-    sf::CircleShape& getShape() {
-        return shape;
-    }
-    private:
-        sf::CircleShape shape;
+    Tower(const sf::Vector2f& position, const TowerType& type);
+    sf::ConvexShape& getShape();
+
+private:
+    sf::ConvexShape shape;
+    TowerType type;
 };
+
+
 
 #endif
