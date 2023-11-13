@@ -72,17 +72,4 @@ Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
     return enemy;
 }
 
-Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
-    sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
-    Tile tile(tileStartPosition, sf::Color::Black, tileSize);
-    Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
-     
-    window.draw(enemy.getShape());
-    return enemy;
-}
 
-void drawEnemies(sf::RenderWindow &window, std::vector<Enemy>& enemies){
-    for (auto& it : enemies) {
-        window.draw(it.getShape());
-    }
-}

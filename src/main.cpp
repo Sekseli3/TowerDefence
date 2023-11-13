@@ -7,6 +7,7 @@
 #include "gameEngine.cpp"
 #include <ctime>
 #include <iostream>
+#include <vector>
 
 
 int main() {
@@ -27,7 +28,10 @@ int main() {
     Tile tile(tilePosition, sf::Color::Black, tileSize);
     //Add tower to tile
     addTower(window,tile);
-    //drawGraphics(window,tileSize,windowWidth, windowHeight);
+    //drawGraphics(window,tileSize,windowWidth, windowHeight)
+    Enemy enemy1 = addEnemy(window, tileSize,1,4);
+    
+
 
     while (window.isOpen()) {
         sf::Event event;
@@ -42,8 +46,18 @@ int main() {
         
         sf::sleep(sf::seconds(timeStep));
         discreteTime += timeStep;
-        updateGame(window,timeStep,tileSize,windowWidth,windowHeight, stored_enemies);
-        
+        //move enemies around
+    window.clear();
+
+    //update the map after clearing window
+    drawTiles(window,tileSize,windowWidth,windowHeight);
+
+    //move all enemies
+    
+        enemy1.moveEnemy(timeStep, window);
+    
+
+    window.display(); 
         
         
     }
