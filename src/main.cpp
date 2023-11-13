@@ -3,13 +3,19 @@
 #include <ctime>
 #include "Graphics/graphicFunctions.cpp"
 #include "Graphics/GraphicsTest.cpp"
+#include "Objects/enemies.h"
+#include "gameEngine.cpp"
 #include <ctime>
+#include <iostream>
 
 
 int main() {
     const int windowWidth = 800;
     const int windowHeight = 600;
     const int tileSize = 50; // Size of each tile in pixels
+    double discreteTime = 0; // Calculated time since app has started
+    double timeStep = 0.4; // timestep in milliseconds
+
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
 
@@ -23,15 +29,32 @@ int main() {
     addTower(window,tile);
     //drawGraphics(window,tileSize,windowWidth, windowHeight);
 
+    
+    // make new enemy at time 0
+    std::vector<Enemy> stored_enemies;
+
+    Enemy enemy1 = addEnemy(window,tileSize, -1, 4);
+    stored_enemies.push_back(enemy1);
+    
+    sf::Clock clock;
+
     while (window.isOpen()) {
         sf::Event event;
+
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
 
-        window.display();
+        
+        
+        sf::sleep(sf::seconds(timeStep));
+        discreteTime += timeStep;
+        updateGame(window,timeStep,tileSize,windowWidth,windowHeight, stored_enemies);
+        
+        
+        
     }
 
     return 0;
