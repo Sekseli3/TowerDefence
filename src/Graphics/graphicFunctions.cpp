@@ -2,8 +2,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <iostream>
 #include "../Objects/tower.h"
+#include "../Objects/enemies.h"
 #include "../tiles.cpp"
+
 std::vector<Tile> tiles;
 bool towerPlacementMode = false;
 TowerType* selectedTowerType = nullptr;
@@ -63,6 +66,17 @@ void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
     window.draw(tower.getShape());
 }
+
+Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
+    sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
+    Tile tile(tileStartPosition, sf::Color::Black, tileSize);
+    Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
+     
+    window.draw(enemy.getShape());
+    return enemy;
+}
+
+
 
 void placeTower(sf::Event event, sf::RenderWindow &window){
 
