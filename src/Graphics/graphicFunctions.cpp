@@ -2,9 +2,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <iostream>
 #include "../Objects/tower.h"
-#include "../Objects/enemy.h"
+#include "../Objects/enemies.h"
 #include "../tiles.cpp"
+
 
 //function to draw all the tiles from hardcoded map
 void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight) {
@@ -59,6 +61,24 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
 void addTower(sf::RenderWindow &window, Tile tile){
     Tower tower(tile.getPosition(),30,20,20,50);
     window.draw(tower.getShape());
+}
+
+Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
+    sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
+    Tile tile(tileStartPosition, sf::Color::Black, tileSize);
+    Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
+     
+    window.draw(enemy.getShape());
+    return enemy;
+}
+
+Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
+    sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
+    Tile tile(tileStartPosition, sf::Color::Black, tileSize);
+    Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
+     
+    window.draw(enemy.getShape());
+    return enemy;
 }
 
 void drawEnemies(sf::RenderWindow &window, std::vector<Enemy>& enemies){
