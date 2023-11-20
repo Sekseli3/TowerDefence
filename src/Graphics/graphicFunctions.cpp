@@ -69,7 +69,6 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
 void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
     towers.push_back(tower);
-    window.draw(tower.getShape());
 }
 
 

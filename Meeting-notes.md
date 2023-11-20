@@ -25,6 +25,8 @@
                             if enemy.health <= 0:
                                 destroy enemy
                             reset time since last attack
-
-!!!                            
-Problem, the the timestep fucks with the input of tower, you need to wait at tile for duration of timpestep before placing for smooth tower placing.
+    - November 20, 2023
+        -Merged our weekly work with git
+        -New stuff added: main menu, multiple enemies running through the path, game states
+        -Did some debugging
+        -We set new goals for the next week: attacking, time keeping, money system(killing enemies and creating towers), different enemies, losing screen, game states for building and attacking.
