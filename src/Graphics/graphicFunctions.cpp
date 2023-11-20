@@ -70,14 +70,15 @@ void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     window.draw(tower.getShape());
 }
 
-
-Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
+void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
     sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
     Tile tile(tileStartPosition, sf::Color::Black, tileSize);
-    Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
+    Enemy enemy(tile.getPosition(), 30, 10, 1, x * tileSize, y * tileSize);
+    
     enemies.push_back(enemy);
-    window.draw(enemy.getShape());
-    return enemy;
+    //std::cout << x << " " << y << std::endl;
+    //window.draw(enemy.getShape());
+    //return enemy;
 }
 
 

@@ -15,7 +15,7 @@ int main() {
     const int windowHeight = 600;
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
-    double timeStep = 0.4; // timestep in milliseconds
+    double timeStep = 0.03; // timestep in milliseconds
 
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
@@ -27,11 +27,11 @@ int main() {
     //Create a arbitary tile to put the tower to
     sf::Vector2f tilePosition(7 * tileSize, 7 * tileSize);
     Tile tile(tilePosition, sf::Color::Black, tileSize);
-    //Add tower to tile
-    //drawGraphics(window,tileSize,windowWidth, windowHeight)
-    Enemy enemy1 = addEnemy(window, tileSize,1,4);
     
-
+    for (int i = 0; i > -40; i = i-2){
+        addEnemy(window, tileSize, i, 4);
+    }
+    
 
     while (window.isOpen()) {
         sf::Event event;
@@ -53,8 +53,12 @@ int main() {
     drawTiles(window,tileSize,windowWidth,windowHeight);
     drawTowers(window);
     //move all enemies
+
     
-    enemy1.moveEnemy(timeStep, window);
+    for (int i = 0; i < enemies.size(); i++){
+        enemies[i].moveEnemy(timeStep, window);
+    }
+
     placeTower(event,window);
     window.display(); 
         
