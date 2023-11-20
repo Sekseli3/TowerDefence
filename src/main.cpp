@@ -23,9 +23,12 @@ int main() {
     double timeStep = 0.1; // timestep in milliseconds
     GameState gameState = GameState::MainMenu;
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
-    Enemy enemy1 = addEnemy(window, tileSize,1,4);
-    
 
+    
+    for (int i = 0; i > -40; i = i-2){
+        addEnemy(window, tileSize, i, 4);
+    }
+    
 
     while (window.isOpen()) {
         sf::Event event;
@@ -57,7 +60,10 @@ int main() {
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
             //move all enemies
-            enemy1.moveEnemy(timeStep, window);
+            
+            for (int i = 0; i<enemies.size();i++){
+                enemies[i].moveEnemy(timeStep,window);
+            }
             placeTower(event,window);
             sf::sleep(sf::seconds(timeStep));
             discreteTime += timeStep;
