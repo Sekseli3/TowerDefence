@@ -70,7 +70,6 @@ int main() {
 
        
         
-    
     //update the map after clearing window
     window.display();    
     }
