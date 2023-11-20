@@ -9,26 +9,20 @@
 #include <iostream>
 #include <vector>
 
+enum class GameState {
+    MainMenu,
+    Playing,
+    EndScreen
+};
 
 int main() {
     const int windowWidth = 800;
     const int windowHeight = 600;
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
-    double timeStep = 0.4; // timestep in milliseconds
-
-
+    double timeStep = 0.1; // timestep in milliseconds
+    GameState gameState = GameState::MainMenu;
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
-
-
-    //draw tiles
-    drawTiles(window,tileSize,windowWidth,windowHeight);
-
-    //Create a arbitary tile to put the tower to
-    sf::Vector2f tilePosition(7 * tileSize, 7 * tileSize);
-    Tile tile(tilePosition, sf::Color::Black, tileSize);
-    //Add tower to tile
-    //drawGraphics(window,tileSize,windowWidth, windowHeight)
     Enemy enemy1 = addEnemy(window, tileSize,1,4);
     
 
@@ -42,27 +36,43 @@ int main() {
             }
         }
 
-    
-        
-        sf::sleep(sf::seconds(timeStep));
-        discreteTime += timeStep;
-        //move enemies around
-    //window.clear();
+        //See in which game state we are and proceed accordingly
+        if(gameState == GameState::MainMenu){
+            mainMenu(window);
+            //Proceed to Play
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                
+                if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 400 && mousePos.y < 460) {
+                    gameState = GameState::Playing;
+                }
+                if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 460 && mousePos.y < 520) {
+                    gameState = GameState::EndScreen;
+                }
+            }
+        }
 
+        else if(gameState == GameState::Playing){
+            //draw game
+            drawTiles(window,tileSize,windowWidth,windowHeight);
+            drawTowers(window);
+            //move all enemies
+            enemy1.moveEnemy(timeStep, window);
+            placeTower(event,window);
+            sf::sleep(sf::seconds(timeStep));
+            discreteTime += timeStep;
+        }
+
+        else if(gameState == GameState::EndScreen){
+            //close window
+            window.close();
+        }
+
+       
+        
+    
     //update the map after clearing window
-    drawTiles(window,tileSize,windowWidth,windowHeight);
-    drawTowers(window);
-    //move all enemies
-    
-    enemy1.moveEnemy(timeStep, window);
-    placeTower(event,window);
-    window.display(); 
-        
-        
-        //add towers with click. First click t and then green tile
-        
-
+    window.display();    
     }
-
     return 0;
 }

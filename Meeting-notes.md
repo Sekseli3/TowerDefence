@@ -25,3 +25,6 @@
                             if enemy.health <= 0:
                                 destroy enemy
                             reset time since last attack
+
+!!!                            
+Problem, the the timestep fucks with the input of tower, you need to wait at tile for duration of timpestep before placing for smooth tower placing.
