@@ -21,6 +21,7 @@ int main() {
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.1; // timestep in milliseconds
+    int money = 123; // Initial money
     GameState gameState = GameState::MainMenu;
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
 
@@ -59,6 +60,7 @@ int main() {
             //draw game
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
+            drawMoney(window, money);
             //move all enemies
             
             for (int i = 0; i<enemies.size();i++){
@@ -72,6 +74,7 @@ int main() {
         else if(gameState == GameState::EndScreen){
             //close window
             window.close();
+            money = 0;
         }
 
        
