@@ -4,10 +4,17 @@
 #include "Graphics/graphicFunctions.cpp"
 #include "Graphics/GraphicsTest.cpp"
 #include "Objects/enemies.h"
-#include "gameEngine.cpp"
+#include "gameEngine.hpp"
 #include <ctime>
 #include <iostream>
 #include <vector>
+
+// void timekeeer(int timeStep){
+//     sf::Clock clock;
+//     sf::Time time = clock.getElapsedTime();
+
+
+// }
 
 
 int main() {
@@ -16,6 +23,10 @@ int main() {
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.4; // timestep in milliseconds
+
+    // sf::Clock clock;
+    // sf::Time time = clock.getElapsedTime();
+    UniversalClock clock1;
 
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
@@ -30,6 +41,10 @@ int main() {
     //Add tower to tile
     //drawGraphics(window,tileSize,windowWidth, windowHeight)
     Enemy enemy1 = addEnemy(window, tileSize,1,4);
+    // Tile tile_towerTest()
+    // addTower(window, tile, tileSize, 1, 1);
+
+
     
 
 
@@ -44,8 +59,8 @@ int main() {
 
     
         
-        sf::sleep(sf::seconds(timeStep));
-        discreteTime += timeStep;
+        // sf::sleep(sf::seconds(timeStep));
+        // discreteTime += timeStep;
         //move enemies around
     //window.clear();
 
@@ -54,7 +69,10 @@ int main() {
     drawTowers(window);
     //move all enemies
     
-    enemy1.moveEnemy(timeStep, window);
+    // enemy1.moveEnemy(timeStep, window);
+
+    delayedFunction(clock1, 300, enemy1, window);
+    window.draw(enemy1.getShape());
     placeTower(event,window);
     window.display(); 
         

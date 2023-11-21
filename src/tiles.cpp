@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <cmath>
 //Tile class for tile objects
 class Tile {
 public:

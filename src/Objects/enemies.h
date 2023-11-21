@@ -48,6 +48,12 @@ public:
         this->health = hp;
     }
 
+    void getHit(int damage){
+        this->health -= damage;
+    }
+
+  
+
     private:
         sf::CircleShape shape;
         sf::Vector2f position;
