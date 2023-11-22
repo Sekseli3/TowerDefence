@@ -99,9 +99,9 @@ void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
 void placeTower(sf::Event event, sf::RenderWindow &window){
 
     
-    TowerType basicTower(30.0, 20, 20.0, 50.0, sf::Color::Red);
-    TowerType advancedTower(40.0, 30, 30.0, 60.0, sf::Color::Blue);
-    TowerType ultimateTower(50.0, 40, 40.0, 70.0, sf::Color::Yellow);
+    TowerType basicTower(30.0, 20, 60.0, 50.0, sf::Color::Red);
+    TowerType advancedTower(40.0, 30, 60.0, 60.0, sf::Color::Blue);
+    TowerType ultimateTower(50.0, 40, 60.0, 70.0, sf::Color::Yellow);
 
     // Create the buttons for each tower type
     sf::RectangleShape basicButton;
@@ -154,6 +154,15 @@ void placeTower(sf::Event event, sf::RenderWindow &window){
 void drawTowers(sf::RenderWindow &window){
     for (Tower tower : towers) {
         window.draw(tower.getShape());
+        window.draw(tower.getAttackShape());
+        tower.attackEnemy(enemies);
+        // std::cout << "Tower drawn" << std::endl;
+    }
+}
+
+void attack(std::vector <Enemy> enemies, std::vector <Tower> towers){
+    for (Tower tower : towers){
+        tower.attackEnemy(enemies);
     }
 }
 

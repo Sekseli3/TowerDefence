@@ -1,13 +1,23 @@
 #include <SFML/Graphics.hpp>
+#include "gameEngine.hpp"
 #include <cstdlib>
 #include <ctime>
 #include "Graphics/graphicFunctions.cpp"
 #include "Graphics/GraphicsTest.cpp"
 #include "Objects/enemies.h"
-#include "gameEngine.cpp"
+#include "gameEngine.hpp"
 #include <ctime>
 #include <iostream>
 #include <vector>
+
+// void timekeeer(int timeStep){
+//     sf::Clock clock;
+//     sf::Time time = clock.getElapsedTime();
+
+
+// }
+
+UniversalClock clock1;
 
 enum class GameState {
     MainMenu,
@@ -16,6 +26,30 @@ enum class GameState {
     EndScreen
 };
 
+void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<Enemy> &stored_enemies, float delayTime){
+    
+    
+        if (clock.isDelayFinished(delayTime)) {
+            for (int i = 0; i < stored_enemies.size(); i++){
+                stored_enemies[i].moveEnemy(0.1,window);
+                clock.restartClock();
+            }
+        }
+        for (size_t i = 0; i < stored_enemies.size(); i++) {
+            window.draw(stored_enemies[i].getShape());
+        }
+        // kill eenemies
+        for (int i = 0; i < stored_enemies.size(); i++){
+
+            if (stored_enemies[i].getHealth() <= 0){
+                stored_enemies.erase(stored_enemies.begin()+i);
+            }
+            
+        }
+      
+    
+}
+
 int main() {
     const int windowWidth = 800;
     const int windowHeight = 600;
@@ -23,7 +57,11 @@ int main() {
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.01; // timestep in milliseconds
     int money = 123; // Initial money
-    GameState gameState = GameState::MainMenu;
+    GameState gameState = GameState::MainMenu;    // sf::Clock clock;
+    // sf::Time time = clock.getElapsedTime();
+    UniversalClock clock1;
+
+
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
 
     
@@ -64,11 +102,11 @@ int main() {
             drawTowers(window);
             drawMoney(window, money);
             //move all enemies
-            sf::sleep(sf::seconds(timeStep));
-            discreteTime += timeStep;
+            moveEnemies(clock1, window, enemies,20);
+  
 
             for (int i = 0; i<enemies.size();i++){
-                enemies[i].moveEnemy(timeStep,window);
+                // enemies[i].moveEnemy(timeStep,window);
                 if (enemies[i].hasPassed()){
                     gameState = GameState::EndScreen;
                 }

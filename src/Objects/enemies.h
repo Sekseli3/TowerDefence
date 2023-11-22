@@ -32,6 +32,16 @@ public:
     bool hasPassed();
     bool isDead();
 
+    void getHit(int damage){
+        health -= damage;
+    }
+
+    int getHealth(){
+        return this->health;
+    }
+
+  
+
     private:
         sf::CircleShape shape;
         sf::Vector2f position;
