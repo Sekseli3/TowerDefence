@@ -32,7 +32,7 @@ Tower::Tower(const sf::Vector2f& position, const TowerType& type)
 
 }
 
-void Tower::attackEnemy(std::vector<Enemy> enemies)
+void Tower::attackEnemy(std::vector<Enemy> &enemies)
 {
     for (int i = 0; i < enemies.size(); i++)
     {
@@ -48,7 +48,7 @@ void Tower::attackEnemy(std::vector<Enemy> enemies)
         // }
         if (this->getShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()))
         {
-            enemies[i].getHit(int(2));
+            enemies[i].getHit(int(5));
             std::cout << "Enemy hit" << std::endl;
             
         }

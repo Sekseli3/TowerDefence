@@ -37,6 +37,14 @@ void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<En
         for (size_t i = 0; i < stored_enemies.size(); i++) {
             window.draw(stored_enemies[i].getShape());
         }
+        // kill eenemies
+        for (int i = 0; i < stored_enemies.size(); i++){
+
+            if (stored_enemies[i].getHealth() <= 0){
+                stored_enemies.erase(stored_enemies.begin()+i);
+            }
+            
+        }
       
     
 }
@@ -94,7 +102,7 @@ int main() {
             // for (int i = 0; i<enemies.size();i++){
             //     enemies[i].moveEnemy(timeStep,window);
             // }
-            moveEnemies(clock1, window, enemies,200);
+            moveEnemies(clock1, window, enemies,20);
             placeTower(event,window);
             // sf::sleep(sf::seconds(timeStep));
             // discreteTime += timeStep;

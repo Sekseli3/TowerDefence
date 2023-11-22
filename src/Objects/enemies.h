@@ -84,7 +84,11 @@ public:
     }
 
     void getHit(int damage){
-        this->health -= damage;
+        health -= damage;
+    }
+
+    int getHealth(){
+        return this->health;
     }
 
   
