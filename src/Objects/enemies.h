@@ -11,7 +11,10 @@ class EnemyType;
 /// Tower class
 class Enemy  {
 public:
-    Enemy(sf::Vector2f& position, double radius, int health, int speed, int x, int y){
+    Enemy(sf::Vector2f& position, double radius, int health, int speed, float x, float y)
+    : position(position), x(x), y(y), speed(speed), health(health)
+        {
+
         shape.setRadius(22);
         shape.setPosition(position);
         shape.setFillColor(sf::Color::Red);
@@ -30,22 +33,54 @@ public:
         shape.move(x_dir, y_dir);
     }
     void moveEnemy(double timeStep, sf::RenderWindow &window){
-        this->move(5,0);
+
+        if (this->getXcoord() < 250){
+            this->move(5,0);
+            this->addX(5);  
+        }
+        else if (this->getYcoord() > 150 && this->getXcoord() == 250){
+            this->move(0,-5);
+            this->addY(-5); 
+        }
+        else if (this->getYcoord() == 150 && this->getXcoord() < 500){
+            this->move(5,0);
+            this->addX(5);  
+        }
+        else if (this->getYcoord() < 250 && this->getXcoord() == 500){
+            this->move(0,5);
+            this->addY(5);  
+        }
+        else if (this->getYcoord() == 250 && this->getXcoord() < 650){
+            this->move(5,0);
+            this->addX(5);  
+        }
+        else if (this->getYcoord() > 150 && this->getXcoord() == 650){
+            this->move(0,-5);
+            this->addY(-5);  
+        }
+        else if (this->getYcoord() < 250){
+            this->move(5,0);
+            this->addX(5);  
+        }
+
+        //std::cout << this->getXcoord() << ", " << this->getYcoord() << ", speed: " << this->getSpeed() << std::endl;
         window.draw(this->getShape());
     }
 
     int getSpeed(){
-        return speed;
+        return this->speed;
     }
     int getXcoord(){
-        return x;
+        return this->x;
     }
     int getYcoord(){
-        return y;
+        return this->y;
     }
-    void setStats(float velocity, int hp){
-        this->speed = velocity;
-        this->health = hp;
+    void addY(int b){
+        this->y += b;
+    }
+    void addX(int a){
+        this->x += a;    
     }
 
     void getHit(int damage){

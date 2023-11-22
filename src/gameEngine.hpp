@@ -25,9 +25,10 @@ private:
 
 #endif
 
-void delayedFunction(UniversalClock &clock, float delayTime,Enemy &enemy1, sf::RenderWindow &window) {
-    if (clock.isDelayFinished(delayTime)) {
-        enemy1.moveEnemy(0.1,window);
-        clock.restartClock();
-    }
-}
+// void delayedFunction(UniversalClock &clock, float delayTime,Enemy &enemy1, sf::RenderWindow &window) {
+//     if (clock.isDelayFinished(delayTime)) {
+//         enemy1.moveEnemy(0.1,window);
+//         clock.restartClock();
+        
+//     }
+// }

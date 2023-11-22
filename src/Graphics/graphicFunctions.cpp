@@ -10,6 +10,8 @@
 std::vector<Tile> tiles;
 std::vector<Tower> towers;
 std::vector<Enemy> enemies;
+sf::RectangleShape playButton;
+sf::RectangleShape exitButton;
 bool towerPlacementMode = false;
 TowerType* selectedTowerType = nullptr;
 //function to draw all the tiles from hardcoded map
@@ -67,17 +69,17 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
 void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
     towers.push_back(tower);
-    window.draw(tower.getShape());
 }
 
-
-Enemy addEnemy(sf::RenderWindow &window, int tileSize, int x, int y){
+void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
     sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
     Tile tile(tileStartPosition, sf::Color::Black, tileSize);
-    Enemy enemy(tile.getPosition(), 30, 10, 1, x, y);
+    Enemy enemy(tile.getPosition(), 30, 10, 1, x * tileSize, y * tileSize);
+    
     enemies.push_back(enemy);
-    // window.draw(enemy.getShape());
-    return enemy;
+    //std::cout << x << " " << y << std::endl;
+    //window.draw(enemy.getShape());
+    //return enemy;
 }
 
 
@@ -151,3 +153,111 @@ void attack(std::vector <Enemy> enemies, std::vector <Tower> towers){
         tower.attackEnemy(enemies);
     }
 }
+
+// Function to create a button
+sf::RectangleShape createButton(float x, float y, float width, float height, sf::Color color) {
+    sf::RectangleShape button(sf::Vector2f(width, height));
+    button.setPosition(x, y);
+    button.setFillColor(color);
+    return button;
+}
+
+// Function to create a text
+sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size) {
+    sf::Text text;
+    text.setFont(font);
+    text.setString(content);
+    text.setCharacterSize(size);
+    text.setPosition(x, y);
+    return text;
+}
+
+
+void mainMenu(sf::RenderWindow &window) {
+        sf::Font font;
+    if (!font.loadFromFile("FreeMono.ttf")) {
+        std::cout << "Could not load font" << std::endl;
+    }
+
+    std::vector<std::string> options = {"Easy", "Medium", "Hard", "Very Hard", "Insane"};
+    std::vector<sf::RectangleShape> buttons;
+    std::vector<sf::Text> texts;
+
+    for (int i = 0; i < options.size(); i++) {
+        buttons.push_back(createButton(300, 100 + i * 60, 200, 50, sf::Color::Blue));
+        texts.push_back(createText(350, 110 + i * 60, options[i], font, 24));
+    }
+
+    sf::RectangleShape playButton = createButton(300, 400, 200, 50, sf::Color::Green);
+    sf::Text playText = createText(350, 410, "Play", font, 24);
+
+    sf::RectangleShape exitButton = createButton(300, 460, 200, 50, sf::Color::Red);
+    sf::Text exitText = createText(350, 470, "Exit", font, 24);
+
+    window.clear();
+
+    for (int i = 0; i < buttons.size(); i++) {
+            window.draw(buttons[i]);
+            window.draw(texts[i]);
+    }
+
+    window.draw(playButton);
+    window.draw(playText);
+
+    window.draw(exitButton);
+    window.draw(exitText);
+}
+
+// Function to create a button
+// sf::RectangleShape createButton(float x, float y, float width, float height, sf::Color color) {
+//     sf::RectangleShape button(sf::Vector2f(width, height));
+//     button.setPosition(x, y);
+//     button.setFillColor(color);
+//     return button;
+// }
+
+// // Function to create a text
+// sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size) {
+//     sf::Text text;
+//     text.setFont(font);
+//     text.setString(content);
+//     text.setCharacterSize(size);
+//     text.setPosition(x, y);
+//     return text;
+// }
+
+
+// void mainMenu(sf::RenderWindow &window) {
+//         sf::Font font;
+//     if (!font.loadFromFile("FreeMono.ttf")) {
+//         std::cout << "Could not load font" << std::endl;
+//     }
+
+//     std::vector<std::string> options = {"Easy", "Medium", "Hard", "Very Hard", "Insane"};
+//     std::vector<sf::RectangleShape> buttons;
+//     std::vector<sf::Text> texts;
+
+//     for (int i = 0; i < options.size(); i++) {
+//         buttons.push_back(createButton(300, 100 + i * 60, 200, 50, sf::Color::Blue));
+//         texts.push_back(createText(350, 110 + i * 60, options[i], font, 24));
+//     }
+
+//     sf::RectangleShape playButton = createButton(300, 400, 200, 50, sf::Color::Green);
+//     sf::Text playText = createText(350, 410, "Play", font, 24);
+
+//     sf::RectangleShape exitButton = createButton(300, 460, 200, 50, sf::Color::Red);
+//     sf::Text exitText = createText(350, 470, "Exit", font, 24);
+
+//     window.clear();
+
+//     for (int i = 0; i < buttons.size(); i++) {
+//             window.draw(buttons[i]);
+//             window.draw(texts[i]);
+//     }
+
+//     window.draw(playButton);
+//     window.draw(playText);
+
+//     window.draw(exitButton);
+//     window.draw(exitText);
+// }
