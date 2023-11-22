@@ -154,9 +154,10 @@ sf::RectangleShape createButton(float x, float y, float width, float height, sf:
 }
 
 // Function to create a text
-sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size) {
+sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size,sf::Color color) {
     sf::Text text;
     text.setFont(font);
+    text.setFillColor(color);
     text.setString(content);
     text.setCharacterSize(size);
     text.setPosition(x, y);
@@ -176,14 +177,14 @@ void mainMenu(sf::RenderWindow &window) {
 
     for (int i = 0; i < options.size(); i++) {
         buttons.push_back(createButton(300, 100 + i * 60, 200, 50, sf::Color::Blue));
-        texts.push_back(createText(350, 110 + i * 60, options[i], font, 24));
+        texts.push_back(createText(350, 110 + i * 60, options[i], font, 24,sf::Color::White));
     }
 
     sf::RectangleShape playButton = createButton(300, 400, 200, 50, sf::Color::Green);
-    sf::Text playText = createText(350, 410, "Play", font, 24);
+    sf::Text playText = createText(350, 410, "Play", font, 24,sf::Color::White);
 
     sf::RectangleShape exitButton = createButton(300, 460, 200, 50, sf::Color::Red);
-    sf::Text exitText = createText(350, 470, "Exit", font, 24);
+    sf::Text exitText = createText(350, 470, "Exit", font, 24,sf::Color::White);
 
     window.clear();
 
@@ -197,4 +198,18 @@ void mainMenu(sf::RenderWindow &window) {
 
     window.draw(exitButton);
     window.draw(exitText);
+}
+void endScreen(sf::RenderWindow &window) {
+    sf::Font font;
+    if (!font.loadFromFile("FreeMono.ttf")) {
+        std::cout << "Could not load font" << std::endl;
+    }
+
+    sf::Text text = createText(250, 200, "You lost!", font, 50,sf::Color::Red);
+    sf::Text text2 = createText(20, 300, "Try with easier difficulty ;)", font, 45,sf::Color::Red);
+    sf::Text text3 = createText(150, 400, "Click to try again", font, 45,sf::Color::Red);
+    window.clear();
+    window.draw(text);
+    window.draw(text2);
+    window.draw(text3);
 }

@@ -11,7 +11,8 @@
 
 enum class GameState {
     MainMenu,
-    Playing,
+    Building,
+    Attacking,
     EndScreen
 };
 
@@ -20,7 +21,7 @@ int main() {
     const int windowHeight = 600;
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
-    double timeStep = 0.1; // timestep in milliseconds
+    double timeStep = 0.01; // timestep in milliseconds
     GameState gameState = GameState::MainMenu;
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
 
@@ -47,31 +48,48 @@ int main() {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                 
                 if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 400 && mousePos.y < 460) {
-                    gameState = GameState::Playing;
+                    gameState = GameState::Building;
                 }
                 if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 460 && mousePos.y < 520) {
-                    gameState = GameState::EndScreen;
+                    endScreen(window);
+                    //window.close();
                 }
             }
         }
-
-        else if(gameState == GameState::Playing){
+        
+        else if(gameState == GameState::Attacking){
             //draw game
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
-            //move all enemies
-            
+            sf::sleep(sf::seconds(timeStep));
+            discreteTime += timeStep;
+
             for (int i = 0; i<enemies.size();i++){
                 enemies[i].moveEnemy(timeStep,window);
             }
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right){
+                gameState = GameState::EndScreen;
+            }
+        }
+
+        else if(gameState == GameState::Building){
+            drawTiles(window,tileSize,windowWidth,windowHeight);
+            drawTowers(window);
+            //Create the button for exiting build mode
+            sf::RectangleShape buildButton = createButton(750,500,50,75,sf::Color::Black);
+            window.draw(buildButton);
             placeTower(event,window);
-            sf::sleep(sf::seconds(timeStep));
-            discreteTime += timeStep;
+            //See if we want to exit build mode
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                if(buildButton.getGlobalBounds().contains(mousePos.x,mousePos.y)){
+                    gameState = GameState::Attacking;
+                }
+            }
         }
 
         else if(gameState == GameState::EndScreen){
-            //close window
-            window.close();
+            endScreen(window);
         }
 
        
