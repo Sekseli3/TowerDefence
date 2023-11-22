@@ -211,6 +211,18 @@ void mainMenu(sf::RenderWindow &window) {
     window.draw(exitButton);
     window.draw(exitText);
 }
+
+void drawMoney(sf::RenderWindow &window, int money) {
+        sf::Font font;
+    if (!font.loadFromFile("FreeMono.ttf")) {
+        std::cout << "Could not load font" << std::endl;
+    }
+
+    std::string moneyString = std::to_string(money) + "$";
+
+    sf::Text moneyText = createText(670, -10, moneyString, font, 50, sf::Color::Yellow); 
+    window.draw(moneyText);
+}
 void endScreen(sf::RenderWindow &window) {
     sf::Font font;
     if (!font.loadFromFile("FreeMono.ttf")) {

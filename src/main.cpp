@@ -22,6 +22,7 @@ int main() {
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.01; // timestep in milliseconds
+    int money = 123; // Initial money
     GameState gameState = GameState::MainMenu;
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
 
@@ -61,7 +62,7 @@ int main() {
             //draw game
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
-            
+            drawMoney(window, money);
             //move all enemies
             sf::sleep(sf::seconds(timeStep));
             discreteTime += timeStep;
@@ -78,6 +79,7 @@ int main() {
         else if(gameState == GameState::Building){
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
+            drawMoney(window, money);
             //Create the button for exiting build mode
             sf::RectangleShape buildButton = createButton(750,500,50,75,sf::Color::Black);
             window.draw(buildButton);
@@ -93,6 +95,7 @@ int main() {
 
         else if(gameState == GameState::EndScreen){
             endScreen(window);
+            money = 0;
         }
 
        
