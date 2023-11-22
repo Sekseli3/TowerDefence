@@ -30,3 +30,7 @@
         -New stuff added: main menu, multiple enemies running through the path, game states
         -Did some debugging
         -We set new goals for the next week: attacking, time keeping, money system(killing enemies and creating towers), different enemies, losing screen, game states for building and attacking.
+    -November 22, 2023
+        -New stuff added: towers shoot and have ranges, different types of enemies, losing screen, start of money system
+        -Merged our codes
+        -Set new goals: Special attakcs for towers, continue developing time and money system, implement rounds
