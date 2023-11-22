@@ -6,6 +6,9 @@
 #include "../Objects/tower.h"
 #include "../Objects/enemies.h"
 #include "../tiles.cpp"
+#include "../Objects/EnemyTypeA.h"
+#include "../Objects/EnemyTypeB.h"
+#include "../Objects/EnemyTypeC.h"
 
 std::vector<Tile> tiles;
 std::vector<Tower> towers;
@@ -72,14 +75,23 @@ void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
 }
 
 void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
-    sf::Vector2f tileStartPosition(x * tileSize+3, y * tileSize+3);
-    Tile tile(tileStartPosition, sf::Color::Black, tileSize);
-    Enemy enemy(tile.getPosition(), 30, 10, 1, x * tileSize, y * tileSize);
+
+    sf::Vector2f tileStartPosition_A(x * tileSize+4, y * tileSize+4);
+    Tile tileA(tileStartPosition_A, sf::Color::Black, tileSize);
     
-    enemies.push_back(enemy);
-    //std::cout << x << " " << y << std::endl;
-    //window.draw(enemy.getShape());
-    //return enemy;
+    sf::Vector2f tileStartPosition_B(x * tileSize+7, y * tileSize+7);
+    Tile tileB(tileStartPosition_B, sf::Color::Black, tileSize);
+
+    sf::Vector2f tileStartPosition_C(x * tileSize+1, y * tileSize+1);
+    Tile tileC(tileStartPosition_C, sf::Color::Black, tileSize);
+
+    EnemyTypeA enemyTypeA;
+    EnemyTypeB enemyTypeB;
+    EnemyTypeC enemyTypeC;
+    enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
+    enemies.push_back(enemyTypeB.createEnemy(tileB.getPosition(), x*tileSize,y*tileSize));
+    enemies.push_back(enemyTypeC.createEnemy(tileC.getPosition(), x*tileSize,y*tileSize));
+
 }
 
 

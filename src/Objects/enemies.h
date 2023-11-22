@@ -4,84 +4,33 @@
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "EnemyType.h"
 
-// Deferred declaration
 class EnemyType;
 
-/// Tower class
+/// Enemy class
 class Enemy  {
 public:
-    Enemy(sf::Vector2f& position, double radius, int health, int speed, float x, float y)
-    : position(position), x(x), y(y), speed(speed), health(health)
-        {
+    Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color);
+    
 
-        shape.setRadius(22);
-        shape.setPosition(position);
-        shape.setFillColor(sf::Color::Red);
-        shape.setOutlineColor(sf::Color::Black);
-        shape.setOutlineThickness(0.8);
-    }
-    //Function to retrieve shape
-    sf::CircleShape& getShape() {
-        return shape;
-    }
-    sf::Vector2f& getPosition() {
-        return position;
-    }
-    void move(float x_dir, float y_dir) {
-        // Set the position of the enemy object
-        shape.move(x_dir, y_dir);
-    }
-    void moveEnemy(double timeStep, sf::RenderWindow &window){
+    sf::CircleShape& getShape();
+    sf::Vector2f& getPosition();
 
-        if (this->getXcoord() < 250){
-            this->move(5,0);
-            this->addX(5);  
-        }
-        else if (this->getYcoord() > 150 && this->getXcoord() == 250){
-            this->move(0,-5);
-            this->addY(-5); 
-        }
-        else if (this->getYcoord() == 150 && this->getXcoord() < 500){
-            this->move(5,0);
-            this->addX(5);  
-        }
-        else if (this->getYcoord() < 250 && this->getXcoord() == 500){
-            this->move(0,5);
-            this->addY(5);  
-        }
-        else if (this->getYcoord() == 250 && this->getXcoord() < 650){
-            this->move(5,0);
-            this->addX(5);  
-        }
-        else if (this->getYcoord() > 150 && this->getXcoord() == 650){
-            this->move(0,-5);
-            this->addY(-5);  
-        }
-        else if (this->getYcoord() < 250){
-            this->move(5,0);
-            this->addX(5);  
-        }
+    void move(float x_dir, float y_dir);
+    void moveEnemy(double timeStep, sf::RenderWindow &window);
 
-        //std::cout << this->getXcoord() << ", " << this->getYcoord() << ", speed: " << this->getSpeed() << std::endl;
-        window.draw(this->getShape());
-    }
+    int getSpeed();
+    int getXcoord();
+    int getYcoord();
 
-    int getSpeed(){
-        return this->speed;
-    }
-    int getXcoord(){
-        return this->x;
-    }
-    int getYcoord(){
-        return this->y;
-    }
-    void addY(int b){
-        this->y += b;
-    }
-    void addX(int a){
-        this->x += a;    
-    }
+    void addY(int b);
+    void addX(int a);
+
+    void lowerHealth(int h);
+
+    bool hasPassed();
+    bool isDead();
 
     private:
         sf::CircleShape shape;
@@ -90,9 +39,6 @@ public:
         int y;
         float speed;
         int health;
-
-        
 };
-
 
 #endif

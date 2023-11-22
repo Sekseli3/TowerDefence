@@ -11,7 +11,15 @@ FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
-add_executable(CMakeSFMLProject src/main.cpp src/Objects/tower.cpp)
+add_executable(CMakeSFMLProject
+    src/main.cpp 
+    src/Objects/tower.cpp
+    src/Objects/enemies.cpp
+    src/Objects/EnemyTypeA.cpp 
+    src/Objects/EnemyTypeB.cpp
+    src/Objects/EnemyTypeC.cpp
+
+    ) 
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 

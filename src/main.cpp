@@ -29,7 +29,7 @@ int main() {
     for (int i = 0; i > -40; i = i-2){
         addEnemy(window, tileSize, i, 4);
     }
-    
+
 
     while (window.isOpen()) {
         sf::Event event;
@@ -61,15 +61,18 @@ int main() {
             //draw game
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
+            
+            //move all enemies
             sf::sleep(sf::seconds(timeStep));
             discreteTime += timeStep;
 
             for (int i = 0; i<enemies.size();i++){
                 enemies[i].moveEnemy(timeStep,window);
+                if (enemies[i].hasPassed()){
+                    gameState = GameState::EndScreen;
+                }
             }
-            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right){
-                gameState = GameState::EndScreen;
-            }
+            
         }
 
         else if(gameState == GameState::Building){
