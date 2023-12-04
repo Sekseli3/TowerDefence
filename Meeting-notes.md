@@ -34,3 +34,9 @@
         -New stuff added: towers shoot and have ranges, different types of enemies, losing screen, start of money system
         -Merged our codes
         -Set new goals: Special attakcs for towers, continue developing time and money system, implement rounds
+    - December 4, 2023
+        -New stuff added, towers shoot only the 1st enemy for each timestep, endless rounds with increasing difficulty,
+            resetting the game after the game has ended.
+        -Merged the codes
+        -Test run for merged project, successful
+        -Plans for final week: Money system and capability to choose the game difficulty in the main menu.
