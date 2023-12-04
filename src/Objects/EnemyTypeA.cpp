@@ -8,5 +8,5 @@ Enemy EnemyTypeA::createEnemy(sf::Vector2f& position, float x, float y) const {
 
     //SPEED NEEDS TO BE DIVISIBLE BY 5
 
-    return Enemy(position, 20, 10, 2.5, x, y, red); // Adjust parameters as needed
+    return Enemy(position, 20, 6000, 2.5, x, y, red); // Adjust parameters as needed
 }

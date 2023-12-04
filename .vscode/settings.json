@@ -59,7 +59,18 @@
         "unordered_map": "cpp",
         "variant": "cpp",
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "__bits": "cpp",
+        "__tuple": "cpp",
+        "bit": "cpp",
+        "memory": "cpp",
+        "stack": "cpp",
+        "type_traits": "cpp",
+        "__nullptr": "cpp",
+        "__string": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

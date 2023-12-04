@@ -74,7 +74,7 @@ void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     towers.push_back(tower);
 }
 
-void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
+void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y, int gameLevel){
 
     sf::Vector2f tileStartPosition_A(x * tileSize+4, y * tileSize+4);
     Tile tileA(tileStartPosition_A, sf::Color::Black, tileSize);
@@ -85,13 +85,28 @@ void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
     sf::Vector2f tileStartPosition_C(x * tileSize+1, y * tileSize+1);
     Tile tileC(tileStartPosition_C, sf::Color::Black, tileSize);
 
-    EnemyTypeA enemyTypeA;
-    EnemyTypeB enemyTypeB;
-    EnemyTypeC enemyTypeC;
-    enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
-    enemies.push_back(enemyTypeB.createEnemy(tileB.getPosition(), x*tileSize,y*tileSize));
-    enemies.push_back(enemyTypeC.createEnemy(tileC.getPosition(), x*tileSize,y*tileSize));
+    if (gameLevel < 3) {
+        EnemyTypeA enemyTypeA;
+        enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
+    }
+    else if (gameLevel > 2 && gameLevel <= 4) {
+        EnemyTypeA enemyTypeA;
+        enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
 
+        EnemyTypeB enemyTypeB;
+        enemies.push_back(enemyTypeB.createEnemy(tileB.getPosition(), x*tileSize,y*tileSize));
+    }
+    else if (gameLevel > 4) {
+        EnemyTypeA enemyTypeA;
+        enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
+
+        EnemyTypeB enemyTypeB;
+        enemies.push_back(enemyTypeB.createEnemy(tileB.getPosition(), x*tileSize,y*tileSize));
+
+        EnemyTypeC enemyTypeC;
+        enemies.push_back(enemyTypeC.createEnemy(tileC.getPosition(), x*tileSize,y*tileSize));
+    }
+    
 }
 
 

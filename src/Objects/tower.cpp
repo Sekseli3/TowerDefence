@@ -52,7 +52,8 @@ void Tower::attackEnemy(std::vector<Enemy> &enemies)
         if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()))
         {
             enemies[i].getHit(int(5));
-            std::cout << "Enemy hit" << std::endl;
+            continue;
+            //std::cout << "Enemy hit" << std::endl;
             
         }
 
