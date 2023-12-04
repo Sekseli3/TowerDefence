@@ -13,10 +13,7 @@
 // void timekeeer(int timeStep){
 //     sf::Clock clock;
 //     sf::Time time = clock.getElapsedTime();
-
-
 // }
-
 UniversalClock clock1;
 
 enum class GameState {
@@ -61,9 +58,7 @@ int main() {
     // sf::Time time = clock.getElapsedTime();
     UniversalClock clock1;
 
-
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
-
     
     for (int i = 0; i > -40; i = i-2){
         addEnemy(window, tileSize, i, 4);
@@ -72,13 +67,12 @@ int main() {
 
     while (window.isOpen()) {
         sf::Event event;
-
+        money = 0;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
-
         //See in which game state we are and proceed accordingly
         if(gameState == GameState::MainMenu){
             mainMenu(window);
@@ -90,8 +84,7 @@ int main() {
                     gameState = GameState::Building;
                 }
                 if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 460 && mousePos.y < 520) {
-                    endScreen(window);
-                    //window.close();
+                    window.close();
                 }
             }
         }
@@ -117,9 +110,10 @@ int main() {
         else if(gameState == GameState::Building){
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
+            deleteTower(event,window);
             drawMoney(window, money);
             //Create the button for exiting build mode
-            sf::RectangleShape buildButton = createButton(750,500,50,75,sf::Color::Black);
+            sf::RectangleShape buildButton = createButton(0,550,50,50,sf::Color::Black);
             window.draw(buildButton);
             placeTower(event,window);
             //See if we want to exit build mode
@@ -133,7 +127,9 @@ int main() {
 
         else if(gameState == GameState::EndScreen){
             endScreen(window);
-            money = 0;
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
+               gameState = GameState::MainMenu;
+                }
         }
 
        

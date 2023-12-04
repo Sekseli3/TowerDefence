@@ -68,6 +68,23 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
         }
     }
 }
+sf::RectangleShape createButton(float x, float y, float width, float height, sf::Color color) {
+    sf::RectangleShape button(sf::Vector2f(width, height));
+    button.setPosition(x, y);
+    button.setFillColor(color);
+    return button;
+}
+
+// Function to create a text
+sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size,sf::Color color) {
+    sf::Text text;
+    text.setFont(font);
+    text.setFillColor(color);
+    text.setString(content);
+    text.setCharacterSize(size);
+    text.setPosition(x, y);
+    return text;
+}
 
 void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
@@ -98,26 +115,15 @@ void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y){
 
 void placeTower(sf::Event event, sf::RenderWindow &window){
 
-    
-    TowerType basicTower(30.0, 20, 60.0, 50.0, sf::Color::Red);
-    TowerType advancedTower(40.0, 30, 60.0, 60.0, sf::Color::Blue);
-    TowerType ultimateTower(50.0, 40, 60.0, 70.0, sf::Color::Yellow);
+    //Define the tower types
+    TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red);
+    TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue);
+    TowerType ultimateTower(50.0, 40, 250, 70.0, sf::Color::Yellow);
 
     // Create the buttons for each tower type
-    sf::RectangleShape basicButton;
-    basicButton.setSize(sf::Vector2f(75, 75));
-    basicButton.setFillColor(basicTower.getColor());
-    basicButton.setPosition(750, 200);
-
-    sf::RectangleShape advancedButton;
-    advancedButton.setSize(sf::Vector2f(75, 75));
-    advancedButton.setFillColor(advancedTower.getColor());
-    advancedButton.setPosition(750, 300);
-
-    sf::RectangleShape ultimateButton;
-    ultimateButton.setSize(sf::Vector2f(75, 75));
-    ultimateButton.setFillColor(ultimateTower.getColor());
-    ultimateButton.setPosition(750, 400);
+    sf::RectangleShape basicButton = createButton(50, 500, 50, 50, basicTower.getColor());
+    sf::RectangleShape advancedButton = createButton(0, 500, 50, 50, advancedTower.getColor());
+    sf::RectangleShape ultimateButton = createButton(50, 550, 50, 50, ultimateTower.getColor());
 
     // Draw the buttons
     window.draw(basicButton);
@@ -164,25 +170,6 @@ void attack(std::vector <Enemy> enemies, std::vector <Tower> towers){
     for (Tower tower : towers){
         tower.attackEnemy(enemies);
     }
-}
-
-// Function to create a button
-sf::RectangleShape createButton(float x, float y, float width, float height, sf::Color color) {
-    sf::RectangleShape button(sf::Vector2f(width, height));
-    button.setPosition(x, y);
-    button.setFillColor(color);
-    return button;
-}
-
-// Function to create a text
-sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size,sf::Color color) {
-    sf::Text text;
-    text.setFont(font);
-    text.setFillColor(color);
-    text.setString(content);
-    text.setCharacterSize(size);
-    text.setPosition(x, y);
-    return text;
 }
 
 
@@ -245,4 +232,17 @@ void endScreen(sf::RenderWindow &window) {
     window.draw(text);
     window.draw(text2);
     window.draw(text3);
+}
+void deleteTower(sf::Event event, sf::RenderWindow &window){
+    if (event.type == sf::Event::MouseButtonPressed &&
+        event.mouseButton.button == sf::Mouse::Left) {
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f rightPosition(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+        Tile& closestTile = findClosestTile(tiles, rightPosition);
+            for (int i = 0; i < towers.size(); i++) {
+                if (towers[i].getPosition() == closestTile.getPosition()) {
+                    towers.erase(towers.begin() + i);
+                }
+            }
+    }
 }

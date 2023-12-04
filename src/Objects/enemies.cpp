@@ -1,5 +1,5 @@
 /// Enemy.cpp
-
+#include <iostream>
 #include "enemies.h"
 #include "EnemyType.h"  // Include the EnemyType header file
 
@@ -28,39 +28,41 @@ void Enemy::move(float x_dir, float y_dir) {
 }
 
 void Enemy::moveEnemy(double timeStep, sf::RenderWindow &window) {
-    
-        if (this->getXcoord() < 250){
-            this->move(this->getSpeed(),0);
-            this->addX(this->getSpeed());  
-        }
-        else if (this->getYcoord() > 150 && this->getXcoord() == 250){
-            this->move(0,-this->getSpeed());
-            this->addY(-this->getSpeed()); 
-        }
-        else if (this->getYcoord() == 150 && this->getXcoord() < 500){
-            this->move(this->getSpeed(),0);
-            this->addX(this->getSpeed());  
-        }
-        else if (this->getYcoord() < 250 && this->getXcoord() == 500){
-            this->move(0,this->getSpeed());
-            this->addY(this->getSpeed());  
-        }
-        else if (this->getYcoord() == 250 && this->getXcoord() < 650){
-            this->move(this->getSpeed(),0);
-            this->addX(this->getSpeed());  
-        }
-        else if (this->getYcoord() > 150 && this->getXcoord() == 650){
-            this->move(0,-this->getSpeed());
-            this->addY(-this->getSpeed());  
-        }
-        else if (this->getYcoord() < 250){
-            this->move(this->getSpeed(),0);
-            this->addX(this->getSpeed());  
-        }
+    double x = this->getXcoord();
+    double y = this->getYcoord();
+    double speed = this->getSpeed();
 
-        //std::cout << this->getXcoord() << ", " << this->getYcoord() << ", speed: " << this->getSpeed() << std::endl;
-        window.draw(this->getShape());
+    if (x < 250){
+        this->move(speed,0);
+        this->addX(speed);  
+    }
+    else if (y > 150 && x >= 240 && x <= 260){
+        this->move(0,-speed);
+        this->addY(-speed); 
+    }
+    else if (y >= 150 && x < 500){
+        this->move(speed,0);
+        this->addX(speed);  
+    }
+    else if (y < 250 && x >= 490 && x <= 510){
+        this->move(0,speed);
+        this->addY(speed);  
+    }
+    else if (y >= 240 && y <= 260 && x < 650){
+        this->move(speed,0);
+        this->addX(speed);  
+    }
+    else if (y > 150 && x >= 640 && x <= 660){
+        this->move(0,-speed);
+        this->addY(-speed);  
+    }
+    else if (y < 250){
+        this->move(speed,0);
+        this->addX(speed);  
+    }
 
+    std::cout << this->getXcoord() << ", " << this->getYcoord() << ", speed: " << this->getSpeed() << std::endl;
+    window.draw(this->getShape());
 }
 
 bool Enemy::hasPassed() {

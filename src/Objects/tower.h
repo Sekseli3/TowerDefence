@@ -27,8 +27,10 @@ class Tower  {
 public:
     Tower(const sf::Vector2f& position, const TowerType& type);
     sf::ConvexShape& getShape();
+    double getAttack_range() const;
     void attackEnemy(std::vector<Enemy> &enemies);
     sf::CircleShape getAttackShape();
+    sf::Vector2f getPosition();
 
 private:
     sf::ConvexShape shape;

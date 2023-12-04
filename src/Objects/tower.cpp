@@ -23,9 +23,9 @@ Tower::Tower(const sf::Vector2f& position, const TowerType& type)
     shape.setFillColor(type.getColor());
     shape.setOutlineColor(sf::Color::Red);
     shape.setOutlineThickness(2);
-    attackShape.setRadius(150);
+    attackShape.setRadius(type.getAttackRange());
     // draw circle on center of tower
-    attackShape.setOrigin(125,125);
+    attackShape.setOrigin(type.getAttackRange()-25,type.getAttackRange()-25);
 
     attackShape.setPosition(position);
     attackShape.setFillColor(sf::Color::Transparent);
@@ -49,11 +49,27 @@ void Tower::attackEnemy(std::vector<Enemy> &enemies)
         // {
         //     enemies[i].getHit(this->getDamage());
         // }
-        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()))
+        // && this->shape.getFillColor() == sf::Color::Red, Use this to differentiate between towers
+        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Red)
         {
+            //Tower that does damage
             enemies[i].getHit(int(5));
-            std::cout << "Enemy hit" << std::endl;
-            
+            break;
+            //std::cout << "Enemy hit" << std::endl;
+        }
+        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Blue)
+        {
+            //Tower that slows
+            enemies[i].reduceSpeed();
+            break;
+            //std::cout << "Enemy hit" << std::endl;
+        }
+        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Yellow)
+        {
+            //Tower that does damage
+            enemies[i].getHit(int(5));
+            break;
+            //std::cout << "Enemy hit" << std::endl;
         }
 
         if (enemies[i].getPosition().x < this->shape.getPosition().x + this->type.getAttackRange() && enemies[i].getPosition().x > this->shape.getPosition().x - this->type.getAttackRange() && enemies[i].getPosition().y < this->shape.getPosition().y + this->type.getAttackRange() && enemies[i].getPosition().y > this->shape.getPosition().y - this->type.getAttackRange())
@@ -81,4 +97,7 @@ sf::CircleShape Tower::getAttackShape(){
 // Function to retrieve shape
 sf::ConvexShape& Tower::getShape() {
     return shape;
+}
+sf::Vector2f Tower::getPosition(){
+    return shape.getPosition();
 }

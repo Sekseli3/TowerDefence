@@ -5,15 +5,16 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "EnemyType.h"
+#include "../gameEngine.hpp"
+
+
 
 class EnemyType;
 
 /// Enemy class
 class Enemy  {
 public:
-    Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color);
-    
-
+    Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color);    
     sf::CircleShape& getShape();
     sf::Vector2f& getPosition();
 
@@ -39,9 +40,17 @@ public:
     int getHealth(){
         return this->health;
     }
-
-  
-
+    void reduceSpeed(){
+        if(this->shape.getFillColor() == sf::Color::Cyan){
+            speed = 2;
+        }
+        else if(this->shape.getFillColor() == sf::Color::Black){
+            speed = 1;
+        }
+        else if(this->shape.getFillColor() == sf::Color::Red){
+            speed = 1;
+        }
+    }
     private:
         sf::CircleShape shape;
         sf::Vector2f position;
