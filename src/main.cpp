@@ -54,15 +54,15 @@ int main() {
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.01; // timestep in milliseconds
     int money = 123; // Initial money
+    bool addNext = true; // boolean value for adding enemies
+    int gameLevel = 1; // game level starting from one
     GameState gameState = GameState::MainMenu;    // sf::Clock clock;
     // sf::Time time = clock.getElapsedTime();
     UniversalClock clock1;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Colored Tile Map");
     
-    for (int i = 0; i > -40; i = i-2){
-        addEnemy(window, tileSize, i, 4);
-    }
+    
 
 
     while (window.isOpen()) {
@@ -75,6 +75,7 @@ int main() {
         }
         //See in which game state we are and proceed accordingly
         if(gameState == GameState::MainMenu){
+
             mainMenu(window);
             //Proceed to Play
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
@@ -95,8 +96,8 @@ int main() {
             drawTowers(window);
             drawMoney(window, money);
             //move all enemies
-            moveEnemies(clock1, window, enemies,20);
-  
+            moveEnemies(clock1, window, enemies,10);
+            addNext = true;
 
             for (int i = 0; i<enemies.size();i++){
                 // enemies[i].moveEnemy(timeStep,window);
@@ -104,6 +105,8 @@ int main() {
                     gameState = GameState::EndScreen;
                 }
             }
+
+            if (enemies.empty()){ gameState = GameState::Building; }
             
         }
 
@@ -116,6 +119,16 @@ int main() {
             sf::RectangleShape buildButton = createButton(0,550,50,50,sf::Color::Black);
             window.draw(buildButton);
             placeTower(event,window);
+
+            //Add enemies for next round
+            if (addNext == true) {
+                for (int i = 0; i > -4*gameLevel; i = i-2){
+                    addEnemy(window, tileSize, i, 4, gameLevel);
+                }
+                addNext = false;
+                gameLevel++;
+            }
+
             //See if we want to exit build mode
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -130,6 +143,12 @@ int main() {
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
                gameState = GameState::MainMenu;
                 }
+            towers.clear();
+            enemies.clear();
+            gameLevel = 1;
+            addNext = true;
+            //gameState = GameState::MainMenu;
+            
         }
 
        
