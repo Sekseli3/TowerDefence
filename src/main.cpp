@@ -1,9 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "gameEngine.hpp"
 #include <cstdlib>
 #include <ctime>
 #include "Graphics/graphicFunctions.cpp"
-#include "Graphics/GraphicsTest.cpp"
 #include "Objects/enemies.h"
 #include "gameEngine.hpp"
 #include <ctime>
@@ -147,7 +145,6 @@ int main() {
             enemies.clear();
             gameLevel = 1;
             addNext = true;
-            //gameState = GameState::MainMenu;
             
         }
 
