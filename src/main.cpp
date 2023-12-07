@@ -21,7 +21,7 @@ enum class GameState {
     EndScreen
 };
 
-void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<Enemy> &stored_enemies, float delayTime){
+void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<Enemy> &stored_enemies, float delayTime,int &Money){
     
     
         if (clock.isDelayFinished(delayTime)) {
@@ -37,7 +37,9 @@ void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<En
         for (int i = 0; i < stored_enemies.size(); i++){
 
             if (stored_enemies[i].getHealth() <= 0){
+                Money += stored_enemies[i].getPoints();
                 stored_enemies.erase(stored_enemies.begin()+i);
+
             }
             
         }
@@ -51,7 +53,7 @@ int main() {
     const int tileSize = 50; // Size of each tile in pixel
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.01; // timestep in milliseconds
-    int money = 123; // Initial money
+    int money = 100; // Initial money
     bool addNext = true; // boolean value for adding enemies
     int gameLevel = 1; // game level starting from one
     GameState gameState = GameState::MainMenu;    // sf::Clock clock;
@@ -65,7 +67,7 @@ int main() {
 
     while (window.isOpen()) {
         sf::Event event;
-        money = 0;
+        // money = 0;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -94,7 +96,7 @@ int main() {
             drawTowers(window);
             drawMoney(window, money);
             //move all enemies
-            moveEnemies(clock1, window, enemies,10);
+            moveEnemies(clock1, window, enemies,10,money);
             addNext = true;
 
             for (int i = 0; i<enemies.size();i++){
@@ -111,12 +113,12 @@ int main() {
         else if(gameState == GameState::Building){
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
-            deleteTower(event,window);
+            deleteTower(event,window,money);
             drawMoney(window, money);
             //Create the button for exiting build mode
             sf::RectangleShape buildButton = createButton(0,550,50,50,sf::Color::Black);
             window.draw(buildButton);
-            placeTower(event,window);
+            placeTower(event,window,money);
 
             //Add enemies for next round
             if (addNext == true) {

@@ -1,8 +1,8 @@
 #include "tower.h"
 #include <iostream>
 
-TowerType::TowerType(double radius, int damage, double attack_range, double attack_speed, const sf::Color& color)
-    : radius(radius), damage(damage), attack_range(attack_range), attack_speed(attack_speed), color(color) {}
+TowerType::TowerType(double radius, int damage, double attack_range, double attack_speed, const sf::Color& color, int cost)
+    : radius(radius), damage(damage), attack_range(attack_range), attack_speed(attack_speed), color(color),cost(cost) {}
 
 double TowerType::getRadius() const { return radius; }
 int TowerType::getDamage() const { return damage; }
@@ -33,6 +33,13 @@ Tower::Tower(const sf::Vector2f& position, const TowerType& type)
     attackShape.setOutlineThickness(3);
     
 
+    
+
+}
+
+// Function to add clock to vector of clocks
+void Tower::addClock(UniversalClock &clock){
+    clocks.push_back(clock);
 }
 
 void Tower::attackEnemy(std::vector<Enemy> &enemies)

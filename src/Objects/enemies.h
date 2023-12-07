@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "EnemyType.h"
 #include "../gameEngine.hpp"
+#include <iostream>
 
 
 
@@ -14,7 +15,7 @@ class EnemyType;
 /// Enemy class
 class Enemy  {
 public:
-    Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color);    
+    Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color,int points);   
     sf::CircleShape& getShape();
     sf::Vector2f& getPosition();
 
@@ -40,6 +41,9 @@ public:
     int getHealth(){
         return this->health;
     }
+    int getPoints(){
+        return this->points;
+    }
     void reduceSpeed(){
         if(this->shape.getFillColor() == sf::Color::Cyan){
             speed = 2;
@@ -51,6 +55,11 @@ public:
             speed = 1;
         }
     }
+    // destructor
+    ~Enemy(){
+       std::cout << "Enemy destroyed" << std::endl;
+    
+    }
     private:
         sf::CircleShape shape;
         sf::Vector2f position;
@@ -58,6 +67,8 @@ public:
         int y;
         float speed;
         int health;
+        int points;
+        
 };
 
 #endif

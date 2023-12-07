@@ -88,7 +88,7 @@ sf::Text createText(float x, float y, std::string content, sf::Font& font, unsig
 
 void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
-    towers.push_back(tower);
+        towers.push_back(tower);
 }
 
 void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y, int gameLevel){
@@ -128,12 +128,12 @@ void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y, int game
 
 
 
-void placeTower(sf::Event event, sf::RenderWindow &window){
+void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
 
     //Define the tower types
-    TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red);
-    TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue);
-    TowerType ultimateTower(50.0, 40, 250, 70.0, sf::Color::Yellow);
+    TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red,10);
+    TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue,20);
+    TowerType ultimateTower(50.0, 40, 250, 70.0, sf::Color::Yellow,30);
 
     // Create the buttons for each tower type
     sf::RectangleShape basicButton = createButton(50, 500, 50, 50, basicTower.getColor());
@@ -164,10 +164,22 @@ void placeTower(sf::Event event, sf::RenderWindow &window){
         sf::Vector2f rightPosition(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
         Tile& closestTile = findClosestTile(tiles, rightPosition);
 
+
         if (closestTile.getColor() == sf::Color::Green) {
+
+            if (money < selectedTowerType->getCost()) {
+                std::cout << "Not enough money" << std::endl;
+                
+            }
+            else{
+                 
+            money -= selectedTowerType->getCost();
+            
             addTower(window, closestTile, *selectedTowerType);
         
+
             selectedTowerType = nullptr;
+            }
         }
     }
 }
@@ -248,7 +260,7 @@ void endScreen(sf::RenderWindow &window) {
     window.draw(text2);
     window.draw(text3);
 }
-void deleteTower(sf::Event event, sf::RenderWindow &window){
+void deleteTower(sf::Event event, sf::RenderWindow &window,int &money){
     if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.button == sf::Mouse::Left) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -256,6 +268,7 @@ void deleteTower(sf::Event event, sf::RenderWindow &window){
         Tile& closestTile = findClosestTile(tiles, rightPosition);
             for (int i = 0; i < towers.size(); i++) {
                 if (towers[i].getPosition() == closestTile.getPosition()) {
+                    money += towers[i].getType().getCost()/2;
                     towers.erase(towers.begin() + i);
                 }
             }

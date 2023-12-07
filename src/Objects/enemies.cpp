@@ -5,8 +5,8 @@
 
 
 
-Enemy::Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color)
-    : position(position), x(x), y(y), speed(speed), health(health)
+Enemy::Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color,int points)
+    : position(position), x(x), y(y), speed(speed), health(health),points(points)
 {
     shape.setRadius(radius);
     shape.setPosition(position);
