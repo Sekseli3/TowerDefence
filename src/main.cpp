@@ -54,6 +54,7 @@ int main() {
     double discreteTime = 0; // Calculated time since app has started
     double timeStep = 0.01; // timestep in milliseconds
     int money = 100; // Initial money
+    int difficulty = 1; // Initial difficulty
     bool addNext = true; // boolean value for adding enemies
     int gameLevel = 1; // game level starting from one
     GameState gameState = GameState::MainMenu;    // sf::Clock clock;
@@ -86,6 +87,26 @@ int main() {
                 }
                 if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 460 && mousePos.y < 520) {
                     window.close();
+                }
+                if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 340 && mousePos.y < 400){
+                    difficulty = 5;
+                    std::cout << "Difficulty: " << difficulty << std::endl;
+                }
+                if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 280 && mousePos.y < 340){
+                    difficulty = 4;
+                    std::cout << "Difficulty: " << difficulty << std::endl;
+                }
+                if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 220 && mousePos.y < 280){
+                    difficulty = 3;
+                    std::cout << "Difficulty: " << difficulty << std::endl;
+                }
+                if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 160 && mousePos.y < 220){
+                    difficulty = 2;
+                    std::cout << "Difficulty: " << difficulty << std::endl;
+                }
+                if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 100 && mousePos.y < 160){
+                    difficulty = 1;
+                    std::cout << "Difficulty: " << difficulty << std::endl;
                 }
             }
         }
@@ -122,7 +143,7 @@ int main() {
 
             //Add enemies for next round
             if (addNext == true) {
-                for (int i = 0; i > -4*gameLevel; i = i-2){
+                for (int i = 0; i > -4*gameLevel*difficulty; i = i-2){
                     addEnemy(window, tileSize, i, 4, gameLevel);
                 }
                 addNext = false;
@@ -147,6 +168,7 @@ int main() {
             enemies.clear();
             gameLevel = 1;
             addNext = true;
+            money = 100;
             
         }
 
