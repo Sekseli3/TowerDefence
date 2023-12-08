@@ -281,7 +281,15 @@ void drawMoney(sf::RenderWindow &window, int money) {
 
     std::string moneyString = std::to_string(money) + "$";
 
-    sf::Text moneyText = createText(670, -10, moneyString, font, 50, sf::Color::Yellow); 
+    sf::Text moneyText = createText(680, -10, moneyString, font, 50, sf::Color::Yellow);
+
+    if (money > 99 && money < 1000) {
+        sf::Text moneyText = createText(670, -10, moneyString, font, 50, sf::Color::Yellow);
+    }
+    else if (money >= 1000) {
+        sf::Text moneyText = createText(655, -10, moneyString, font, 50, sf::Color::Yellow);
+    }
+
     window.draw(moneyText);
 }
 void endScreen(sf::RenderWindow &window) {

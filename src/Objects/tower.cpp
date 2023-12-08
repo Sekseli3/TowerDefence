@@ -30,7 +30,7 @@ Tower::Tower(const sf::Vector2f& position, const TowerType& type)
     attackShape.setPosition(position);
     attackShape.setFillColor(sf::Color::Transparent);
     attackShape.setOutlineColor(sf::Color::Red);
-    attackShape.setOutlineThickness(3);
+    attackShape.setOutlineThickness(2);
     
 
     
