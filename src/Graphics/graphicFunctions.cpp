@@ -358,8 +358,8 @@ void tutorial(sf::RenderWindow &window){
     tutorialText.setPosition(50, 50);
 
     
-    sf::RectangleShape backButton = createButton(300, 500, 200, 50, sf::Color::Blue);
-    sf::Text text = createText(350, 505, "Back", font, 30,sf::Color::White);
+    sf::RectangleShape backButton = createButton(100, 500, 200, 50, sf::Color::Blue);
+    sf::Text text = createText(150, 505, "Back", font, 30,sf::Color::White);
     
     window.draw(backButton);
     window.draw(text);
@@ -372,40 +372,7 @@ void tutorial(sf::RenderWindow &window){
     }
 }
 
-void tutorial(sf::RenderWindow &window){
-    window.clear();
-    sf::Text tutorialText;
-    sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
-        std::cout << "Could not load font" << std::endl;
-    }
-    tutorialText.setFont(font);
-    tutorialText.setString("Welcome to the game! Here's how to play:\n\n"
-                       "1. Start by selecting a difficulty level.\n"
-                       "2. Press the 'Play' button to start the game.\n"
-                       "3. The game consists of two phases:\n   Building and Attack.\n"
-                       "4. During the Building phase, \n   you can build or remove towers.\n"
-                       "5. To build a tower, first left-click a colored \n   square to select the type of tower. \n   Then, right-click on a green tile to \n   place the tower. \n   Make sure you have enough money to buy the tower!\n"
-                       "6. You can remove a tower by left-clicking it \n   during the Building phase. \n   You'll get some money back when you do this.\n"
-                       "7. When you're ready, press the black cube \n   to switch to the Attack phase. Good luck!");
-    tutorialText.setCharacterSize(24);
-    tutorialText.setFillColor(sf::Color::White);
-    tutorialText.setPosition(50, 50);
 
-    
-    sf::RectangleShape backButton = createButton(300, 500, 200, 50, sf::Color::Blue);
-    sf::Text text = createText(350, 505, "Back", font, 30,sf::Color::White);
-    
-    window.draw(backButton);
-    window.draw(text);
-    window.draw(tutorialText);
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        if(backButton.getGlobalBounds().contains(mousePos.x,mousePos.y)){
-            toMain = true;
-        }
-    }
-}
 
 void drawWave(sf::RenderWindow &window,int &gameLevel){
     sf::Font font;
