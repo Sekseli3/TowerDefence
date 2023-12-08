@@ -58,7 +58,7 @@ void Tower::attackEnemy(std::vector<Enemy> &enemies)
         {
             //Tower that slows
             enemies[i].reduceSpeed();
-            break;
+            
             //std::cout << "Enemy hit" << std::endl;
         }
         if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Yellow)

@@ -18,7 +18,8 @@ enum class GameState {
     MainMenu,
     Building,
     Attacking,
-    EndScreen
+    EndScreen,
+    Tutorial
 };
 
 void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<Enemy> &stored_enemies, float delayTime,int &Money){
@@ -81,7 +82,10 @@ int main() {
             //Proceed to Play
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                
+            
+                if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 40 && mousePos.y < 100) {
+                    gameState = GameState::Tutorial;
+                }
                 if(mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 400 && mousePos.y < 460) {
                     gameState = GameState::Building;
                 }
@@ -158,6 +162,7 @@ int main() {
         }
 
         else if(gameState == GameState::EndScreen){
+            bool toMain = false;
             endScreen(window);
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
                gameState = GameState::MainMenu;
@@ -169,9 +174,14 @@ int main() {
             money = 100;
             
         }
+        else if(gameState == GameState::Tutorial) {
+            toMain = false;
+            tutorial(window);
+            if(toMain == true){
+                gameState = GameState::MainMenu;
+            }
+        }
 
-       
-        
     //update the map after clearing window
     window.display();    
     }
