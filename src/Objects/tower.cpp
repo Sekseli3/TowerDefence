@@ -46,17 +46,7 @@ void Tower::attackEnemy(std::vector<Enemy> &enemies)
 {
     for (int i = 0; i < enemies.size(); i++)
     {
-        // if (enemies[i].getPosition().x < this->getPosition().x + this->getAttackRange() && enemies[i].getPosition().x > this->getPosition().x - this->getAttackRange() && enemies[i].getPosition().y < this->getPosition().y + this->getAttackRange() && enemies[i].getPosition().y > this->getPosition().y - this->getAttackRange())
-        // {
-        //     enemies[i].getHit(int(2));
-        //     std::cout << "Enemy hit" << std::endl;
-        // }
-        // Check if enemy is in range using collistion detection
-        // if (this->getShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()))
-        // {
-        //     enemies[i].getHit(this->getDamage());
-        // }
-        // && this->shape.getFillColor() == sf::Color::Red, Use this to differentiate between towers
+        
         if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Red)
         {
             //Tower that does damage

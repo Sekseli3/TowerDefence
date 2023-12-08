@@ -31,17 +31,17 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
         {1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
         {1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1},
-        {1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1},
-        {1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1},
-        {1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-        {0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1},
-        {0, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1}
+        {1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1},
+        {1, 1, 1, 2, 1, 1, 1, 2, 0, 0, 0, 1},
+        {1, 1, 1, 2, 1, 1, 1, 2, 0, 0, 0, 1},
+        {1, 1, 1, 2, 1, 1, 1, 2, 0, 0, 0, 1},
+        {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1},
+        {1, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1},
+        {0, 0, 0, 1, 1, 2, 1, 2, 1, 1, 1, 1},
+        {0, 0, 0, 1, 1, 2, 1, 2, 1, 1, 1, 1},
+        {1, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1},
+        {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1},
+        {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1}
     };
     //iterate through all the tiles
     for (int x = 0; x < mapWidth; x++) {
@@ -91,39 +91,72 @@ void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
         towers.push_back(tower);
 }
 
-void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y, int gameLevel){
+void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLevel, int difficulty){
 
-    sf::Vector2f tileStartPosition_A(x * tileSize+4, y * tileSize+4);
-    Tile tileA(tileStartPosition_A, sf::Color::Black, tileSize);
-    
-    sf::Vector2f tileStartPosition_B(x * tileSize+7, y * tileSize+7);
-    Tile tileB(tileStartPosition_B, sf::Color::Black, tileSize);
+    int iterator = gameLevel * difficulty;
 
-    sf::Vector2f tileStartPosition_C(x * tileSize+1, y * tileSize+1);
-    Tile tileC(tileStartPosition_C, sf::Color::Black, tileSize);
+    if (gameLevel <= 2) {
+        for (int j = -1; j > -3*iterator; j--) {
 
-    if (gameLevel < 3) {
-        EnemyTypeA enemyTypeA;
-        enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
+            sf::Vector2f tileStartPosition_A((j)*tileSize+4, y * tileSize+4);
+            EnemyTypeA enemyTypeA;
+            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
+        }
     }
     else if (gameLevel > 2 && gameLevel <= 4) {
-        EnemyTypeA enemyTypeA;
-        enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
+        for (int j = -1; j > -3*iterator; j--) {
 
-        EnemyTypeB enemyTypeB;
-        enemies.push_back(enemyTypeB.createEnemy(tileB.getPosition(), x*tileSize,y*tileSize));
+            sf::Vector2f tileStartPosition_A((j)*tileSize+4, y * tileSize+4);
+            EnemyTypeA enemyTypeA;
+            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
+
+            sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
+            EnemyTypeB enemyTypeB;
+            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
+
+        }
     }
-    else if (gameLevel > 4) {
-        EnemyTypeA enemyTypeA;
-        enemies.push_back(enemyTypeA.createEnemy(tileA.getPosition(), x*tileSize,y*tileSize));
+    else if (gameLevel > 4 && gameLevel <= 6) {
+        for (int j = -1; j > -4*iterator; j--) {
 
-        EnemyTypeB enemyTypeB;
-        enemies.push_back(enemyTypeB.createEnemy(tileB.getPosition(), x*tileSize,y*tileSize));
+            sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
+            EnemyTypeB enemyTypeB;
+            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
+            
+            if (j>-2*iterator) {
+                sf::Vector2f tileStartPosition_A((j/2-1)*tileSize+4, y * tileSize+4);
+                EnemyTypeA enemyTypeA;
+                enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j/2-1)*tileSize,y*tileSize));
+            }
 
-        EnemyTypeC enemyTypeC;
-        enemies.push_back(enemyTypeC.createEnemy(tileC.getPosition(), x*tileSize,y*tileSize));
+            if (j>-1*iterator) {
+                sf::Vector2f tileStartPosition_C((j/2-1) * tileSize+1, y * tileSize+1);
+                EnemyTypeC enemyTypeC;
+                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (j/2-1)*tileSize,y*tileSize));
+            }
+        }
     }
-    
+    else if (gameLevel > 6) {
+        for (int j = -1; j > -8*iterator; j--) {
+
+            sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
+            EnemyTypeB enemyTypeB;
+            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
+            
+            if (j>-3*iterator) {
+                sf::Vector2f tileStartPosition_A((j/3)*tileSize+4, y * tileSize+4);
+                EnemyTypeA enemyTypeA;
+                enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j/3)*tileSize,y*tileSize));
+            }
+
+            if (j>-2*iterator) {
+                sf::Vector2f tileStartPosition_C((j/2) * tileSize+1, y * tileSize+1);
+                EnemyTypeC enemyTypeC;
+                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (j/2)*tileSize,y*tileSize));
+            }
+        }
+    }
+
 }
 
 
@@ -131,9 +164,9 @@ void addEnemy(sf::RenderWindow &window, int tileSize, float x, float y, int game
 void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
 
     //Define the tower types
-    TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red,10);
-    TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue,20);
-    TowerType ultimateTower(50.0, 40, 250, 70.0, sf::Color::Yellow,30);
+    TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red,30);
+    TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue,50);
+    TowerType ultimateTower(50.0, 40, 250, 70.0, sf::Color::Yellow,120);
 
     // Create the buttons for each tower type
     sf::RectangleShape basicButton = createButton(50, 500, 50, 50, basicTower.getColor());

@@ -143,9 +143,7 @@ int main() {
 
             //Add enemies for next round
             if (addNext == true) {
-                for (int i = 0; i > -4*gameLevel*difficulty; i = i-2){
-                    addEnemy(window, tileSize, i, 4, gameLevel);
-                }
+                addEnemy(window, tileSize, 0, 4, gameLevel, difficulty);
                 addNext = false;
                 gameLevel++;
             }

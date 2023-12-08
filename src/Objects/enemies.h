@@ -19,9 +19,11 @@ public:
     sf::CircleShape& getShape();
     sf::Vector2f& getPosition();
 
+
     void move(float x_dir, float y_dir);
     void moveEnemy(double timeStep, sf::RenderWindow &window);
 
+    int getRoute();
     int getSpeed();
     int getXcoord();
     int getYcoord();
@@ -68,7 +70,7 @@ public:
         float speed;
         int health;
         int points;
-        
+        int route;
 };
 
 #endif
