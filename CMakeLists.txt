@@ -18,7 +18,6 @@ add_executable(CMakeSFMLProject
     src/Objects/EnemyTypeA.cpp 
     src/Objects/EnemyTypeB.cpp
     src/Objects/EnemyTypeC.cpp
-
     ) 
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

@@ -77,7 +77,7 @@ int main() {
         //See in which game state we are and proceed accordingly
         if(gameState == GameState::MainMenu){
 
-            mainMenu(window);
+            mainMenu(window,difficulty);
             //Proceed to Play
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);

@@ -43,6 +43,7 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
         {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1},
         {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1}
     };
+
     //iterate through all the tiles
     for (int x = 0; x < mapWidth; x++) {
         for (int y = 0; y < mapHeight; y++) {
@@ -233,7 +234,7 @@ void attack(std::vector <Enemy> enemies, std::vector <Tower> towers){
 }
 
 
-void mainMenu(sf::RenderWindow &window) {
+void mainMenu(sf::RenderWindow &window, int difficulty) {
         sf::Font font;
     if (!font.loadFromFile("FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
@@ -247,7 +248,7 @@ void mainMenu(sf::RenderWindow &window) {
         buttons.push_back(createButton(300, 100 + i * 60, 200, 50, sf::Color::Blue));
         texts.push_back(createText(350, 110 + i * 60, options[i], font, 24,sf::Color::White));
     }
-
+    
     sf::RectangleShape playButton = createButton(300, 400, 200, 50, sf::Color::Green);
     sf::Text playText = createText(350, 410, "Play", font, 24,sf::Color::White);
 
@@ -257,6 +258,10 @@ void mainMenu(sf::RenderWindow &window) {
     window.clear();
 
     for (int i = 0; i < buttons.size(); i++) {
+        if(difficulty == i+1){
+            buttons[i].setFillColor(sf::Color::Yellow);
+            texts[i].setFillColor(sf::Color::Black);
+        }
             window.draw(buttons[i]);
             window.draw(texts[i]);
     }
