@@ -8,8 +8,6 @@
 #include "../gameEngine.hpp"
 #include <iostream>
 
-
-
 class EnemyType;
 
 /// Enemy class

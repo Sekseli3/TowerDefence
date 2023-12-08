@@ -164,6 +164,11 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
 
 void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
 
+    sf::Font font;
+    if (!font.loadFromFile("FreeMono.ttf")) {
+        std::cout << "Could not load font" << std::endl;
+    }
+
     //Define the tower types
     TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red,30);
     TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue,50);
@@ -174,10 +179,19 @@ void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
     sf::RectangleShape advancedButton = createButton(0, 500, 50, 50, advancedTower.getColor());
     sf::RectangleShape ultimateButton = createButton(50, 550, 50, 50, ultimateTower.getColor());
 
+    sf::Text cost1 = createText(52, 502, std::to_string(30) + "$", font, 20, sf::Color::Black);
+    sf::Text cost2 = createText(2, 502, std::to_string(50) + "$", font, 20, sf::Color::Black);
+    sf::Text cost3 = createText(52, 552, std::to_string(120) + "$", font, 20, sf::Color::Black);
+
     // Draw the buttons
     window.draw(basicButton);
     window.draw(advancedButton);
     window.draw(ultimateButton);
+
+    // Draw the cost text
+    window.draw(cost1);
+    window.draw(cost2);
+    window.draw(cost3);
     
 
     // Check if a button was clicked
@@ -284,10 +298,10 @@ void drawMoney(sf::RenderWindow &window, int money) {
     sf::Text moneyText = createText(680, -10, moneyString, font, 50, sf::Color::Yellow);
 
     if (money > 99 && money < 1000) {
-        sf::Text moneyText = createText(670, -10, moneyString, font, 50, sf::Color::Yellow);
+        sf::Text moneyText = createText(660, -10, moneyString, font, 50, sf::Color::Yellow);
     }
     else if (money >= 1000) {
-        sf::Text moneyText = createText(655, -10, moneyString, font, 50, sf::Color::Yellow);
+        sf::Text moneyText = createText(635, -10, moneyString, font, 50, sf::Color::Yellow);
     }
 
     window.draw(moneyText);
@@ -319,4 +333,16 @@ void deleteTower(sf::Event event, sf::RenderWindow &window,int &money){
                 }
             }
     }
+}
+
+void drawWave(sf::RenderWindow &window,int &gameLevel){
+    sf::Font font;
+    if (!font.loadFromFile("FreeMono.ttf")) {
+        std::cout << "Could not load font" << std::endl;
+    }
+
+    std::string waveString = "Wave: " + std::to_string(gameLevel-1);
+
+    sf::Text text = createText(290, -10, waveString, font, 50,sf::Color::Black);
+    window.draw(text);
 }
