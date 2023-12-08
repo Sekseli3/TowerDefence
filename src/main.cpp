@@ -120,6 +120,7 @@ int main() {
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
             drawMoney(window, money);
+            drawWave(window,gameLevel);
             //move all enemies
             moveEnemies(clock1, window, enemies,10,money);
             addNext = true;
@@ -136,13 +137,21 @@ int main() {
         }
 
         else if(gameState == GameState::Building){
+            sf::Font font;
+            if (!font.loadFromFile("FreeMono.ttf")) {
+               std::cout << "Could not load font" << std::endl;
+            }
             drawTiles(window,tileSize,windowWidth,windowHeight);
             drawTowers(window);
             deleteTower(event,window,money);
             drawMoney(window, money);
+            drawWave(window, gameLevel);
             //Create the button for exiting build mode
             sf::RectangleShape buildButton = createButton(0,550,50,50,sf::Color::Black);
+            sf::Text playText = createText(5, 552, "GO", font, 30, sf::Color::White);
+
             window.draw(buildButton);
+            window.draw(playText);
             placeTower(event,window,money);
 
             //Add enemies for next round
