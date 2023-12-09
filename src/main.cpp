@@ -118,7 +118,7 @@ int main() {
         else if(gameState == GameState::Attacking){
             //draw game
             drawTiles(window,tileSize,windowWidth,windowHeight,difficulty);
-            drawTowers(window);
+            drawTowers(window, money);
             drawMoney(window, money);
             drawWave(window,gameLevel);
             //move all enemies
@@ -142,7 +142,7 @@ int main() {
                std::cout << "Could not load font" << std::endl;
             }
             drawTiles(window,tileSize,windowWidth,windowHeight,difficulty);
-            drawTowers(window);
+            drawTowers(window, money);
             deleteTower(event,window,money);
             drawMoney(window, money);
             drawWave(window, gameLevel);
