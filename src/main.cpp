@@ -138,7 +138,7 @@ int main() {
 
         else if(gameState == GameState::Building){
             sf::Font font;
-            if (!font.loadFromFile("FreeMono.ttf")) {
+            if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
                std::cout << "Could not load font" << std::endl;
             }
             drawTiles(window,tileSize,windowWidth,windowHeight,difficulty);

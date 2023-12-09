@@ -185,7 +185,7 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
 void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
 
     sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
+    if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
     }
 
@@ -276,7 +276,7 @@ void attack(std::vector <Enemy> enemies, std::vector <Tower> towers){
 void mainMenu(sf::RenderWindow &window, int difficulty) {
     window.clear();
         sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
+    if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
     }
 
@@ -315,7 +315,7 @@ void mainMenu(sf::RenderWindow &window, int difficulty) {
 
 void drawMoney(sf::RenderWindow &window, int money) {
         sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
+    if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
     }
 
@@ -334,7 +334,7 @@ void drawMoney(sf::RenderWindow &window, int money) {
 }
 void endScreen(sf::RenderWindow &window) {
     sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
+    if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
     }
 
@@ -365,7 +365,7 @@ void tutorial(sf::RenderWindow &window){
     window.clear();
     sf::Text tutorialText;
     sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
+    if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
     }
     tutorialText.setFont(font);
@@ -400,7 +400,7 @@ void tutorial(sf::RenderWindow &window){
 
 void drawWave(sf::RenderWindow &window,int &gameLevel){
     sf::Font font;
-    if (!font.loadFromFile("FreeMono.ttf")) {
+    if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
         std::cout << "Could not load font" << std::endl;
     }
 
