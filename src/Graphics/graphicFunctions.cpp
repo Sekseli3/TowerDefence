@@ -348,18 +348,18 @@ void tutorial(sf::RenderWindow &window){
     tutorialText.setString("Welcome to the game! Here's how to play:\n\n"
                        "1. Start by selecting a difficulty level.\n"
                        "2. Press the 'Play' button to start the game.\n"
-                       "3. The game consists of two phases:\n   Building and Attack.\n"
+                       "3. The game consists of two phases:\n   Building and Attacking.\n"
                        "4. During the Building phase, \n   you can build or remove towers.\n"
                        "5. To build a tower, first left-click a colored \n   square to select the type of tower. \n   Then, right-click on a green tile to \n   place the tower. \n   Make sure you have enough money to buy the tower!\n"
                        "6. You can remove a tower by left-clicking it \n   during the Building phase. \n   You'll get some money back when you do this.\n"
-                       "7. When you're ready, press the black cube \n   to switch to the Attack phase. Good luck!");
+                       "7. When you're ready, press the black cube \n   to switch to the Attacking phase.\n   Once no enemies are left standing\n   building phase starts again, Good luck!");
     tutorialText.setCharacterSize(24);
     tutorialText.setFillColor(sf::Color::White);
     tutorialText.setPosition(50, 50);
 
     
-    sf::RectangleShape backButton = createButton(100, 500, 200, 50, sf::Color::Blue);
-    sf::Text text = createText(150, 505, "Back", font, 30,sf::Color::White);
+    sf::RectangleShape backButton = createButton(100, 540, 200, 50, sf::Color::Blue);
+    sf::Text text = createText(150, 545, "Back", font, 30,sf::Color::White);
     
     window.draw(backButton);
     window.draw(text);
