@@ -31,7 +31,7 @@ void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<En
                 clock.restartClock();
             }
         }
-        for (size_t i = 0; i < stored_enemies.size(); i++) {
+        for (int i = stored_enemies.size()-1; i >= 0; i--) {
             window.draw(stored_enemies[i].getShape());
         }
         // kill eenemies
@@ -142,7 +142,7 @@ int main() {
                std::cout << "Could not load font" << std::endl;
             }
             drawTiles(window,tileSize,windowWidth,windowHeight,difficulty);
-            drawTowers(window, money);
+            onlyDrawTowers(window);
             deleteTower(event,window,money);
             drawMoney(window, money);
             drawWave(window, gameLevel);

@@ -80,17 +80,7 @@ void Enemy::moveEnemy(double timeStep, sf::RenderWindow &window) {
             this->move(speed,0);
             this->addX(speed);  
         } 
-        
-
     }
-    
-        
-
-    
-        
-
-
-   
     window.draw(this->getShape());
 }
 
