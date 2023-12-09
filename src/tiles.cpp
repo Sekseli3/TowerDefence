@@ -8,8 +8,13 @@ public:
         shape.setSize(sf::Vector2f(tileSize, tileSize));
         shape.setPosition(position);
         shape.setFillColor(color);
-        shape.setOutlineColor(sf::Color::Black);
-        shape.setOutlineThickness(0.8);
+        if(color == sf::Color::Green){
+            shape.setOutlineColor(sf::Color::Black);
+        }
+        else{
+            shape.setOutlineColor(color);
+        }
+        shape.setOutlineThickness(0.5);
     }
     //Function to retrieve shape
     sf::RectangleShape& getShape() {
