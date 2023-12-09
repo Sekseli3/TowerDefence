@@ -117,8 +117,6 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
             EnemyTypeA enemyTypeA;
             enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
 
-            
-
         }
     }
     else if (gameLevel > 4 && gameLevel <= 6) {
