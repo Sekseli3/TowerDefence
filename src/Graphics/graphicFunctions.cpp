@@ -296,11 +296,11 @@ void mainMenu(sf::RenderWindow &window, int difficulty) {
     }
     //Create Tutorial button and text
     buttons.push_back(createButton(300, 40, 200, 50, sf::Color::Green));
-    texts.push_back(createText(350, 50, "Tutorial", font, 24,sf::Color::White));
+    texts.push_back(createText(350, 50, "Tutorial", font, 24,sf::Color::Black));
 
     //Create Play button and text
     buttons.push_back(createButton(300, 400, 200, 50, sf::Color::Green));
-    texts.push_back(createText(350, 410, "Play", font, 24,sf::Color::White));
+    texts.push_back(createText(350, 410, "Play", font, 24,sf::Color::Black));
 
     //Create Exit button and text
     buttons.push_back(createButton(300, 460, 200, 50, sf::Color::Red));
@@ -378,14 +378,24 @@ void tutorial(sf::RenderWindow &window){
     tutorialText.setString("Welcome to the game! Here's how to play:\n\n"
                        "1. Start by selecting a difficulty level.\n"
                        "2. Press the 'Play' button to start the game.\n"
-                       "3. The game consists of two phases:\n   Building and Attacking.\n"
-                       "4. During the Building phase, \n   you can build or remove towers.\n"
-                       "5. To build a tower, first left-click a colored \n   square to select the type of tower. \n   Then, right-click on a green tile to \n   place the tower. \n   Make sure you have enough money to buy the tower!\n"
-                       "6. You can remove a tower by left-clicking it \n   during the Building phase. \n   You'll get some money back when you do this.\n"
-                       "7. When you're ready, press the black cube \n   to switch to the Attacking phase.\n   Once no enemies are left standing\n   building phase starts again, Good luck!");
-    tutorialText.setCharacterSize(24);
+                       "3. The game consists of two phases: Building and Attacking.\n"
+                       "4. During the Building phase, you can build or remove towers.\n"
+                       "5. To build a tower, first left-click a colored square to select the type of tower. \n   Then, right-click on a green tile to place the tower. \n   Make sure you have enough money to buy the tower!\n"
+                       "6. You can remove a tower by left-clicking it during the Building phase. \n   You'll get some money back when you do this.\n   Range of each tower is visible in building stage.\n"
+                       "7. When you're ready, press the black cube to switch to the Attacking phase.\n   Once no enemies are left standing\n   building phase starts again, Good luck! \n\n"
+                       "Towers\n"
+                       "1. Red Tower: Cost: 30$, Damage: 20, Range: 100, Attack Speed: 50,\n   special skill: none\n"
+                       "2. Blue Tower: Cost: 50$, Damage: 30, Range: 100, Attack Speed: 60,\n   special skill: slows enemies\n"
+                       "3. Yellow Tower: Cost: 120$, Damage: 40, Range: 250, Attack Speed: 70,\n   special skill: Huge range and Damage \n"
+                       "4. Black Tower: Cost: 300$, Damage: 0, Range: 100, Attack Speed: 50,\n   special skill: Gives you money\n\n"
+                       "Enemies\n"
+                       "1. Red Enemy: Health: 300, Speed: 2.5, Reward: 1\n   special skill: none\n"
+                       "2. Cyan Enemy: Health: 100, Speed: 5, Reward: 2\n   special skill: very fast\n"
+                       "3. Black Enemy: Health: 2500, Speed: 1, Reward: 5\n   special skill: very tanky\n"
+                       "4. Yellow Enemy: Health: 2500, Speed: 1, Reward: 0\n   special skill: can destroy red towers\n");
+    tutorialText.setCharacterSize(15);
     tutorialText.setFillColor(sf::Color::White);
-    tutorialText.setPosition(50, 50);
+    tutorialText.setPosition(50, 5);
 
     
     sf::RectangleShape backButton = createButton(100, 540, 200, 50, sf::Color::Blue);
