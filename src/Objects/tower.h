@@ -18,6 +18,8 @@ public:
     double getAttackSpeed() const;
     const sf::Color& getColor() const;
     int getCost() const {return cost;}
+    ~TowerType() {
+    }
 
 private:
     double radius;
@@ -38,6 +40,8 @@ public:
     // function to add clock to vector of clocks
     void addClock(UniversalClock &clock);
     TowerType getType() const {return type;}
+    ~Tower() {
+    }
 
 private:
     sf::ConvexShape shape;
