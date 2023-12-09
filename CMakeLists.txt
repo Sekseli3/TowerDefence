@@ -3,6 +3,7 @@ project(CMakeSFMLProject LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+configure_file(${CMAKE_SOURCE_DIR}/FreeMono.ttf ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FreeMono.ttf COPYONLY)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 
