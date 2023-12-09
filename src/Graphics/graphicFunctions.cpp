@@ -108,71 +108,71 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
     int iterator = gameLevel * difficulty;  
     
     if (gameLevel <= 2) {
-        for (int j = -1; j > -3*iterator; j--) {
+        for (int j = 1; j < 3*iterator; j++) {
 
-            sf::Vector2f tileStartPosition_A((j)*tileSize+4, y * tileSize+4);
+            sf::Vector2f tileStartPosition_A((-j)*tileSize+4, y * tileSize+4);
             EnemyTypeA enemyTypeA;
-            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
+            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (-j)*tileSize,y*tileSize));
         }
     }
     else if (gameLevel > 2 && gameLevel <= 4) {
-        for (int j = -1; j > -3*iterator; j--) {
+        for (int j = 1; j < 3*iterator; j++) {
 
-            sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
+            sf::Vector2f tileStartPosition_B((-j-5)*tileSize+7, y * tileSize+7);
             EnemyTypeB enemyTypeB;
-            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
+            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (-j-5)*tileSize,y*tileSize));
 
-            sf::Vector2f tileStartPosition_A((j)*tileSize+4, y * tileSize+4);
+            sf::Vector2f tileStartPosition_A((-j)*tileSize+4, y * tileSize+4);
             EnemyTypeA enemyTypeA;
-            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
+            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (-j)*tileSize,y*tileSize));
 
         }
     }
     else if (gameLevel > 4 && gameLevel <= 6) {
-        sf::Vector2f tileStartPosition_D((x-2.5)*tileSize+4, y * tileSize+4);
+        sf::Vector2f tileStartPosition_D((x-10)*tileSize+1, y * tileSize+1);
         EnemyTypeD enemyTypeD;
-        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-2.5)*tileSize,y*tileSize));
+        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-10)*tileSize,y*tileSize));
     
-        for (int j = -1; j > -4*iterator; j--) {
+        for (int j = 1; j < 4*iterator; j++) {
 
-            sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
+            sf::Vector2f tileStartPosition_B((-j-15)*tileSize+7, y * tileSize+7);
             EnemyTypeB enemyTypeB;
-            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
+            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (-j-15)*tileSize,y*tileSize));
             
-            if (j>-2*iterator) {
-                sf::Vector2f tileStartPosition_A((j/2-1)*tileSize+4, y * tileSize+4);
+            if (j<2*iterator) {
+                sf::Vector2f tileStartPosition_A((-j-6)*tileSize+4, y * tileSize+4);
                 EnemyTypeA enemyTypeA;
-                enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j/2-1)*tileSize,y*tileSize));
+                enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (-j-6)*tileSize,y*tileSize));
             }
 
-            if (j>-1*iterator) {
-                sf::Vector2f tileStartPosition_C((j/2-1) * tileSize+1, y * tileSize+1);
+            if (j<1*iterator) {
+                sf::Vector2f tileStartPosition_C((-j-2) * tileSize+1, y * tileSize+1);
                 EnemyTypeC enemyTypeC;
-                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (j/2-1)*tileSize,y*tileSize));
+                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (-j-2)*tileSize,y*tileSize));
             }
         }
     }
     else if (gameLevel > 6) {
-        sf::Vector2f tileStartPosition_D((x-2.5)*tileSize+4, y * tileSize+4);
+        sf::Vector2f tileStartPosition_D((x-12)*tileSize+1, y * tileSize+1);
         EnemyTypeD enemyTypeD;
-        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-2.5)*tileSize,y*tileSize));
+        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-12)*tileSize,y*tileSize));
         
-        for (int j = -1; j > -8*iterator; j--) {
+        for (int j = 1; j < 8*iterator; j++) {
 
-            sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
+            sf::Vector2f tileStartPosition_B((-j-30)*tileSize+7, y * tileSize+7);
             EnemyTypeB enemyTypeB;
-            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
+            enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (-j-30)*tileSize,y*tileSize));
             
-            if (j>-3*iterator) {
-                sf::Vector2f tileStartPosition_A((j/3)*tileSize+4, y * tileSize+4);
+            if (j<3*iterator) {
+                sf::Vector2f tileStartPosition_A((-j-12)*tileSize+4, y * tileSize+4);
                 EnemyTypeA enemyTypeA;
-                enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j/3)*tileSize,y*tileSize));
+                enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (-j-12)*tileSize,y*tileSize));
             }
 
-            if (j>-2*iterator) {
-                sf::Vector2f tileStartPosition_C((j/2) * tileSize+1, y * tileSize+1);
+            if (j<2*iterator) {
+                sf::Vector2f tileStartPosition_C((-j-4) * tileSize+1, y * tileSize+1);
                 EnemyTypeC enemyTypeC;
-                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (j/2)*tileSize,y*tileSize));
+                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (-j-4)*tileSize,y*tileSize));
             }
         }
     }

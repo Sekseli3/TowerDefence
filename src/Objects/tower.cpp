@@ -53,7 +53,7 @@ int Tower::attackEnemy(std::vector<Enemy> &enemies)
         {
             //Tower that does damage
             enemies[i].getHit(int(5));
-            return 0;
+            break;
             
         }
         else if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Blue)
@@ -66,7 +66,7 @@ int Tower::attackEnemy(std::vector<Enemy> &enemies)
         {
             //Tower that does damage
             enemies[i].getHit(int(5));
-            return 0;
+            break;
             
         }
 
