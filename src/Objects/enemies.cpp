@@ -90,7 +90,7 @@ void Enemy::moveEnemy(double timeStep, sf::RenderWindow &window) {
         
 
 
-    std::cout << this->getXcoord() << ", " << this->getYcoord() << ", speed: " << this->getSpeed() << std::endl;
+   
     window.draw(this->getShape());
 }
 

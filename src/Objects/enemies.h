@@ -57,7 +57,6 @@ public:
     }
     // destructor
     ~Enemy(){
-       std::cout << "Enemy destroyed" << std::endl;
     
     }
     private:

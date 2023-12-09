@@ -238,7 +238,7 @@ void drawTowers(sf::RenderWindow &window){
         window.draw(tower.getShape());
         window.draw(tower.getAttackShape());
         tower.attackEnemy(enemies);
-        // std::cout << "Tower drawn" << std::endl;
+       
     }
 }
 

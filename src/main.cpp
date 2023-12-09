@@ -94,23 +94,23 @@ int main() {
                 }
                 if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 340 && mousePos.y < 400){
                     difficulty = 5;
-                    std::cout << "Difficulty: " << difficulty << std::endl;
+                   
                 }
                 if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 280 && mousePos.y < 340){
                     difficulty = 4;
-                    std::cout << "Difficulty: " << difficulty << std::endl;
+                   
                 }
                 if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 220 && mousePos.y < 280){
                     difficulty = 3;
-                    std::cout << "Difficulty: " << difficulty << std::endl;
+                   
                 }
                 if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 160 && mousePos.y < 220){
                     difficulty = 2;
-                    std::cout << "Difficulty: " << difficulty << std::endl;
+                   
                 }
                 if (mousePos.x > 300 && mousePos.x < 550 && mousePos.y > 100 && mousePos.y < 160){
                     difficulty = 1;
-                    std::cout << "Difficulty: " << difficulty << std::endl;
+                   
                 }
             }
         }
@@ -175,6 +175,7 @@ int main() {
             endScreen(window);
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
                gameState = GameState::MainMenu;
+               sf::sleep(sf::seconds(0.1));
                 }
             towers.clear();
             enemies.clear();
@@ -188,6 +189,7 @@ int main() {
             tutorial(window);
             if(toMain == true){
                 gameState = GameState::MainMenu;
+                
             }
         }
 

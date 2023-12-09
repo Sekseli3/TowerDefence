@@ -52,21 +52,21 @@ void Tower::attackEnemy(std::vector<Enemy> &enemies)
             //Tower that does damage
             enemies[i].getHit(int(5));
             break;
-            //std::cout << "Enemy hit" << std::endl;
+            
         }
         if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Blue)
         {
             //Tower that slows
             enemies[i].reduceSpeed();
             
-            //std::cout << "Enemy hit" << std::endl;
+            
         }
         if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Yellow)
         {
             //Tower that does damage
             enemies[i].getHit(int(5));
             break;
-            //std::cout << "Enemy hit" << std::endl;
+            
         }
 
         if (enemies[i].getPosition().x < this->shape.getPosition().x + this->type.getAttackRange() && enemies[i].getPosition().x > this->shape.getPosition().x - this->type.getAttackRange() && enemies[i].getPosition().y < this->shape.getPosition().y + this->type.getAttackRange() && enemies[i].getPosition().y > this->shape.getPosition().y - this->type.getAttackRange())
