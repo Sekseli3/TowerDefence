@@ -22,6 +22,7 @@ set(SOURCE_FILES
     src/Objects/EnemyTypeA.cpp 
     src/Objects/EnemyTypeB.cpp
     src/Objects/EnemyTypeC.cpp
+    src/Objects/EnemyTypeD.cpp
 )
 
 add_executable(CMakeSFMLProject ${SOURCE_FILES})

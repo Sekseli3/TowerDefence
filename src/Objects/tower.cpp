@@ -42,34 +42,45 @@ void Tower::addClock(UniversalClock &clock){
     clocks.push_back(clock);
 }
 
-void Tower::attackEnemy(std::vector<Enemy> &enemies)
+int Tower::attackEnemy(std::vector<Enemy> &enemies)
 {
+    
     for (int i = 0; i < enemies.size(); i++)
     {
         
-        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Red)
+        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Red
+        && !(enemies[i].getShape().getFillColor() == sf::Color::Yellow))
         {
             //Tower that does damage
             enemies[i].getHit(int(5));
-            break;
+            return 0;
             
         }
-        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Blue)
+        else if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Blue)
         {
             //Tower that slows
             enemies[i].reduceSpeed();
             
-            
         }
-        if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Yellow)
+        else if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds())&& this->shape.getFillColor() == sf::Color::Yellow)
         {
             //Tower that does damage
             enemies[i].getHit(int(5));
-            break;
+            return 0;
             
         }
 
-        if (enemies[i].getPosition().x < this->shape.getPosition().x + this->type.getAttackRange() && enemies[i].getPosition().x > this->shape.getPosition().x - this->type.getAttackRange() && enemies[i].getPosition().y < this->shape.getPosition().y + this->type.getAttackRange() && enemies[i].getPosition().y > this->shape.getPosition().y - this->type.getAttackRange())
+        else if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()) && this->shape.getFillColor() == sf::Color::Red
+        && enemies[i].getShape().getFillColor() == sf::Color::Yellow)
+        {
+            //Delete the basic tower and kill the enemy
+            enemies[i].getHit(int(10000));
+            return 1;
+
+        }
+
+
+        else if (enemies[i].getPosition().x < this->shape.getPosition().x + this->type.getAttackRange() && enemies[i].getPosition().x > this->shape.getPosition().x - this->type.getAttackRange() && enemies[i].getPosition().y < this->shape.getPosition().y + this->type.getAttackRange() && enemies[i].getPosition().y > this->shape.getPosition().y - this->type.getAttackRange())
         {
             attackShape.setFillColor(sf::Color::Red);
         }
@@ -78,10 +89,8 @@ void Tower::attackEnemy(std::vector<Enemy> &enemies)
             attackShape.setFillColor(sf::Color::Transparent);
         }
         
-
-
     }
-
+    return 0;
 }
 
 sf::CircleShape Tower::getAttackShape(){

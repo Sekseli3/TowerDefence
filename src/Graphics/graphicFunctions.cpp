@@ -10,6 +10,7 @@
 #include "../Objects/EnemyTypeA.h"
 #include "../Objects/EnemyTypeB.h"
 #include "../Objects/EnemyTypeC.h"
+#include "../Objects/EnemyTypeD.h"
 
 std::vector<Tile> tiles;
 std::vector<Tower> towers;
@@ -104,8 +105,8 @@ void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
 
 void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLevel, int difficulty){
 
-    int iterator = gameLevel * difficulty;
-
+    int iterator = gameLevel * difficulty;  
+    
     if (gameLevel <= 2) {
         for (int j = -1; j > -3*iterator; j--) {
 
@@ -117,17 +118,21 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
     else if (gameLevel > 2 && gameLevel <= 4) {
         for (int j = -1; j > -3*iterator; j--) {
 
-            sf::Vector2f tileStartPosition_A((j)*tileSize+4, y * tileSize+4);
-            EnemyTypeA enemyTypeA;
-            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
-
             sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
             EnemyTypeB enemyTypeB;
             enemies.push_back(enemyTypeB.createEnemy(tileStartPosition_B, (j)*tileSize,y*tileSize));
 
+            sf::Vector2f tileStartPosition_A((j)*tileSize+4, y * tileSize+4);
+            EnemyTypeA enemyTypeA;
+            enemies.push_back(enemyTypeA.createEnemy(tileStartPosition_A, (j)*tileSize,y*tileSize));
+
         }
     }
     else if (gameLevel > 4 && gameLevel <= 6) {
+        sf::Vector2f tileStartPosition_D((x-2.5)*tileSize+4, y * tileSize+4);
+        EnemyTypeD enemyTypeD;
+        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-2.5)*tileSize,y*tileSize));
+    
         for (int j = -1; j > -4*iterator; j--) {
 
             sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
@@ -148,6 +153,10 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
         }
     }
     else if (gameLevel > 6) {
+        sf::Vector2f tileStartPosition_D((x-2.5)*tileSize+4, y * tileSize+4);
+        EnemyTypeD enemyTypeD;
+        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-2.5)*tileSize,y*tileSize));
+        
         for (int j = -1; j > -8*iterator; j--) {
 
             sf::Vector2f tileStartPosition_B((j)*tileSize+7, y * tileSize+7);
@@ -167,6 +176,7 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
             }
         }
     }
+    
 
 }
 
@@ -243,20 +253,25 @@ void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
 }
 
 void drawTowers(sf::RenderWindow &window){
-    for (Tower tower : towers) {
-        window.draw(tower.getShape());
-        window.draw(tower.getAttackShape());
-        tower.attackEnemy(enemies);
+    for (int i=0; i<towers.size();i++) {
+        window.draw(towers[i].getShape());
+        window.draw(towers[i].getAttackShape());
+        if (towers[i].attackEnemy(enemies)==1) {
+            towers.erase(towers.begin() + i);
+            std::cout << "Removing successful" << std::endl;
+        }
+        
        
     }
 }
 
+ /*
 void attack(std::vector <Enemy> enemies, std::vector <Tower> towers){
     for (Tower tower : towers){
         tower.attackEnemy(enemies);
     }
 }
-
+*/
 
 void mainMenu(sf::RenderWindow &window, int difficulty) {
     window.clear();
