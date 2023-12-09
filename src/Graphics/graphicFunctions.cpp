@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <random>
 #include "../Objects/tower.h"
 #include "../Objects/enemies.h"
 #include "../tiles.cpp"
@@ -129,9 +130,9 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
         }
     }
     else if (gameLevel > 4 && gameLevel <= 6) {
-        sf::Vector2f tileStartPosition_D((x-10)*tileSize+1, y * tileSize+1);
+        sf::Vector2f tileStartPosition_D((x-10.5)*tileSize+1, y * tileSize+1);
         EnemyTypeD enemyTypeD;
-        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-10)*tileSize,y*tileSize));
+        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-10.5)*tileSize,y*tileSize));
     
         for (int j = 1; j < 4*iterator; j++) {
 
@@ -153,9 +154,9 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
         }
     }
     else if (gameLevel > 6) {
-        sf::Vector2f tileStartPosition_D((x-12)*tileSize+1, y * tileSize+1);
+        sf::Vector2f tileStartPosition_D((x-12.5)*tileSize+1, y * tileSize+1);
         EnemyTypeD enemyTypeD;
-        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-12)*tileSize,y*tileSize));
+        enemies.push_back(enemyTypeD.createEnemy(tileStartPosition_D, (x-12.5)*tileSize,y*tileSize));
         
         for (int j = 1; j < 8*iterator; j++) {
 
@@ -170,9 +171,9 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
             }
 
             if (j<2*iterator) {
-                sf::Vector2f tileStartPosition_C((-j-4) * tileSize+1, y * tileSize+1);
+                sf::Vector2f tileStartPosition_C((-j-2) * tileSize+1, y * tileSize+1);
                 EnemyTypeC enemyTypeC;
-                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (-j-4)*tileSize,y*tileSize));
+                enemies.push_back(enemyTypeC.createEnemy(tileStartPosition_C, (-j-2)*tileSize,y*tileSize));
             }
         }
     }
@@ -193,25 +194,30 @@ void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
     TowerType basicTower(30.0, 20, 100, 50.0, sf::Color::Red,30);
     TowerType advancedTower(40.0, 30, 100, 60.0, sf::Color::Blue,50);
     TowerType ultimateTower(50.0, 40, 250, 70.0, sf::Color::Yellow,120);
+    TowerType cashTower(0,0,100,50,sf::Color::Black,300);
 
     // Create the buttons for each tower type
     sf::RectangleShape basicButton = createButton(50, 500, 50, 50, basicTower.getColor());
     sf::RectangleShape advancedButton = createButton(0, 500, 50, 50, advancedTower.getColor());
     sf::RectangleShape ultimateButton = createButton(50, 550, 50, 50, ultimateTower.getColor());
+    sf::RectangleShape cashButton = createButton(100, 550, 50, 50, cashTower.getColor());
 
     sf::Text cost1 = createText(52, 502, std::to_string(30) + "$", font, 20, sf::Color::Black);
     sf::Text cost2 = createText(2, 502, std::to_string(50) + "$", font, 20, sf::Color::Black);
     sf::Text cost3 = createText(52, 552, std::to_string(120) + "$", font, 20, sf::Color::Black);
+    sf::Text cost4 = createText(102, 552, std::to_string(300) + "$", font, 20, sf::Color::White);
 
     // Draw the buttons
     window.draw(basicButton);
     window.draw(advancedButton);
     window.draw(ultimateButton);
+    window.draw(cashButton);
 
     // Draw the cost text
     window.draw(cost1);
     window.draw(cost2);
     window.draw(cost3);
+    window.draw(cost4);
     
 
     // Check if a button was clicked
@@ -223,6 +229,8 @@ void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
             selectedTowerType = &advancedTower;
         } else if (ultimateButton.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
             selectedTowerType = &ultimateTower;
+        } else if (cashButton.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+            selectedTowerType = &cashTower;
         }
     }
 
@@ -252,7 +260,11 @@ void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
     }
 }
 
-void drawTowers(sf::RenderWindow &window){
+void drawTowers(sf::RenderWindow &window, int &money){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(0, 20);
+
     for (int i=0; i<towers.size();i++) {
         window.draw(towers[i].getShape());
         window.draw(towers[i].getAttackShape());
@@ -260,8 +272,9 @@ void drawTowers(sf::RenderWindow &window){
             towers.erase(towers.begin() + i);
             std::cout << "Removing successful" << std::endl;
         }
-        
-       
+        if (towers[i].attackEnemy(enemies)==2 && distrib(gen) == 1) {
+            money += 1;
+        }
     }
 }
 

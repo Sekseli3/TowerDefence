@@ -73,10 +73,15 @@ int Tower::attackEnemy(std::vector<Enemy> &enemies)
         else if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()) && this->shape.getFillColor() == sf::Color::Red
         && enemies[i].getShape().getFillColor() == sf::Color::Yellow)
         {
-            //Delete the basic tower and kill the enemy
+            //Delete the basic tower(the return does this) and kill the enemy
             enemies[i].getHit(int(10000));
             return 1;
 
+        }
+        else if (this->getAttackShape().getGlobalBounds().intersects(enemies[i].getShape().getGlobalBounds()) && this->shape.getFillColor() == sf::Color::Black
+        && enemies[i].getShape().getFillColor() == sf::Color::Black)
+        {
+            return 2;
         }
 
 
