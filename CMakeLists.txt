@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(CMakeSFMLProject LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-configure_file(${CMAKE_SOURCE_DIR}/FreeMono.ttf ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/FreeMono.ttf COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/src/assets/FreeMono.ttf ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/assets/FreeMono.ttf COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/src/assets/map1.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/assets/map1.txt COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/src/assets/map2.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/assets/map2.txt COPYONLY)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 

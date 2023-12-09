@@ -117,7 +117,7 @@ int main() {
         
         else if(gameState == GameState::Attacking){
             //draw game
-            drawTiles(window,tileSize,windowWidth,windowHeight);
+            drawTiles(window,tileSize,windowWidth,windowHeight,difficulty);
             drawTowers(window);
             drawMoney(window, money);
             drawWave(window,gameLevel);
@@ -141,7 +141,7 @@ int main() {
             if (!font.loadFromFile("FreeMono.ttf")) {
                std::cout << "Could not load font" << std::endl;
             }
-            drawTiles(window,tileSize,windowWidth,windowHeight);
+            drawTiles(window,tileSize,windowWidth,windowHeight,difficulty);
             drawTowers(window);
             deleteTower(event,window,money);
             drawMoney(window, money);

@@ -3,6 +3,7 @@
 #include <ctime>
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include "../Objects/tower.h"
 #include "../Objects/enemies.h"
 #include "../tiles.cpp"
@@ -19,31 +20,39 @@ bool towerPlacementMode = false;
 TowerType* selectedTowerType = nullptr;
 bool toMain = false;
 //function to draw all the tiles from hardcoded map
-void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight) {
+void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight,int difficulty) {
     //Count how many tiles we can fit in map
     const int mapWidth = windowWidth / tileSize;
     const int mapHeight = windowHeight / tileSize;
 
 
     // Define a hardcoded map, 0 for water(blue), 1 for grass(green) and other for path(white) 
-    int hardcodedMap[16][12] = {
-        {0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-        {0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1},
-        {1, 1, 1, 2, 1, 1, 1, 2, 0, 0, 0, 1},
-        {1, 1, 1, 2, 1, 1, 1, 2, 0, 0, 0, 1},
-        {1, 1, 1, 2, 1, 1, 1, 2, 0, 0, 0, 1},
-        {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1},
-        {1, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1},
-        {0, 0, 0, 1, 1, 2, 1, 2, 1, 1, 1, 1},
-        {0, 0, 0, 1, 1, 2, 1, 2, 1, 1, 1, 1},
-        {1, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1},
-        {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1},
-        {1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1}
-    };
+    int map[16][12];
+    std::ifstream mapFile;
+    if(difficulty > 3){
+        mapFile.open("src/assets/map2.txt");
+    }
+    else{
+        mapFile.open("src/assets/map1.txt");
+    }
+
+    if (!mapFile) {
+        std::cerr << "Unable to open map file";
+        // handle error
+    }
+
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 12; ++j) {
+            char ch;
+            if (!(mapFile >> ch)) {
+                //std::cerr << "Error reading map file";
+                // handle error
+            }
+            map[i][j] = ch - '0';  // convert char to int
+        }
+    }
+
+    mapFile.close();
 
     //iterate through all the tiles
     for (int x = 0; x < mapWidth; x++) {
@@ -52,7 +61,7 @@ void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWid
             sf::Vector2f tilePosition(x * tileSize, y * tileSize);
 
             // Create a Tile object with the specified color, and tileSize
-            int tileType = hardcodedMap[x][y];
+            int tileType = map[x][y];
             sf::Color tileColor;
             if (tileType == 0) {
                 tileColor = sf::Color::Blue;
