@@ -260,7 +260,6 @@ void drawTowers(sf::RenderWindow &window, int &money){
 
     for (int i=0; i<towers.size();i++) {
         window.draw(towers[i].getShape());
-        window.draw(towers[i].getAttackShape());
         if (towers[i].attackEnemy(enemies)==1) {
             towers.erase(towers.begin() + i);
             std::cout << "Removing successful" << std::endl;
