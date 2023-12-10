@@ -1,0 +1,339 @@
+\doxysection{src/\+Graphics/graphic\+Functions.cpp File Reference}
+\hypertarget{graphic_functions_8cpp}{}\label{graphic_functions_8cpp}\index{src/Graphics/graphicFunctions.cpp@{src/Graphics/graphicFunctions.cpp}}
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include "{}../\+Objects/tower.\+h"{}}\newline
+{\ttfamily \#include "{}../\+Objects/enemies.\+h"{}}\newline
+{\ttfamily \#include "{}../tiles.\+cpp"{}}\newline
+{\ttfamily \#include "{}../\+Objects/\+Enemy\+Type\+A.\+h"{}}\newline
+{\ttfamily \#include "{}../\+Objects/\+Enemy\+Type\+B.\+h"{}}\newline
+{\ttfamily \#include "{}../\+Objects/\+Enemy\+Type\+C.\+h"{}}\newline
+{\ttfamily \#include "{}../\+Objects/\+Enemy\+Type\+D.\+h"{}}\newline
+Include dependency graph for graphic\+Functions.\+cpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_a3e3cbef002e4aa3faa1d4582c56564a0}{draw\+Tiles}} (sf\+::\+Render\+Window \&window, const int tile\+Size, const int window\+Width, const int window\+Height, int difficulty)
+\begin{DoxyCompactList}\small\item\em Draws the tiles on the game window based on the provided map and tile size. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{create\+Button}} (float x, float y, float width, float height, sf\+::\+Color color)
+\item 
+sf\+::\+Text \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{create\+Text}} (float x, float y, std\+::string content, sf\+::\+Font \&font, unsigned int size, sf\+::\+Color color)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_ae69dab20fb3cf56f4d48e85a46d94336}{add\+Tower}} (sf\+::\+Render\+Window \&window, \mbox{\hyperlink{class_tile}{Tile}} tile, \mbox{\hyperlink{class_tower_type}{Tower\+Type}} type)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_adb041f81e9eac0b1331487b7ce87ffef}{add\+Enemy}} (sf\+::\+Render\+Window \&window, int tile\+Size, int x, int y, int game\+Level, int difficulty)
+\begin{DoxyCompactList}\small\item\em Adds enemies to the game based on the game level and difficulty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_ad33c05a857e97cfd7c7892f61498a52b}{place\+Tower}} (sf\+::\+Event event, sf\+::\+Render\+Window \&window, int \&money)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_a7584e22548c7c84a22d58454242966df}{draw\+Towers}} (sf\+::\+Render\+Window \&window, int \&money)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_a34567f96972bc9087a10ccf6c7c00362}{only\+Draw\+Towers}} (sf\+::\+Render\+Window \&window)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_a9d1f5116687213b8e1f23ba37e061372}{main\+Menu}} (sf\+::\+Render\+Window \&window, int difficulty)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_a3e88062fee3bcefb2396a6853290237e}{draw\+Money}} (sf\+::\+Render\+Window \&window, int money)
+\begin{DoxyCompactList}\small\item\em Draws the current amount of money on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_ae5a64efc0901cfe721b6b9d662b3463d}{end\+Screen}} (sf\+::\+Render\+Window \&window)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_ae6ef2136a431a1b7e7fb858652c5f4e7}{delete\+Tower}} (sf\+::\+Event event, sf\+::\+Render\+Window \&window, int \&money)
+\begin{DoxyCompactList}\small\item\em Deletes a tower from the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_adad0968edee1a2c955a3445434ac416f}{tutorial}} (sf\+::\+Render\+Window \&window)
+\item 
+void \mbox{\hyperlink{graphic_functions_8cpp_af9be8f090342a9ad5471b9328e300018}{draw\+Wave}} (sf\+::\+Render\+Window \&window, int \&game\+Level)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $>$ \mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_tower}{Tower}} $>$ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_enemy}{Enemy}} $>$ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{graphic_functions_8cpp_a01472b7279a7e087cd01a7395ea7b9f0}{play\+Button}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{graphic_functions_8cpp_a82fef4ea09009a9a4f7091ebaa7430d3}{exit\+Button}}
+\item 
+bool \mbox{\hyperlink{graphic_functions_8cpp_a8b42bbdb2eac800fcf1bcee45d6d33d3}{tower\+Placement\+Mode}} = false
+\item 
+\mbox{\hyperlink{class_tower_type}{Tower\+Type}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selected\+Tower\+Type}} = nullptr
+\item 
+bool \mbox{\hyperlink{graphic_functions_8cpp_a89a3af14cec8a86c0963da331b462c32}{to\+Main}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{graphic_functions_8cpp_adb041f81e9eac0b1331487b7ce87ffef}\label{graphic_functions_8cpp_adb041f81e9eac0b1331487b7ce87ffef} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!addEnemy@{addEnemy}}
+\index{addEnemy@{addEnemy}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{addEnemy()}{addEnemy()}}
+{\footnotesize\ttfamily void add\+Enemy (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int}]{tile\+Size,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{game\+Level,  }\item[{int}]{difficulty }\end{DoxyParamCaption})}
+
+
+
+Adds enemies to the game based on the game level and difficulty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The SFML Render\+Window object. \\
+\hline
+{\em tile\+Size} & The size of each tile in pixels. \\
+\hline
+{\em x} & The x-\/coordinate of the enemy\textquotesingle{}s starting position. \\
+\hline
+{\em y} & The y-\/coordinate of the enemy\textquotesingle{}s starting position. \\
+\hline
+{\em game\+Level} & The current game level. \\
+\hline
+{\em difficulty} & The difficulty level of the game. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_ae69dab20fb3cf56f4d48e85a46d94336}\label{graphic_functions_8cpp_ae69dab20fb3cf56f4d48e85a46d94336} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!addTower@{addTower}}
+\index{addTower@{addTower}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{addTower()}{addTower()}}
+{\footnotesize\ttfamily void add\+Tower (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{\mbox{\hyperlink{class_tile}{Tile}}}]{tile,  }\item[{\mbox{\hyperlink{class_tower_type}{Tower\+Type}}}]{type }\end{DoxyParamCaption})}
+
+Adds a tower to the game window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The game window to add the tower to. \\
+\hline
+{\em tile} & The tile on which the tower is placed. \\
+\hline
+{\em type} & The type of tower to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}\label{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!createButton@{createButton}}
+\index{createButton@{createButton}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{createButton()}{createButton()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape create\+Button (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height,  }\item[{sf\+::\+Color}]{color }\end{DoxyParamCaption})}
+
+\Hypertarget{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}\label{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!createText@{createText}}
+\index{createText@{createText}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{createText()}{createText()}}
+{\footnotesize\ttfamily sf\+::\+Text create\+Text (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{std\+::string}]{content,  }\item[{sf\+::\+Font \&}]{font,  }\item[{unsigned int}]{size,  }\item[{sf\+::\+Color}]{color }\end{DoxyParamCaption})}
+
+Creates an sf\+::\+Text object with the specified properties.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the text\textquotesingle{}s position. \\
+\hline
+{\em y} & The y-\/coordinate of the text\textquotesingle{}s position. \\
+\hline
+{\em content} & The content of the text. \\
+\hline
+{\em font} & The font to be used for the text. \\
+\hline
+{\em size} & The size of the text. \\
+\hline
+{\em color} & The color of the text. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created sf\+::\+Text object. 
+\end{DoxyReturn}
+\Hypertarget{graphic_functions_8cpp_ae6ef2136a431a1b7e7fb858652c5f4e7}\label{graphic_functions_8cpp_ae6ef2136a431a1b7e7fb858652c5f4e7} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!deleteTower@{deleteTower}}
+\index{deleteTower@{deleteTower}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{deleteTower()}{deleteTower()}}
+{\footnotesize\ttfamily void delete\+Tower (\begin{DoxyParamCaption}\item[{sf\+::\+Event}]{event,  }\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int \&}]{money }\end{DoxyParamCaption})}
+
+
+
+Deletes a tower from the game. 
+
+This function takes an SFML event, a reference to the game window, and a reference to the player\textquotesingle{}s money. It removes the tower from the game and updates the player\textquotesingle{}s money accordingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The SFML event that triggered the tower deletion. \\
+\hline
+{\em window} & The game window. \\
+\hline
+{\em money} & The player\textquotesingle{}s money. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_a3e88062fee3bcefb2396a6853290237e}\label{graphic_functions_8cpp_a3e88062fee3bcefb2396a6853290237e} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!drawMoney@{drawMoney}}
+\index{drawMoney@{drawMoney}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{drawMoney()}{drawMoney()}}
+{\footnotesize\ttfamily void draw\+Money (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int}]{money }\end{DoxyParamCaption})}
+
+
+
+Draws the current amount of money on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The SFML render window to draw on. \\
+\hline
+{\em money} & The current amount of money. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_a3e3cbef002e4aa3faa1d4582c56564a0}\label{graphic_functions_8cpp_a3e3cbef002e4aa3faa1d4582c56564a0} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!drawTiles@{drawTiles}}
+\index{drawTiles@{drawTiles}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{drawTiles()}{drawTiles()}}
+{\footnotesize\ttfamily void draw\+Tiles (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{const int}]{tile\+Size,  }\item[{const int}]{window\+Width,  }\item[{const int}]{window\+Height,  }\item[{int}]{difficulty }\end{DoxyParamCaption})}
+
+
+
+Draws the tiles on the game window based on the provided map and tile size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The game window to draw the tiles on. \\
+\hline
+{\em tile\+Size} & The size of each tile in pixels. \\
+\hline
+{\em window\+Width} & The width of the game window in pixels. \\
+\hline
+{\em window\+Height} & The height of the game window in pixels. \\
+\hline
+{\em difficulty} & The difficulty level of the game. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_a7584e22548c7c84a22d58454242966df}\label{graphic_functions_8cpp_a7584e22548c7c84a22d58454242966df} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!drawTowers@{drawTowers}}
+\index{drawTowers@{drawTowers}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{drawTowers()}{drawTowers()}}
+{\footnotesize\ttfamily void draw\+Towers (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int \&}]{money }\end{DoxyParamCaption})}
+
+Draws the towers on the specified window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The SFML Render\+Window to draw the towers on. \\
+\hline
+{\em money} & A reference to the money variable. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_af9be8f090342a9ad5471b9328e300018}\label{graphic_functions_8cpp_af9be8f090342a9ad5471b9328e300018} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!drawWave@{drawWave}}
+\index{drawWave@{drawWave}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{drawWave()}{drawWave()}}
+{\footnotesize\ttfamily void draw\+Wave (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int \&}]{game\+Level }\end{DoxyParamCaption})}
+
+Draws the wave of enemies on the game window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The SFML Render\+Window object to draw on. \\
+\hline
+{\em game\+Level} & The current level of the game. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_ae5a64efc0901cfe721b6b9d662b3463d}\label{graphic_functions_8cpp_ae5a64efc0901cfe721b6b9d662b3463d} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!endScreen@{endScreen}}
+\index{endScreen@{endScreen}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{endScreen()}{endScreen()}}
+{\footnotesize\ttfamily void end\+Screen (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+\Hypertarget{graphic_functions_8cpp_a9d1f5116687213b8e1f23ba37e061372}\label{graphic_functions_8cpp_a9d1f5116687213b8e1f23ba37e061372} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!mainMenu@{mainMenu}}
+\index{mainMenu@{mainMenu}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{mainMenu()}{mainMenu()}}
+{\footnotesize\ttfamily void main\+Menu (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int}]{difficulty }\end{DoxyParamCaption})}
+
+Displays the main menu of the game.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The SFML Render\+Window object used for rendering. \\
+\hline
+{\em difficulty} & The difficulty level of the game. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_a34567f96972bc9087a10ccf6c7c00362}\label{graphic_functions_8cpp_a34567f96972bc9087a10ccf6c7c00362} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!onlyDrawTowers@{onlyDrawTowers}}
+\index{onlyDrawTowers@{onlyDrawTowers}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{onlyDrawTowers()}{onlyDrawTowers()}}
+{\footnotesize\ttfamily void only\+Draw\+Towers (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+\Hypertarget{graphic_functions_8cpp_ad33c05a857e97cfd7c7892f61498a52b}\label{graphic_functions_8cpp_ad33c05a857e97cfd7c7892f61498a52b} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!placeTower@{placeTower}}
+\index{placeTower@{placeTower}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{placeTower()}{placeTower()}}
+{\footnotesize\ttfamily void place\+Tower (\begin{DoxyParamCaption}\item[{sf\+::\+Event}]{event,  }\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int \&}]{money }\end{DoxyParamCaption})}
+
+Places a tower on the screen based on the given event.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The event that triggered the tower placement. \\
+\hline
+{\em window} & The SFML render window. \\
+\hline
+{\em money} & The current amount of money the player has. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{graphic_functions_8cpp_adad0968edee1a2c955a3445434ac416f}\label{graphic_functions_8cpp_adad0968edee1a2c955a3445434ac416f} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!tutorial@{tutorial}}
+\index{tutorial@{tutorial}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{tutorial()}{tutorial()}}
+{\footnotesize\ttfamily void tutorial (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}\label{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!enemies@{enemies}}
+\index{enemies@{enemies}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{enemies}{enemies}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_enemy}{Enemy}}$>$ enemies}
+
+\Hypertarget{graphic_functions_8cpp_a82fef4ea09009a9a4f7091ebaa7430d3}\label{graphic_functions_8cpp_a82fef4ea09009a9a4f7091ebaa7430d3} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!exitButton@{exitButton}}
+\index{exitButton@{exitButton}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{exitButton}{exitButton}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape exit\+Button}
+
+\Hypertarget{graphic_functions_8cpp_a01472b7279a7e087cd01a7395ea7b9f0}\label{graphic_functions_8cpp_a01472b7279a7e087cd01a7395ea7b9f0} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!playButton@{playButton}}
+\index{playButton@{playButton}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{playButton}{playButton}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape play\+Button}
+
+\Hypertarget{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}\label{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!selectedTowerType@{selectedTowerType}}
+\index{selectedTowerType@{selectedTowerType}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{selectedTowerType}{selectedTowerType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tower_type}{Tower\+Type}}\texorpdfstring{$\ast$}{*} selected\+Tower\+Type = nullptr}
+
+\Hypertarget{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}\label{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!tiles@{tiles}}
+\index{tiles@{tiles}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{tiles}{tiles}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_tile}{Tile}}$>$ tiles}
+
+\Hypertarget{graphic_functions_8cpp_a89a3af14cec8a86c0963da331b462c32}\label{graphic_functions_8cpp_a89a3af14cec8a86c0963da331b462c32} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!toMain@{toMain}}
+\index{toMain@{toMain}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{toMain}{toMain}}
+{\footnotesize\ttfamily bool to\+Main = false}
+
+\Hypertarget{graphic_functions_8cpp_a8b42bbdb2eac800fcf1bcee45d6d33d3}\label{graphic_functions_8cpp_a8b42bbdb2eac800fcf1bcee45d6d33d3} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!towerPlacementMode@{towerPlacementMode}}
+\index{towerPlacementMode@{towerPlacementMode}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{towerPlacementMode}{towerPlacementMode}}
+{\footnotesize\ttfamily bool tower\+Placement\+Mode = false}
+
+\Hypertarget{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}\label{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249} 
+\index{graphicFunctions.cpp@{graphicFunctions.cpp}!towers@{towers}}
+\index{towers@{towers}!graphicFunctions.cpp@{graphicFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{towers}{towers}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_tower}{Tower}}$>$ towers}
+

@@ -1,0 +1,88 @@
+.TH "Tile" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tile \- Represents a tile in the game\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTile\fP (const sf::Vector2f &position, const sf::Color &color, int tileSize)"
+.br
+.RI "Constructs a \fBTile\fP object\&. "
+.ti -1c
+.RI "sf::RectangleShape & \fBgetShape\fP ()"
+.br
+.RI "Retrieves the shape of the tile\&. "
+.ti -1c
+.RI "sf::Vector2f & \fBgetPosition\fP ()"
+.br
+.RI "Retrieves the position of the tile\&. "
+.ti -1c
+.RI "const sf::Color & \fBgetColor\fP () const"
+.br
+.RI "Retrieves the color of the tile\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Represents a tile in the game\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Tile::Tile (const sf::Vector2f & position, const sf::Color & color, int tileSize)\fC [inline]\fP"
+
+.PP
+Constructs a \fBTile\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIposition\fP The position of the tile\&. 
+.br
+\fIcolor\fP The color of the tile\&. 
+.br
+\fItileSize\fP The size of the tile\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const sf::Color & Tile::getColor () const\fC [inline]\fP"
+
+.PP
+Retrieves the color of the tile\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A constant reference to the color of the tile\&. 
+.RE
+.PP
+
+.SS "sf::Vector2f & Tile::getPosition ()\fC [inline]\fP"
+
+.PP
+Retrieves the position of the tile\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the position of the tile\&. 
+.RE
+.PP
+
+.SS "sf::RectangleShape & Tile::getShape ()\fC [inline]\fP"
+
+.PP
+Retrieves the shape of the tile\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the shape of the tile\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

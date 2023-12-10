@@ -1,0 +1,39 @@
+\doxysection{src/tiles.cpp File Reference}
+\hypertarget{tiles_8cpp}{}\label{tiles_8cpp}\index{src/tiles.cpp@{src/tiles.cpp}}
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for tiles.\+cpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_tile}{Tile}}
+\begin{DoxyCompactList}\small\item\em Represents a tile in the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tile}{Tile}} \& \mbox{\hyperlink{tiles_8cpp_af45c0a030598db739283d7e12d77d7e5}{find\+Closest\+Tile}} (std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $>$ \&\mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}}, const sf\+::\+Vector2f \&position)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tiles_8cpp_af45c0a030598db739283d7e12d77d7e5}\label{tiles_8cpp_af45c0a030598db739283d7e12d77d7e5} 
+\index{tiles.cpp@{tiles.cpp}!findClosestTile@{findClosestTile}}
+\index{findClosestTile@{findClosestTile}!tiles.cpp@{tiles.cpp}}
+\doxysubsubsection{\texorpdfstring{findClosestTile()}{findClosestTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tile}{Tile}} \& find\+Closest\+Tile (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $>$ \&}]{tiles,  }\item[{const sf\+::\+Vector2f \&}]{position }\end{DoxyParamCaption})}
+
+Finds the closest \doxylink{class_tile}{Tile} to the given position from the provided vector of Tiles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiles} & The vector of Tiles to search from. \\
+\hline
+{\em position} & The position to find the closest \doxylink{class_tile}{Tile} to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the closest \doxylink{class_tile}{Tile}. 
+\end{DoxyReturn}

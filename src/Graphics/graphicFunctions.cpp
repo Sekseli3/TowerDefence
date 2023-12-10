@@ -22,6 +22,15 @@ bool towerPlacementMode = false;
 TowerType* selectedTowerType = nullptr;
 bool toMain = false;
 //function to draw all the tiles from hardcoded map
+/**
+ * @brief Draws the tiles on the game window based on the provided map and tile size.
+ * 
+ * @param window The game window to draw the tiles on.
+ * @param tileSize The size of each tile in pixels.
+ * @param windowWidth The width of the game window in pixels.
+ * @param windowHeight The height of the game window in pixels.
+ * @param difficulty The difficulty level of the game.
+ */
 void drawTiles(sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight,int difficulty) {
     //Count how many tiles we can fit in map
     const int mapWidth = windowWidth / tileSize;
@@ -89,6 +98,17 @@ sf::RectangleShape createButton(float x, float y, float width, float height, sf:
 }
 
 // Function to create a text
+/**
+ * Creates an sf::Text object with the specified properties.
+ * 
+ * @param x The x-coordinate of the text's position.
+ * @param y The y-coordinate of the text's position.
+ * @param content The content of the text.
+ * @param font The font to be used for the text.
+ * @param size The size of the text.
+ * @param color The color of the text.
+ * @return The created sf::Text object.
+ */
 sf::Text createText(float x, float y, std::string content, sf::Font& font, unsigned int size,sf::Color color) {
     sf::Text text;
     text.setFont(font);
@@ -99,11 +119,28 @@ sf::Text createText(float x, float y, std::string content, sf::Font& font, unsig
     return text;
 }
 
+/**
+ * Adds a tower to the game window.
+ * 
+ * @param window The game window to add the tower to.
+ * @param tile The tile on which the tower is placed.
+ * @param type The type of tower to add.
+ */
 void addTower(sf::RenderWindow &window, Tile tile, TowerType type){
     Tower tower(tile.getPosition(),type);
         towers.push_back(tower);
 }
 
+/**
+ * @brief Adds enemies to the game based on the game level and difficulty.
+ * 
+ * @param window The SFML RenderWindow object.
+ * @param tileSize The size of each tile in pixels.
+ * @param x The x-coordinate of the enemy's starting position.
+ * @param y The y-coordinate of the enemy's starting position.
+ * @param gameLevel The current game level.
+ * @param difficulty The difficulty level of the game.
+ */
 void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLevel, int difficulty){
 
     int iterator = gameLevel * difficulty;  
@@ -176,6 +213,13 @@ void addEnemy(sf::RenderWindow &window, int tileSize, int x, int y, int gameLeve
 
 
 
+/**
+ * Places a tower on the screen based on the given event.
+ * 
+ * @param event The event that triggered the tower placement.
+ * @param window The SFML render window.
+ * @param money The current amount of money the player has.
+ */
 void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
 
     sf::Font font;
@@ -253,6 +297,12 @@ void placeTower(sf::Event event, sf::RenderWindow &window, int &money){
     }
 }
 
+/**
+ * Draws the towers on the specified window.
+ * 
+ * @param window The SFML RenderWindow to draw the towers on.
+ * @param money A reference to the money variable.
+ */
 void drawTowers(sf::RenderWindow &window, int &money){
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -279,6 +329,12 @@ void onlyDrawTowers(sf::RenderWindow &window){
 }
 
 
+/**
+ * Displays the main menu of the game.
+ * 
+ * @param window The SFML RenderWindow object used for rendering.
+ * @param difficulty The difficulty level of the game.
+ */
 void mainMenu(sf::RenderWindow &window, int difficulty) {
     window.clear();
         sf::Font font;
@@ -319,6 +375,12 @@ void mainMenu(sf::RenderWindow &window, int difficulty) {
 
 }
 
+/**
+ * @brief Draws the current amount of money on the screen.
+ * 
+ * @param window The SFML render window to draw on.
+ * @param money The current amount of money.
+ */
 void drawMoney(sf::RenderWindow &window, int money) {
         sf::Font font;
     if (!font.loadFromFile("src/assets/FreeMono.ttf")) {
@@ -352,6 +414,16 @@ void endScreen(sf::RenderWindow &window) {
     window.draw(text2);
     window.draw(text3);
 }
+/**
+ * @brief Deletes a tower from the game.
+ * 
+ * This function takes an SFML event, a reference to the game window, and a reference to the player's money.
+ * It removes the tower from the game and updates the player's money accordingly.
+ * 
+ * @param event The SFML event that triggered the tower deletion.
+ * @param window The game window.
+ * @param money The player's money.
+ */
 void deleteTower(sf::Event event, sf::RenderWindow &window,int &money){
     if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.button == sf::Mouse::Left) {
@@ -414,6 +486,12 @@ void tutorial(sf::RenderWindow &window){
 
 
 
+/**
+ * Draws the wave of enemies on the game window.
+ * 
+ * @param window The SFML RenderWindow object to draw on.
+ * @param gameLevel The current level of the game.
+ */
 void drawWave(sf::RenderWindow &window,int &gameLevel){
     sf::Font font;
     if (!font.loadFromFile("src/assets/FreeMono.ttf")) {

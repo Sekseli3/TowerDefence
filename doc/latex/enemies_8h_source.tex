@@ -1,0 +1,79 @@
+\doxysection{enemies.\+h}
+\hypertarget{enemies_8h_source}{}\label{enemies_8h_source}\index{src/Objects/enemies.h@{src/Objects/enemies.h}}
+\mbox{\hyperlink{enemies_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TOWER\_DEFENCE\_2\_ENEMY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TOWER\_DEFENCE\_2\_ENEMY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enemy_type_8h}{EnemyType.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../gameEngine.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_enemy_type}{EnemyType}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_enemy}{Enemy}}\ \ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_enemy}{Enemy}}(sf::Vector2f\&\ position,\ \textcolor{keywordtype}{double}\ radius,\ \textcolor{keywordtype}{int}\ health,\ \textcolor{keywordtype}{double}\ speed,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ sf::Color\&\ color,\textcolor{keywordtype}{int}\ points);\ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ sf::CircleShape\&\ \mbox{\hyperlink{class_enemy_a3fdd3cfd5e1af004ba4a7c6b08c7f227}{getShape}}();}
+\DoxyCodeLine{00037\ \ \ \ \ sf::Vector2f\&\ \mbox{\hyperlink{class_enemy_a9bad4068c2148f118c82a9fef228ac44}{getPosition}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a65cdb140c0d785f180cad5104cce5a67}{move}}(\textcolor{keywordtype}{float}\ x\_dir,\ \textcolor{keywordtype}{float}\ y\_dir);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_aa44f89e03d07590d506a218a32128bec}{moveEnemy}}(\textcolor{keywordtype}{double}\ timeStep,\ sf::RenderWindow\ \&window);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_a55e79772ecfdc633296db7750091e619}{getRoute}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_abbef2353dbdeeb6515c2e660f5b2f7fa}{getSpeed}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_a5d6bba1987adacf74aee5835ef05ef5c}{getXcoord}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_ab52352cc67d652d23468ac3edac22759}{getYcoord}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a75b4c9fe2db44b4ef8d1abab030926fe}{addY}}(\textcolor{keywordtype}{int}\ b);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a1044d24428d8ec0635d77373d9a9e8e0}{addX}}(\textcolor{keywordtype}{int}\ a);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a65bbc149ffcd23c8447b13694aaf6eb6}{lowerHealth}}(\textcolor{keywordtype}{int}\ h);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_ad882e1f0ffadebd6758c5d941be861f0}{hasPassed}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a038e636d16b708f92627348a36750702}{isDead}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a20fd7a981642ed5c8ed81c4a05d63560}{getHit}}(\textcolor{keywordtype}{int}\ damage)\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ health\ -\/=\ damage;}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_a46341636350ca2bc6aac929b2a84f215}{getHealth}}()\{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>health;}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_a5e0122fd418463449c03131663f81a1b}{getPoints}}()\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>points;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a18ed395fbe29e6ee2cabc2e06f0e0d0c}{reduceSpeed}}()\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>shape.getFillColor()\ ==\ sf::Color::Cyan)\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ speed\ =\ 2;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(this-\/>shape.getFillColor()\ ==\ sf::Color::Black)\{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ speed\ =\ 1;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(this-\/>shape.getFillColor()\ ==\ sf::Color::Red)\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ speed\ =\ 1;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ destructor}}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_enemy_ac0eec4755e28c02688065f9657150ac3}{\string~Enemy}}()\{}
+\DoxyCodeLine{00089\ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ sf::CircleShape\ shape;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ sf::Vector2f\ position;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ health;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ points;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ route;}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

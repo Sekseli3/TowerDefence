@@ -1,0 +1,94 @@
+.TH "src/main.cpp" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/main.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SFML/Graphics\&.hpp>\fP
+.br
+\fC#include <cstdlib>\fP
+.br
+\fC#include <ctime>\fP
+.br
+\fC#include 'Graphics/graphicFunctions\&.cpp'\fP
+.br
+\fC#include 'Objects/enemies\&.h'\fP
+.br
+\fC#include 'gameEngine\&.hpp'\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <vector>\fP
+.br
+
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBGameState\fP { \fBMainMenu\fP, \fBBuilding\fP, \fBAttacking\fP, \fBEndScreen\fP, \fBTutorial\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBmoveEnemies\fP (\fBUniversalClock\fP &clock, sf::RenderWindow &window, std::vector< \fBEnemy\fP > &stored_enemies, float delayTime, int &Money)"
+.br
+.ti -1c
+.RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBUniversalClock\fP \fBclock1\fP"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum class \fBGameState\fP\fC [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIMainMenu \fP\fP
+.TP
+\fB\fIBuilding \fP\fP
+.TP
+\fB\fIAttacking \fP\fP
+.TP
+\fB\fIEndScreen \fP\fP
+.TP
+\fB\fITutorial \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "int main ()"
+
+.SS "void moveEnemies (\fBUniversalClock\fP & clock, sf::RenderWindow & window, std::vector< \fBEnemy\fP > & stored_enemies, float delayTime, int & Money)"
+Moves the enemies on the screen based on the given clock, window, and delay time\&. Also updates the money based on the enemies killed\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIclock\fP The \fBUniversalClock\fP object used to track the delay time\&. 
+.br
+\fIwindow\fP The sf::RenderWindow object used to draw the enemies\&. 
+.br
+\fIstored_enemies\fP The vector of \fBEnemy\fP objects representing the enemies on the screen\&. 
+.br
+\fIdelayTime\fP The delay time in seconds between enemy movements\&. 
+.br
+\fIMoney\fP The reference to the money variable to update based on enemies killed\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBUniversalClock\fP clock1"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

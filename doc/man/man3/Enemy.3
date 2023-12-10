@@ -1,0 +1,156 @@
+.TH "Enemy" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Enemy \- \fBEnemy\fP class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <enemies\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEnemy\fP (sf::Vector2f &position, double radius, int health, double speed, float x, float y, sf::Color &color, int points)"
+.br
+.RI "Constructs an enemy object with the given parameters\&. "
+.ti -1c
+.RI "sf::CircleShape & \fBgetShape\fP ()"
+.br
+.ti -1c
+.RI "sf::Vector2f & \fBgetPosition\fP ()"
+.br
+.ti -1c
+.RI "void \fBmove\fP (float x_dir, float y_dir)"
+.br
+.ti -1c
+.RI "void \fBmoveEnemy\fP (double timeStep, sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "int \fBgetRoute\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetSpeed\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetXcoord\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetYcoord\fP ()"
+.br
+.ti -1c
+.RI "void \fBaddY\fP (int b)"
+.br
+.ti -1c
+.RI "void \fBaddX\fP (int a)"
+.br
+.ti -1c
+.RI "void \fBlowerHealth\fP (int h)"
+.br
+.ti -1c
+.RI "bool \fBhasPassed\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisDead\fP ()"
+.br
+.ti -1c
+.RI "void \fBgetHit\fP (int damage)"
+.br
+.ti -1c
+.RI "int \fBgetHealth\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetPoints\fP ()"
+.br
+.ti -1c
+.RI "void \fBreduceSpeed\fP ()"
+.br
+.ti -1c
+.RI "\fB~Enemy\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBEnemy\fP class\&. 
+
+Represents an enemy object in the game\&.
+.PP
+The \fBEnemy\fP class encapsulates the properties and behaviors of an enemy in the game\&. It includes information such as position, health, speed, and points awarded for defeating the enemy\&. Enemies can move, take damage, and have their speed reduced based on their fill color\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Enemy::Enemy (sf::Vector2f & position, double radius, int health, double speed, float x, float y, sf::Color & color, int points)"
+
+.PP
+Constructs an enemy object with the given parameters\&. Enemy\&.cpp\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIposition\fP The initial position of the enemy\&. 
+.br
+\fIradius\fP The radius of the enemy\&. 
+.br
+\fIhealth\fP The initial health of the enemy\&. 
+.br
+\fIspeed\fP The speed of the enemy\&. 
+.br
+\fIx\fP The x-coordinate of the enemy's position\&. 
+.br
+\fIy\fP The y-coordinate of the enemy's position\&. 
+.br
+\fIcolor\fP The color of the enemy\&. 
+.br
+\fIpoints\fP The points awarded for defeating the enemy\&. 
+.RE
+.PP
+
+.SS "Enemy::~Enemy ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Enemy::addX (int a)"
+
+.SS "void Enemy::addY (int b)"
+
+.SS "int Enemy::getHealth ()\fC [inline]\fP"
+
+.SS "void Enemy::getHit (int damage)\fC [inline]\fP"
+
+.SS "int Enemy::getPoints ()\fC [inline]\fP"
+
+.SS "sf::Vector2f & Enemy::getPosition ()"
+
+.SS "int Enemy::getRoute ()"
+
+.SS "sf::CircleShape & Enemy::getShape ()"
+
+.SS "int Enemy::getSpeed ()"
+
+.SS "int Enemy::getXcoord ()"
+
+.SS "int Enemy::getYcoord ()"
+
+.SS "bool Enemy::hasPassed ()"
+
+.SS "bool Enemy::isDead ()"
+
+.SS "void Enemy::lowerHealth (int h)"
+Decreases the health of the enemy by the specified amount\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP The amount to decrease the health by\&. 
+.RE
+.PP
+
+.SS "void Enemy::move (float x_dir, float y_dir)"
+
+.SS "void Enemy::moveEnemy (double timeStep, sf::RenderWindow & window)"
+
+.SS "void Enemy::reduceSpeed ()\fC [inline]\fP"
+Reduces the speed of the enemy based on its fill color\&. If the fill color is Cyan, the speed is set to 2\&. If the fill color is Black or Red, the speed is set to 1\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

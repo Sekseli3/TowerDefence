@@ -1,0 +1,62 @@
+.TH "EnemyType" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EnemyType \- The base class for different types of enemies in the game\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EnemyType\&.h>\fP
+.PP
+Inherited by \fBEnemyTypeA\fP, \fBEnemyTypeB\fP, \fBEnemyTypeC\fP, and \fBEnemyTypeD\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBEnemy\fP \fBcreateEnemy\fP (sf::Vector2f &position, float x, float y) const =0"
+.br
+.RI "Creates an enemy of this type at the specified position\&. "
+.ti -1c
+.RI "virtual \fB~EnemyType\fP ()=default"
+.br
+.RI "Destructor for the \fBEnemyType\fP class\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+The base class for different types of enemies in the game\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "virtual EnemyType::~EnemyType ()\fC [virtual]\fP, \fC [default]\fP"
+
+.PP
+Destructor for the \fBEnemyType\fP class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBEnemy\fP EnemyType::createEnemy (sf::Vector2f & position, float x, float y) const\fC [pure virtual]\fP"
+
+.PP
+Creates an enemy of this type at the specified position\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIposition\fP The position of the enemy\&. 
+.br
+\fIx\fP The x-coordinate of the position\&. 
+.br
+\fIy\fP The y-coordinate of the position\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The created enemy object\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBEnemyTypeA\fP, \fBEnemyTypeB\fP, \fBEnemyTypeC\fP, and \fBEnemyTypeD\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

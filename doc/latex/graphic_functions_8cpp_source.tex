@@ -1,0 +1,433 @@
+\doxysection{graphic\+Functions.\+cpp}
+\hypertarget{graphic_functions_8cpp_source}{}\label{graphic_functions_8cpp_source}\index{src/Graphics/graphicFunctions.cpp@{src/Graphics/graphicFunctions.cpp}}
+\mbox{\hyperlink{graphic_functions_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../Objects/tower.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../Objects/enemies.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../tiles.cpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Objects/EnemyTypeA.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../Objects/EnemyTypeB.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../Objects/EnemyTypeC.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../Objects/EnemyTypeD.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ std::vector<Tile>\ \mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}};}
+\DoxyCodeLine{00017\ std::vector<Tower>\ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}};}
+\DoxyCodeLine{00018\ std::vector<Enemy>\ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}};}
+\DoxyCodeLine{00019\ sf::RectangleShape\ \mbox{\hyperlink{graphic_functions_8cpp_a01472b7279a7e087cd01a7395ea7b9f0}{playButton}};}
+\DoxyCodeLine{00020\ sf::RectangleShape\ \mbox{\hyperlink{graphic_functions_8cpp_a82fef4ea09009a9a4f7091ebaa7430d3}{exitButton}};}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{graphic_functions_8cpp_a8b42bbdb2eac800fcf1bcee45d6d33d3}{towerPlacementMode}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00022\ \mbox{\hyperlink{class_tower_type}{TowerType}}*\ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{graphic_functions_8cpp_a89a3af14cec8a86c0963da331b462c32}{toMain}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00024\ \textcolor{comment}{//function\ to\ draw\ all\ the\ tiles\ from\ hardcoded\ map}}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_a3e3cbef002e4aa3faa1d4582c56564a0}{drawTiles}}(sf::RenderWindow\ \&window,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ tileSize,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ windowWidth,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ windowHeight,\textcolor{keywordtype}{int}\ difficulty)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//Count\ how\ many\ tiles\ we\ can\ fit\ in\ map}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ mapWidth\ =\ windowWidth\ /\ tileSize;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ mapHeight\ =\ windowHeight\ /\ tileSize;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Define\ a\ hardcoded\ map,\ 0\ for\ water(blue),\ 1\ for\ grass(green)\ and\ other\ for\ path(white)\ }}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ map[16][12];}
+\DoxyCodeLine{00042\ \ \ \ \ std::ifstream\ mapFile;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}(difficulty\ >\ 3)\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ mapFile.open(\textcolor{stringliteral}{"{}src/assets/map2.txt"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ mapFile.open(\textcolor{stringliteral}{"{}src/assets/map1.txt"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mapFile)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ open\ map\ file"{}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ handle\ error}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 16;\ ++i)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 12;\ ++j)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ ch;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(mapFile\ >>\ ch))\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cerr\ <<\ "{}Error\ reading\ map\ file"{};}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ handle\ error}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ map[i][j]\ =\ ch\ -\/\ \textcolor{charliteral}{'0'};\ \ \textcolor{comment}{//\ convert\ char\ to\ int}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ mapFile.close();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//iterate\ through\ all\ the\ tiles}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ mapWidth;\ x++)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ mapHeight;\ y++)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//calculate\ position}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tilePosition(x\ *\ tileSize,\ y\ *\ tileSize);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ Tile\ object\ with\ the\ specified\ color,\ and\ tileSize}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tileType\ =\ map[x][y];}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Color\ tileColor;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tileType\ ==\ 0)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tileColor\ =\ sf::Color::Blue;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tileType\ ==\ 1)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tileColor\ =\ sf::Color::Green;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tileColor\ =\ sf::Color::White;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//create\ tile\ objects\ for\ each\ tile}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_tile}{Tile}}\ tile(tilePosition,\ tileColor,\ tileSize);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}}.push\_back(tile);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ tile's\ shape}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ window.draw(tile.\mbox{\hyperlink{class_tile_aa9306aae4859e47ed7524147eabe3ff7}{getShape}}());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ sf::RectangleShape\ \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,\ sf::Color\ color)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ sf::RectangleShape\ button(sf::Vector2f(width,\ height));}
+\DoxyCodeLine{00095\ \ \ \ \ button.setPosition(x,\ y);}
+\DoxyCodeLine{00096\ \ \ \ \ button.setFillColor(color);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ button;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ Function\ to\ create\ a\ text}}
+\DoxyCodeLine{00112\ sf::Text\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ std::string\ content,\ sf::Font\&\ font,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size,sf::Color\ color)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ sf::Text\ text;}
+\DoxyCodeLine{00114\ \ \ \ \ text.setFont(font);}
+\DoxyCodeLine{00115\ \ \ \ \ text.setFillColor(color);}
+\DoxyCodeLine{00116\ \ \ \ \ text.setString(content);}
+\DoxyCodeLine{00117\ \ \ \ \ text.setCharacterSize(size);}
+\DoxyCodeLine{00118\ \ \ \ \ text.setPosition(x,\ y);}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ text;}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_ae69dab20fb3cf56f4d48e85a46d94336}{addTower}}(sf::RenderWindow\ \&window,\ \mbox{\hyperlink{class_tile}{Tile}}\ tile,\ \mbox{\hyperlink{class_tower_type}{TowerType}}\ type)\{}
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{class_tower}{Tower}}\ tower(tile.\mbox{\hyperlink{class_tile_abba1e53e5953102c397983d40587932d}{getPosition}}(),type);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.push\_back(tower);}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_adb041f81e9eac0b1331487b7ce87ffef}{addEnemy}}(sf::RenderWindow\ \&window,\ \textcolor{keywordtype}{int}\ tileSize,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ gameLevel,\ \textcolor{keywordtype}{int}\ difficulty)\{}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{int}\ iterator\ =\ gameLevel\ *\ difficulty;\ \ }
+\DoxyCodeLine{00147\ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (gameLevel\ <=\ 2)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 3*iterator;\ j++)\ \{}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_A((-\/j)*tileSize+4,\ y\ *\ tileSize+4);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_a}{EnemyTypeA}}\ enemyTypeA;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeA.\mbox{\hyperlink{class_enemy_type_a_a322d08f34a677f02344cae92153456ee}{createEnemy}}(tileStartPosition\_A,\ (-\/j)*tileSize,y*tileSize));}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (gameLevel\ >\ 2\ \&\&\ gameLevel\ <=\ 4)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 3*iterator;\ j++)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_B((-\/j-\/5)*tileSize+7,\ y\ *\ tileSize+7);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_b}{EnemyTypeB}}\ enemyTypeB;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeB.\mbox{\hyperlink{class_enemy_type_b_a037c78c5a3ea6503eb88a5c60be93f8e}{createEnemy}}(tileStartPosition\_B,\ (-\/j-\/5)*tileSize,y*tileSize));}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 3*iterator;\ j++)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_A((-\/j)*tileSize+4,\ y\ *\ tileSize+4);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_a}{EnemyTypeA}}\ enemyTypeA;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeA.\mbox{\hyperlink{class_enemy_type_a_a322d08f34a677f02344cae92153456ee}{createEnemy}}(tileStartPosition\_A,\ (-\/j)*tileSize,y*tileSize));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (gameLevel\ >\ 4\ \&\&\ gameLevel\ <=\ 6)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_D((x-\/10.5)*tileSize+1,\ y\ *\ tileSize+1);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_d}{EnemyTypeD}}\ enemyTypeD;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeD.\mbox{\hyperlink{class_enemy_type_d_ac252d285604288b9c543fb82903e66b2}{createEnemy}}(tileStartPosition\_D,\ (x-\/10.5)*tileSize,y*tileSize));}
+\DoxyCodeLine{00172\ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 4*iterator;\ j++)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_B((-\/j-\/15)*tileSize+7,\ y\ *\ tileSize+7);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_b}{EnemyTypeB}}\ enemyTypeB;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeB.\mbox{\hyperlink{class_enemy_type_b_a037c78c5a3ea6503eb88a5c60be93f8e}{createEnemy}}(tileStartPosition\_B,\ (-\/j-\/15)*tileSize,y*tileSize));}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 2*iterator;\ j++)\{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_A((-\/j-\/6)*tileSize+4,\ y\ *\ tileSize+4);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_a}{EnemyTypeA}}\ enemyTypeA;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeA.\mbox{\hyperlink{class_enemy_type_a_a322d08f34a677f02344cae92153456ee}{createEnemy}}(tileStartPosition\_A,\ (-\/j-\/6)*tileSize,y*tileSize));}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 1*iterator;\ j++)\{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_C((-\/j-\/2)\ *\ tileSize+1,\ y\ *\ tileSize+1);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_c}{EnemyTypeC}}\ enemyTypeC;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeC.\mbox{\hyperlink{class_enemy_type_c_acf71f814ebefacdc59e49e4d0133c2b4}{createEnemy}}(tileStartPosition\_C,\ (-\/j-\/2)*tileSize,y*tileSize));}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (gameLevel\ >\ 6)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_D((x-\/11.5)*tileSize+1,\ y\ *\ tileSize+1);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_d}{EnemyTypeD}}\ enemyTypeD;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeD.\mbox{\hyperlink{class_enemy_type_d_ac252d285604288b9c543fb82903e66b2}{createEnemy}}(tileStartPosition\_D,\ (x-\/11.5)*tileSize,y*tileSize));}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 8*iterator;\ j++)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_B((-\/j-\/15)*tileSize+7,\ y\ *\ tileSize+7);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_b}{EnemyTypeB}}\ enemyTypeB;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeB.\mbox{\hyperlink{class_enemy_type_b_a037c78c5a3ea6503eb88a5c60be93f8e}{createEnemy}}(tileStartPosition\_B,\ (-\/j-\/15)*tileSize,y*tileSize));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 4*iterator;\ j++)\{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_A((-\/j-\/6)*tileSize+4,\ y\ *\ tileSize+4);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_a}{EnemyTypeA}}\ enemyTypeA;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeA.\mbox{\hyperlink{class_enemy_type_a_a322d08f34a677f02344cae92153456ee}{createEnemy}}(tileStartPosition\_A,\ (-\/j-\/6)*tileSize,y*tileSize));}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ 2*iterator;\ j++)\{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f\ tileStartPosition\_C((-\/j-\/2)\ *\ tileSize+1,\ y\ *\ tileSize+1);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_type_c}{EnemyTypeC}}\ enemyTypeC;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}}.push\_back(enemyTypeC.\mbox{\hyperlink{class_enemy_type_c_acf71f814ebefacdc59e49e4d0133c2b4}{createEnemy}}(tileStartPosition\_C,\ (-\/j-\/2)*tileSize,y*tileSize));}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00223\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_ad33c05a857e97cfd7c7892f61498a52b}{placeTower}}(sf::Event\ event,\ sf::RenderWindow\ \&window,\ \textcolor{keywordtype}{int}\ \&money)\{}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(\textcolor{stringliteral}{"{}src/assets/FreeMono.ttf"{}}))\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Could\ not\ load\ font"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//Define\ the\ tower\ types}}
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}\ basicTower(30.0,\ 20,\ 100,\ 50.0,\ sf::Color::Red,30);}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}\ advancedTower(40.0,\ 30,\ 100,\ 60.0,\ sf::Color::Blue,50);}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}\ ultimateTower(50.0,\ 40,\ 250,\ 70.0,\ sf::Color::Yellow,120);}
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}\ cashTower(0,0,100,50,sf::Color::Black,300);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ buttons\ for\ each\ tower\ type}}
+\DoxyCodeLine{00237\ \ \ \ \ sf::RectangleShape\ basicButton\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(50,\ 500,\ 50,\ 50,\ basicTower.\mbox{\hyperlink{class_tower_type_a4577061a4ce6da86964e20f9f06cca54}{getColor}}());}
+\DoxyCodeLine{00238\ \ \ \ \ sf::RectangleShape\ advancedButton\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(0,\ 500,\ 50,\ 50,\ advancedTower.\mbox{\hyperlink{class_tower_type_a4577061a4ce6da86964e20f9f06cca54}{getColor}}());}
+\DoxyCodeLine{00239\ \ \ \ \ sf::RectangleShape\ ultimateButton\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(50,\ 550,\ 50,\ 50,\ ultimateTower.\mbox{\hyperlink{class_tower_type_a4577061a4ce6da86964e20f9f06cca54}{getColor}}());}
+\DoxyCodeLine{00240\ \ \ \ \ sf::RectangleShape\ cashButton\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(100,\ 550,\ 50,\ 50,\ cashTower.\mbox{\hyperlink{class_tower_type_a4577061a4ce6da86964e20f9f06cca54}{getColor}}());}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ sf::Text\ cost1\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(52,\ 502,\ std::to\_string(30)\ +\ \textcolor{stringliteral}{"{}\$"{}},\ font,\ 20,\ sf::Color::Black);}
+\DoxyCodeLine{00243\ \ \ \ \ sf::Text\ cost2\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(2,\ 502,\ std::to\_string(50)\ +\ \textcolor{stringliteral}{"{}\$"{}},\ font,\ 20,\ sf::Color::Black);}
+\DoxyCodeLine{00244\ \ \ \ \ sf::Text\ cost3\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(52,\ 552,\ std::to\_string(120)\ +\ \textcolor{stringliteral}{"{}\$"{}},\ font,\ 20,\ sf::Color::Black);}
+\DoxyCodeLine{00245\ \ \ \ \ sf::Text\ cost4\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(102,\ 552,\ std::to\_string(300)\ +\ \textcolor{stringliteral}{"{}\$"{}},\ font,\ 20,\ sf::Color::White);}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ buttons}}
+\DoxyCodeLine{00248\ \ \ \ \ window.draw(basicButton);}
+\DoxyCodeLine{00249\ \ \ \ \ window.draw(advancedButton);}
+\DoxyCodeLine{00250\ \ \ \ \ window.draw(ultimateButton);}
+\DoxyCodeLine{00251\ \ \ \ \ window.draw(cashButton);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ cost\ text}}
+\DoxyCodeLine{00254\ \ \ \ \ window.draw(cost1);}
+\DoxyCodeLine{00255\ \ \ \ \ window.draw(cost2);}
+\DoxyCodeLine{00256\ \ \ \ \ window.draw(cost3);}
+\DoxyCodeLine{00257\ \ \ \ \ window.draw(cost4);}
+\DoxyCodeLine{00258\ \ \ \ \ }
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ a\ button\ was\ clicked}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (basicButton.getGlobalBounds().contains(event.mouseButton.x,\ event.mouseButton.y))\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ =\ \&basicTower;}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (advancedButton.getGlobalBounds().contains(event.mouseButton.x,\ event.mouseButton.y))\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ =\ \&advancedTower;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ultimateButton.getGlobalBounds().contains(event.mouseButton.x,\ event.mouseButton.y))\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ =\ \&ultimateTower;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (cashButton.getGlobalBounds().contains(event.mouseButton.x,\ event.mouseButton.y))\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ =\ \&cashTower;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ a\ tile\ was\ clicked}}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ event.mouseButton.button\ ==\ sf::Mouse::Right)\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ sf::Vector2f\ rightPosition(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(mousePos.x),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(mousePos.y));}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_tile}{Tile}}\&\ closestTile\ =\ \mbox{\hyperlink{tiles_8cpp_af45c0a030598db739283d7e12d77d7e5}{findClosestTile}}(\mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}},\ rightPosition);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (closestTile.\mbox{\hyperlink{class_tile_a27fbd8d2a9adbe9af27e18cb241b7464}{getColor}}()\ ==\ sf::Color::Green)\ \{}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (money\ <\ selectedTowerType-\/>getCost())\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Not\ enough\ money"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ money\ -\/=\ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}-\/>\mbox{\hyperlink{class_tower_type_a262d9891b82c6932607da6f8e6a1fd45}{getCost}}();}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ae69dab20fb3cf56f4d48e85a46d94336}{addTower}}(window,\ closestTile,\ *\mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}});}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ac2ca8deca16798327d61e7324a18b959}{selectedTowerType}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00306\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_a7584e22548c7c84a22d58454242966df}{drawTowers}}(sf::RenderWindow\ \&window,\ \textcolor{keywordtype}{int}\ \&money)\{}
+\DoxyCodeLine{00307\ \ \ \ \ std::random\_device\ rd;}
+\DoxyCodeLine{00308\ \ \ \ \ std::mt19937\ gen(rd());}
+\DoxyCodeLine{00309\ \ \ \ \ std::uniform\_int\_distribution<>\ distrib(0,\ 20);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i<\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.size();i++)\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ window.draw(\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].getShape());}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].attackEnemy(\mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}})==1)\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.erase(\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.begin()\ +\ i);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Removing\ successful"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].attackEnemy(\mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}})==2\ \&\&\ distrib(gen)\ ==\ 1)\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ money\ +=\ 1;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_a34567f96972bc9087a10ccf6c7c00362}{onlyDrawTowers}}(sf::RenderWindow\ \&window)\{}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i<\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.size();i++)\{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ window.draw(\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].getShape());}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ window.draw(\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].getAttackShape());}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00338\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_a9d1f5116687213b8e1f23ba37e061372}{mainMenu}}(sf::RenderWindow\ \&window,\ \textcolor{keywordtype}{int}\ difficulty)\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ window.clear();}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(\textcolor{stringliteral}{"{}src/assets/FreeMono.ttf"{}}))\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Could\ not\ load\ font"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ std::vector<std::string>\ options\ =\ \{\textcolor{stringliteral}{"{}Easy"{}},\ \textcolor{stringliteral}{"{}Medium"{}},\ \textcolor{stringliteral}{"{}Hard"{}},\ \textcolor{stringliteral}{"{}Very\ Hard"{}},\ \textcolor{stringliteral}{"{}Insane"{}}\};}
+\DoxyCodeLine{00346\ \ \ \ \ std::vector<sf::RectangleShape>\ buttons;}
+\DoxyCodeLine{00347\ \ \ \ \ std::vector<sf::Text>\ texts;}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ options.size();\ i++)\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ buttons.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(300,\ 100\ +\ i\ *\ 60,\ 200,\ 50,\ sf::Color::Blue));}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ texts.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(350,\ 110\ +\ i\ *\ 60,\ options[i],\ font,\ 24,sf::Color::White));}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{comment}{//Create\ Tutorial\ button\ and\ text}}
+\DoxyCodeLine{00354\ \ \ \ \ buttons.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(300,\ 40,\ 200,\ 50,\ sf::Color::Green));}
+\DoxyCodeLine{00355\ \ \ \ \ texts.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(350,\ 50,\ \textcolor{stringliteral}{"{}Tutorial"{}},\ font,\ 24,sf::Color::Black));}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{comment}{//Create\ Play\ button\ and\ text}}
+\DoxyCodeLine{00358\ \ \ \ \ buttons.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(300,\ 400,\ 200,\ 50,\ sf::Color::Green));}
+\DoxyCodeLine{00359\ \ \ \ \ texts.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(350,\ 410,\ \textcolor{stringliteral}{"{}Play"{}},\ font,\ 24,sf::Color::Black));}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{comment}{//Create\ Exit\ button\ and\ text}}
+\DoxyCodeLine{00362\ \ \ \ \ buttons.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(300,\ 460,\ 200,\ 50,\ sf::Color::Red));}
+\DoxyCodeLine{00363\ \ \ \ \ texts.push\_back(\mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(350,\ 470,\ \textcolor{stringliteral}{"{}Exit"{}},\ font,\ 24,sf::Color::White));}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ buttons.size();\ i++)\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(difficulty\ ==\ i+1)\{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ buttons[i].setFillColor(sf::Color::Yellow);}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ texts[i].setFillColor(sf::Color::Black);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ window.draw(buttons[i]);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ window.draw(texts[i]);}
+\DoxyCodeLine{00373\ \ \ \ \ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00384\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_a3e88062fee3bcefb2396a6853290237e}{drawMoney}}(sf::RenderWindow\ \&window,\ \textcolor{keywordtype}{int}\ money)\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(\textcolor{stringliteral}{"{}src/assets/FreeMono.ttf"{}}))\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Could\ not\ load\ font"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00388\ \ \ \ \ \}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ std::string\ moneyString\ =\ std::to\_string(money)\ +\ \textcolor{stringliteral}{"{}\$"{}};}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ sf::Text\ moneyText\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(680,\ -\/10,\ moneyString,\ font,\ 50,\ sf::Color::Yellow);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordflow}{if}\ (money\ >\ 99\ \&\&\ money\ <\ 1000)\ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ sf::Text\ moneyText\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(660,\ -\/10,\ moneyString,\ font,\ 50,\ sf::Color::Yellow);}
+\DoxyCodeLine{00396\ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (money\ >=\ 1000)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ sf::Text\ moneyText\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(635,\ -\/10,\ moneyString,\ font,\ 50,\ sf::Color::Yellow);}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ window.draw(moneyText);}
+\DoxyCodeLine{00402\ \}}
+\DoxyCodeLine{00403\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_ae5a64efc0901cfe721b6b9d662b3463d}{endScreen}}(sf::RenderWindow\ \&window)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(\textcolor{stringliteral}{"{}src/assets/FreeMono.ttf"{}}))\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Could\ not\ load\ font"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ sf::Text\ text\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(250,\ 200,\ \textcolor{stringliteral}{"{}You\ lost!"{}},\ font,\ 50,sf::Color::Red);}
+\DoxyCodeLine{00410\ \ \ \ \ sf::Text\ text2\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(20,\ 300,\ \textcolor{stringliteral}{"{}Try\ with\ easier\ difficulty\ ;)"{}},\ font,\ 45,sf::Color::Red);}
+\DoxyCodeLine{00411\ \ \ \ \ sf::Text\ text3\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(150,\ 400,\ \textcolor{stringliteral}{"{}Click\ to\ try\ again"{}},\ font,\ 45,sf::Color::Red);}
+\DoxyCodeLine{00412\ \ \ \ \ window.clear();}
+\DoxyCodeLine{00413\ \ \ \ \ window.draw(text);}
+\DoxyCodeLine{00414\ \ \ \ \ window.draw(text2);}
+\DoxyCodeLine{00415\ \ \ \ \ window.draw(text3);}
+\DoxyCodeLine{00416\ \}}
+\DoxyCodeLine{00427\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_ae6ef2136a431a1b7e7fb858652c5f4e7}{deleteTower}}(sf::Event\ event,\ sf::RenderWindow\ \&window,\textcolor{keywordtype}{int}\ \&money)\{}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ sf::Event::MouseButtonPressed\ \&\&}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ event.mouseButton.button\ ==\ sf::Mouse::Left)\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ sf::Vector2f\ rightPosition(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(mousePos.x),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(mousePos.y));}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_tile}{Tile}}\&\ closestTile\ =\ \mbox{\hyperlink{tiles_8cpp_af45c0a030598db739283d7e12d77d7e5}{findClosestTile}}(\mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}},\ rightPosition);}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.size();\ i++)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].getPosition()\ ==\ closestTile.\mbox{\hyperlink{class_tile_abba1e53e5953102c397983d40587932d}{getPosition}}())\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ money\ +=\ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}[i].getType().getCost()/2;}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.erase(\mbox{\hyperlink{graphic_functions_8cpp_ab2a80ba9afef8a75f2151a02431c4249}{towers}}.begin()\ +\ i);}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_adad0968edee1a2c955a3445434ac416f}{tutorial}}(sf::RenderWindow\ \&window)\{}
+\DoxyCodeLine{00443\ \ \ \ \ window.clear();}
+\DoxyCodeLine{00444\ \ \ \ \ sf::Text\ tutorialText;}
+\DoxyCodeLine{00445\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(\textcolor{stringliteral}{"{}src/assets/FreeMono.ttf"{}}))\ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Could\ not\ load\ font"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00448\ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ tutorialText.setFont(font);}
+\DoxyCodeLine{00450\ \ \ \ \ tutorialText.setString(\textcolor{stringliteral}{"{}Welcome\ to\ the\ game!\ Here's\ how\ to\ play:\(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}1.\ Start\ by\ selecting\ a\ difficulty\ level.\(\backslash\)n"{}}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}2.\ Press\ the\ 'Play'\ button\ to\ start\ the\ game.\(\backslash\)n"{}}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}3.\ The\ game\ consists\ of\ two\ phases:\ Building\ and\ Attacking.\(\backslash\)n"{}}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}4.\ During\ the\ Building\ phase,\ you\ can\ build\ or\ remove\ towers.\(\backslash\)n"{}}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}5.\ To\ build\ a\ tower,\ first\ left-\/click\ a\ colored\ square\ to\ select\ the\ type\ of\ tower.\ \(\backslash\)n\ \ \ Then,\ right-\/click\ on\ a\ green\ tile\ to\ place\ the\ tower.\ \(\backslash\)n\ \ \ Make\ sure\ you\ have\ enough\ money\ to\ buy\ the\ tower!\(\backslash\)n"{}}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}6.\ You\ can\ remove\ a\ tower\ by\ left-\/clicking\ it\ during\ the\ Building\ phase.\ \(\backslash\)n\ \ \ You'll\ get\ some\ money\ back\ when\ you\ do\ this.\(\backslash\)n\ \ \ Range\ of\ each\ tower\ is\ visible\ in\ building\ stage.\(\backslash\)n"{}}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}7.\ When\ you're\ ready,\ press\ the\ black\ cube\ to\ switch\ to\ the\ Attacking\ phase.\(\backslash\)n\ \ \ Once\ no\ enemies\ are\ left\ standing\(\backslash\)n\ \ \ building\ phase\ starts\ again,\ Good\ luck!\ \(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Towers\(\backslash\)n"{}}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}1.\ Red\ Tower:\ Cost:\ 30\$,\ Damage:\ 20,\ Range:\ 100,\ Attack\ Speed:\ 50,\(\backslash\)n\ \ \ special\ skill:\ none\(\backslash\)n"{}}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}2.\ Blue\ Tower:\ Cost:\ 50\$,\ Damage:\ 30,\ Range:\ 100,\ Attack\ Speed:\ 60,\(\backslash\)n\ \ \ special\ skill:\ slows\ enemies\(\backslash\)n"{}}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}3.\ Yellow\ Tower:\ Cost:\ 120\$,\ Damage:\ 40,\ Range:\ 250,\ Attack\ Speed:\ 70,\(\backslash\)n\ \ \ special\ skill:\ Huge\ range\ and\ Damage\ \(\backslash\)n"{}}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}4.\ Black\ Tower:\ Cost:\ 300\$,\ Damage:\ 0,\ Range:\ 100,\ Attack\ Speed:\ 50,\(\backslash\)n\ \ \ special\ skill:\ Gives\ you\ money\(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Enemies\(\backslash\)n"{}}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}1.\ Red\ Enemy:\ Health:\ 300,\ Speed:\ 2.5,\ Reward:\ 1\(\backslash\)n\ \ \ special\ skill:\ none\(\backslash\)n"{}}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}2.\ Cyan\ Enemy:\ Health:\ 100,\ Speed:\ 5,\ Reward:\ 2\(\backslash\)n\ \ \ special\ skill:\ very\ fast\(\backslash\)n"{}}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}3.\ Black\ Enemy:\ Health:\ 2500,\ Speed:\ 1,\ Reward:\ 5\(\backslash\)n\ \ \ special\ skill:\ very\ tanky\(\backslash\)n"{}}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}4.\ Yellow\ Enemy:\ Health:\ 2500,\ Speed:\ 1,\ Reward:\ 0\(\backslash\)n\ \ \ special\ skill:\ can\ destroy\ red\ towers\(\backslash\)n"{}});}
+\DoxyCodeLine{00468\ \ \ \ \ tutorialText.setCharacterSize(15);}
+\DoxyCodeLine{00469\ \ \ \ \ tutorialText.setFillColor(sf::Color::White);}
+\DoxyCodeLine{00470\ \ \ \ \ tutorialText.setPosition(50,\ 5);}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \ \ }
+\DoxyCodeLine{00473\ \ \ \ \ sf::RectangleShape\ backButton\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a8d611e887d2eebe3875e4df2d02bf3c0}{createButton}}(100,\ 540,\ 200,\ 50,\ sf::Color::Blue);}
+\DoxyCodeLine{00474\ \ \ \ \ sf::Text\ text\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(150,\ 545,\ \textcolor{stringliteral}{"{}Back"{}},\ font,\ 30,sf::Color::White);}
+\DoxyCodeLine{00475\ \ \ \ \ }
+\DoxyCodeLine{00476\ \ \ \ \ window.draw(backButton);}
+\DoxyCodeLine{00477\ \ \ \ \ window.draw(text);}
+\DoxyCodeLine{00478\ \ \ \ \ window.draw(tutorialText);}
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{keywordflow}{if}\ (sf::Mouse::isButtonPressed(sf::Mouse::Left))\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ sf::Vector2i\ mousePos\ =\ sf::Mouse::getPosition(window);}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(backButton.getGlobalBounds().contains(mousePos.x,mousePos.y))\{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graphic_functions_8cpp_a89a3af14cec8a86c0963da331b462c32}{toMain}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00495\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{graphic_functions_8cpp_af9be8f090342a9ad5471b9328e300018}{drawWave}}(sf::RenderWindow\ \&window,\textcolor{keywordtype}{int}\ \&gameLevel)\{}
+\DoxyCodeLine{00496\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font.loadFromFile(\textcolor{stringliteral}{"{}src/assets/FreeMono.ttf"{}}))\ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Could\ not\ load\ font"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ std::string\ waveString\ =\ \textcolor{stringliteral}{"{}Wave:\ "{}}\ +\ std::to\_string(gameLevel-\/1);}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \ \ \ \ sf::Text\ text\ =\ \mbox{\hyperlink{graphic_functions_8cpp_a6b7749d51ba16a0334be2a0fcf71cb79}{createText}}(290,\ -\/10,\ waveString,\ font,\ 50,sf::Color::Black);}
+\DoxyCodeLine{00504\ \ \ \ \ window.draw(text);}
+\DoxyCodeLine{00505\ \}}
+
+\end{DoxyCode}

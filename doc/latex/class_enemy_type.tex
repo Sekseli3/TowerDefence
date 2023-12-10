@@ -1,0 +1,72 @@
+\doxysection{Enemy\+Type Class Reference}
+\hypertarget{class_enemy_type}{}\label{class_enemy_type}\index{EnemyType@{EnemyType}}
+
+
+The base class for different types of enemies in the game.  
+
+
+
+
+{\ttfamily \#include $<$Enemy\+Type.\+h$>$}
+
+
+
+Inheritance diagram for Enemy\+Type\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_enemy}{Enemy}} \mbox{\hyperlink{class_enemy_type_a69b185b3d5fd77e10cae1e6e233917eb}{create\+Enemy}} (sf\+::\+Vector2f \&position, float x, float y) const =0
+\begin{DoxyCompactList}\small\item\em Creates an enemy of this type at the specified position. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_enemy_type_a7b21db5c74af983ef144a4908bb41aec}{\texorpdfstring{$\sim$}{\string~}\+Enemy\+Type}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_enemy_type}{Enemy\+Type} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base class for different types of enemies in the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_enemy_type_a7b21db5c74af983ef144a4908bb41aec}\label{class_enemy_type_a7b21db5c74af983ef144a4908bb41aec} 
+\index{EnemyType@{EnemyType}!````~EnemyType@{\texorpdfstring{$\sim$}{\string~}EnemyType}}
+\index{````~EnemyType@{\texorpdfstring{$\sim$}{\string~}EnemyType}!EnemyType@{EnemyType}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}EnemyType()}{\string~EnemyType()}}
+{\footnotesize\ttfamily virtual Enemy\+Type\+::\texorpdfstring{$\sim$}{\string~}\+Enemy\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{class_enemy_type}{Enemy\+Type} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_enemy_type_a69b185b3d5fd77e10cae1e6e233917eb}\label{class_enemy_type_a69b185b3d5fd77e10cae1e6e233917eb} 
+\index{EnemyType@{EnemyType}!createEnemy@{createEnemy}}
+\index{createEnemy@{createEnemy}!EnemyType@{EnemyType}}
+\doxysubsubsection{\texorpdfstring{createEnemy()}{createEnemy()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_enemy}{Enemy}} Enemy\+Type\+::create\+Enemy (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f \&}]{position,  }\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates an enemy of this type at the specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the enemy. \\
+\hline
+{\em x} & The x-\/coordinate of the position. \\
+\hline
+{\em y} & The y-\/coordinate of the position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created enemy object. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_enemy_type_a_a322d08f34a677f02344cae92153456ee}{Enemy\+TypeA}}, \mbox{\hyperlink{class_enemy_type_b_a037c78c5a3ea6503eb88a5c60be93f8e}{Enemy\+TypeB}}, \mbox{\hyperlink{class_enemy_type_c_acf71f814ebefacdc59e49e4d0133c2b4}{Enemy\+TypeC}}, and \mbox{\hyperlink{class_enemy_type_d_ac252d285604288b9c543fb82903e66b2}{Enemy\+TypeD}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Objects/\mbox{\hyperlink{_enemy_type_8h}{Enemy\+Type.\+h}}\end{DoxyCompactItemize}

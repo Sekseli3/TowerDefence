@@ -1,0 +1,49 @@
+.TH "src/tiles.cpp" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tiles.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SFML/Graphics\&.hpp>\fP
+.br
+\fC#include <cmath>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBTile\fP"
+.br
+.RI "Represents a tile in the game\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTile\fP & \fBfindClosestTile\fP (std::vector< \fBTile\fP > &\fBtiles\fP, const sf::Vector2f &position)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBTile\fP & findClosestTile (std::vector< \fBTile\fP > & tiles, const sf::Vector2f & position)"
+Finds the closest \fBTile\fP to the given position from the provided vector of Tiles\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fItiles\fP The vector of Tiles to search from\&. 
+.br
+\fIposition\fP The position to find the closest \fBTile\fP to\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the closest \fBTile\fP\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

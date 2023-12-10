@@ -1,0 +1,60 @@
+\doxysection{tiles.\+cpp}
+\hypertarget{tiles_8cpp_source}{}\label{tiles_8cpp_source}\index{src/tiles.cpp@{src/tiles.cpp}}
+\mbox{\hyperlink{tiles_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//Tile\ class\ for\ tile\ objects}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tile}{Tile}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_tile_abcccf9cfc924ef0fef661aca7408e90a}{Tile}}(\textcolor{keyword}{const}\ sf::Vector2f\&\ position,\ \textcolor{keyword}{const}\ sf::Color\&\ color,\ \textcolor{keywordtype}{int}\ tileSize)}
+\DoxyCodeLine{00016\ \ \ \ \ :position(position),color(color),tileSize(tileSize)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ shape.setSize(sf::Vector2f(tileSize,\ tileSize));}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ shape.setPosition(position);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ shape.setFillColor(color);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(color\ ==\ sf::Color::Green)\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ shape.setOutlineColor(sf::Color::Black);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ shape.setOutlineColor(color);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ shape.setOutlineThickness(0.5);}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ sf::RectangleShape\&\ \mbox{\hyperlink{class_tile_aa9306aae4859e47ed7524147eabe3ff7}{getShape}}()\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ shape;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ sf::Vector2f\&\ \mbox{\hyperlink{class_tile_abba1e53e5953102c397983d40587932d}{getPosition}}()\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ position;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ sf::Color\&\ \mbox{\hyperlink{class_tile_a27fbd8d2a9adbe9af27e18cb241b7464}{getColor}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ color;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ \ \ \ \ sf::RectangleShape\ shape;\ }
+\DoxyCodeLine{00055\ \ \ \ \ sf::Vector2f\ position;\ }
+\DoxyCodeLine{00056\ \ \ \ \ sf::Color\ color;\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ tileSize;\ }
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00067\ \mbox{\hyperlink{class_tile}{Tile}}\&\ \mbox{\hyperlink{tiles_8cpp_af45c0a030598db739283d7e12d77d7e5}{findClosestTile}}(std::vector<Tile>\&\ \mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}},\ \textcolor{keyword}{const}\ sf::Vector2f\&\ position)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_tile}{Tile}}*\ closestTile\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{float}\ minDistance\ =\ std::numeric\_limits<float>::max();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_tile}{Tile}}\&\ tile\ :\ \mbox{\hyperlink{graphic_functions_8cpp_a777a0f5dc8412dcab43536fa1e119cfb}{tiles}})\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ sf::Vector2f\ tileCenter\ =\ tile.getPosition()+sf::Vector2f(25,25);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distance\ =\ std::hypot(position.x\ -\/\ tileCenter.x,\ position.y\ -\/\ tileCenter.y);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance\ <\ minDistance)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ minDistance\ =\ distance;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ closestTile\ =\ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{class_tile}{Tile}}*\textcolor{keyword}{>}(\&tile);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ *closestTile;}
+\DoxyCodeLine{00082\ \}}
+
+\end{DoxyCode}

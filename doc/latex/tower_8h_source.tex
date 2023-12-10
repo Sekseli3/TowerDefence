@@ -1,0 +1,69 @@
+\doxysection{tower.\+h}
+\hypertarget{tower_8h_source}{}\label{tower_8h_source}\index{src/Objects/tower.h@{src/Objects/tower.h}}
+\mbox{\hyperlink{tower_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TOWER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TOWER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{enemies_8h}{enemies.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../gameEngine.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tower_type}{TowerType}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}(\textcolor{keywordtype}{double}\ radius,\ \textcolor{keywordtype}{int}\ damage,\ \textcolor{keywordtype}{double}\ attack\_range,\ \textcolor{keywordtype}{double}\ attack\_speed,\ \textcolor{keyword}{const}\ sf::Color\&\ color,\ \textcolor{keywordtype}{int}\ cost);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_tower_type_a20acac99d98b8e30e8eb48c560ac55fc}{getRadius}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tower_type_a684cf1f9ea566c1614b46694f22358be}{getDamage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_tower_type_afdcd9b19a4485c48fa8df3c761aa739a}{getAttackRange}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_tower_type_a8d293babbefbd2e37ada24acff5fc289}{getAttackSpeed}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ sf::Color\&\ \mbox{\hyperlink{class_tower_type_a4577061a4ce6da86964e20f9f06cca54}{getColor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tower_type_a262d9891b82c6932607da6f8e6a1fd45}{getCost}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ cost;\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_tower_type_a4a972e8dd1b045d08dfcb8aefacae7cb}{\string~TowerType}}()\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ radius;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ damage;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{double}\ attack\_range;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{double}\ attack\_speed;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ sf::Color\ color;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ cost;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tower}{Tower}}\ \ \{}
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_tower}{Tower}}(\textcolor{keyword}{const}\ sf::Vector2f\&\ position,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tower_type}{TowerType}}\&\ type);}
+\DoxyCodeLine{00080\ \ \ \ \ sf::ConvexShape\&\ \mbox{\hyperlink{class_tower_ad90dcc7a42392538973bababb8295bdf}{getShape}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_tower_a616ae18934205dffae10451ebc8466f2}{getAttack\_range}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tower_ab85805091647bf5076e683401e78a0d2}{attackEnemy}}(std::vector<Enemy>\ \&\mbox{\hyperlink{graphic_functions_8cpp_a68dfd8cc6c330a8d7be4cf2f3a6892f3}{enemies}});}
+\DoxyCodeLine{00083\ \ \ \ \ sf::CircleShape\ \mbox{\hyperlink{class_tower_a7e365c1ad08a4538c38cbb4e5f8daf80}{getAttackShape}}();}
+\DoxyCodeLine{00084\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_tower_abbc2ee927fde4a5df613f7dbfe51718c}{getPosition}}();}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ function\ to\ add\ clock\ to\ vector\ of\ clocks}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tower_afc73d0e4740a9e858db689f264670f23}{addClock}}(\mbox{\hyperlink{class_universal_clock}{UniversalClock}}\ \&clock);}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}\ \mbox{\hyperlink{class_tower_a05d4cd2dbbe09112f9f869933eaced19}{getType}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ type;\}}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_tower_a96972da33c287758c036c944eccdc5fe}{\string~Tower}}()\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ sf::ConvexShape\ shape;}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_tower_type}{TowerType}}\ type;}
+\DoxyCodeLine{00094\ \ \ \ \ sf::CircleShape\ attackShape;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ list\ of\ universal\ clocks}}
+\DoxyCodeLine{00096\ \ \ \ \ std::vector<UniversalClock>\ clocks;}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

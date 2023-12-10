@@ -1,0 +1,297 @@
+.TH "src/Graphics/graphicFunctions.cpp" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/Graphics/graphicFunctions.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SFML/Graphics\&.hpp>\fP
+.br
+\fC#include <cstdlib>\fP
+.br
+\fC#include <ctime>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include <random>\fP
+.br
+\fC#include '\&.\&./Objects/tower\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/enemies\&.h'\fP
+.br
+\fC#include '\&.\&./tiles\&.cpp'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeA\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeB\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeC\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeD\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdrawTiles\fP (sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight, int difficulty)"
+.br
+.RI "Draws the tiles on the game window based on the provided map and tile size\&. "
+.ti -1c
+.RI "sf::RectangleShape \fBcreateButton\fP (float x, float y, float width, float height, sf::Color color)"
+.br
+.ti -1c
+.RI "sf::Text \fBcreateText\fP (float x, float y, std::string content, sf::Font &font, unsigned int size, sf::Color color)"
+.br
+.ti -1c
+.RI "void \fBaddTower\fP (sf::RenderWindow &window, \fBTile\fP tile, \fBTowerType\fP type)"
+.br
+.ti -1c
+.RI "void \fBaddEnemy\fP (sf::RenderWindow &window, int tileSize, int x, int y, int gameLevel, int difficulty)"
+.br
+.RI "Adds enemies to the game based on the game level and difficulty\&. "
+.ti -1c
+.RI "void \fBplaceTower\fP (sf::Event event, sf::RenderWindow &window, int &money)"
+.br
+.ti -1c
+.RI "void \fBdrawTowers\fP (sf::RenderWindow &window, int &money)"
+.br
+.ti -1c
+.RI "void \fBonlyDrawTowers\fP (sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "void \fBmainMenu\fP (sf::RenderWindow &window, int difficulty)"
+.br
+.ti -1c
+.RI "void \fBdrawMoney\fP (sf::RenderWindow &window, int money)"
+.br
+.RI "Draws the current amount of money on the screen\&. "
+.ti -1c
+.RI "void \fBendScreen\fP (sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "void \fBdeleteTower\fP (sf::Event event, sf::RenderWindow &window, int &money)"
+.br
+.RI "Deletes a tower from the game\&. "
+.ti -1c
+.RI "void \fBtutorial\fP (sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "void \fBdrawWave\fP (sf::RenderWindow &window, int &gameLevel)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBTile\fP > \fBtiles\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBTower\fP > \fBtowers\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBEnemy\fP > \fBenemies\fP"
+.br
+.ti -1c
+.RI "sf::RectangleShape \fBplayButton\fP"
+.br
+.ti -1c
+.RI "sf::RectangleShape \fBexitButton\fP"
+.br
+.ti -1c
+.RI "bool \fBtowerPlacementMode\fP = false"
+.br
+.ti -1c
+.RI "\fBTowerType\fP * \fBselectedTowerType\fP = nullptr"
+.br
+.ti -1c
+.RI "bool \fBtoMain\fP = false"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void addEnemy (sf::RenderWindow & window, int tileSize, int x, int y, int gameLevel, int difficulty)"
+
+.PP
+Adds enemies to the game based on the game level and difficulty\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The SFML RenderWindow object\&. 
+.br
+\fItileSize\fP The size of each tile in pixels\&. 
+.br
+\fIx\fP The x-coordinate of the enemy's starting position\&. 
+.br
+\fIy\fP The y-coordinate of the enemy's starting position\&. 
+.br
+\fIgameLevel\fP The current game level\&. 
+.br
+\fIdifficulty\fP The difficulty level of the game\&. 
+.RE
+.PP
+
+.SS "void addTower (sf::RenderWindow & window, \fBTile\fP tile, \fBTowerType\fP type)"
+Adds a tower to the game window\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The game window to add the tower to\&. 
+.br
+\fItile\fP The tile on which the tower is placed\&. 
+.br
+\fItype\fP The type of tower to add\&. 
+.RE
+.PP
+
+.SS "sf::RectangleShape createButton (float x, float y, float width, float height, sf::Color color)"
+
+.SS "sf::Text createText (float x, float y, std::string content, sf::Font & font, unsigned int size, sf::Color color)"
+Creates an sf::Text object with the specified properties\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP The x-coordinate of the text's position\&. 
+.br
+\fIy\fP The y-coordinate of the text's position\&. 
+.br
+\fIcontent\fP The content of the text\&. 
+.br
+\fIfont\fP The font to be used for the text\&. 
+.br
+\fIsize\fP The size of the text\&. 
+.br
+\fIcolor\fP The color of the text\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The created sf::Text object\&. 
+.RE
+.PP
+
+.SS "void deleteTower (sf::Event event, sf::RenderWindow & window, int & money)"
+
+.PP
+Deletes a tower from the game\&. This function takes an SFML event, a reference to the game window, and a reference to the player's money\&. It removes the tower from the game and updates the player's money accordingly\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The SFML event that triggered the tower deletion\&. 
+.br
+\fIwindow\fP The game window\&. 
+.br
+\fImoney\fP The player's money\&. 
+.RE
+.PP
+
+.SS "void drawMoney (sf::RenderWindow & window, int money)"
+
+.PP
+Draws the current amount of money on the screen\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The SFML render window to draw on\&. 
+.br
+\fImoney\fP The current amount of money\&. 
+.RE
+.PP
+
+.SS "void drawTiles (sf::RenderWindow & window, const int tileSize, const int windowWidth, const int windowHeight, int difficulty)"
+
+.PP
+Draws the tiles on the game window based on the provided map and tile size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The game window to draw the tiles on\&. 
+.br
+\fItileSize\fP The size of each tile in pixels\&. 
+.br
+\fIwindowWidth\fP The width of the game window in pixels\&. 
+.br
+\fIwindowHeight\fP The height of the game window in pixels\&. 
+.br
+\fIdifficulty\fP The difficulty level of the game\&. 
+.RE
+.PP
+
+.SS "void drawTowers (sf::RenderWindow & window, int & money)"
+Draws the towers on the specified window\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The SFML RenderWindow to draw the towers on\&. 
+.br
+\fImoney\fP A reference to the money variable\&. 
+.RE
+.PP
+
+.SS "void drawWave (sf::RenderWindow & window, int & gameLevel)"
+Draws the wave of enemies on the game window\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The SFML RenderWindow object to draw on\&. 
+.br
+\fIgameLevel\fP The current level of the game\&. 
+.RE
+.PP
+
+.SS "void endScreen (sf::RenderWindow & window)"
+
+.SS "void mainMenu (sf::RenderWindow & window, int difficulty)"
+Displays the main menu of the game\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The SFML RenderWindow object used for rendering\&. 
+.br
+\fIdifficulty\fP The difficulty level of the game\&. 
+.RE
+.PP
+
+.SS "void onlyDrawTowers (sf::RenderWindow & window)"
+
+.SS "void placeTower (sf::Event event, sf::RenderWindow & window, int & money)"
+Places a tower on the screen based on the given event\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The event that triggered the tower placement\&. 
+.br
+\fIwindow\fP The SFML render window\&. 
+.br
+\fImoney\fP The current amount of money the player has\&. 
+.RE
+.PP
+
+.SS "void tutorial (sf::RenderWindow & window)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "std::vector<\fBEnemy\fP> enemies"
+
+.SS "sf::RectangleShape exitButton"
+
+.SS "sf::RectangleShape playButton"
+
+.SS "\fBTowerType\fP* selectedTowerType = nullptr"
+
+.SS "std::vector<\fBTile\fP> tiles"
+
+.SS "bool toMain = false"
+
+.SS "bool towerPlacementMode = false"
+
+.SS "std::vector<\fBTower\fP> towers"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.
