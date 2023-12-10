@@ -11,6 +11,14 @@
 class EnemyType;
 
 /// Enemy class
+/**
+ * @class Enemy
+ * @brief Represents an enemy object in the game.
+ * 
+ * The Enemy class encapsulates the properties and behaviors of an enemy in the game.
+ * It includes information such as position, health, speed, and points awarded for defeating the enemy.
+ * Enemies can move, take damage, and have their speed reduced based on their fill color.
+ */
 class Enemy  {
 public:
  /**
@@ -40,6 +48,11 @@ public:
     void addY(int b);
     void addX(int a);
 
+    /**
+     * Decreases the health of the enemy by the specified amount.
+     * 
+     * @param h The amount to decrease the health by.
+     */
     void lowerHealth(int h);
 
     bool hasPassed();
@@ -55,6 +68,11 @@ public:
     int getPoints(){
         return this->points;
     }
+    /**
+     * Reduces the speed of the enemy based on its fill color.
+     * If the fill color is Cyan, the speed is set to 2.
+     * If the fill color is Black or Red, the speed is set to 1.
+     */
     void reduceSpeed(){
         if(this->shape.getFillColor() == sf::Color::Cyan){
             speed = 2;

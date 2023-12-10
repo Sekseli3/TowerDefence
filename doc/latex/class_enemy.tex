@@ -55,6 +55,10 @@ void \mbox{\hyperlink{class_enemy_a18ed395fbe29e6ee2cabc2e06f0e0d0c}{reduce\+Spe
 \doxysubsection{Detailed Description}
 \doxylink{class_enemy}{Enemy} class. 
 
+Represents an enemy object in the game.
+
+The \doxylink{class_enemy}{Enemy} class encapsulates the properties and behaviors of an enemy in the game. It includes information such as position, health, speed, and points awarded for defeating the enemy. Enemies can move, take damage, and have their speed reduced based on their fill color. 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_enemy_a9f25c5de118d1d35dc58df2bed25ed97}\label{class_enemy_a9f25c5de118d1d35dc58df2bed25ed97} 
 \index{Enemy@{Enemy}!Enemy@{Enemy}}
@@ -180,6 +184,13 @@ Enemy.\+cpp.
 \doxysubsubsection{\texorpdfstring{lowerHealth()}{lowerHealth()}}
 {\footnotesize\ttfamily void Enemy\+::lower\+Health (\begin{DoxyParamCaption}\item[{int}]{h }\end{DoxyParamCaption})}
 
+Decreases the health of the enemy by the specified amount.
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & The amount to decrease the health by. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_enemy_a65cdb140c0d785f180cad5104cce5a67}\label{class_enemy_a65cdb140c0d785f180cad5104cce5a67} 
 \index{Enemy@{Enemy}!move@{move}}
 \index{move@{move}!Enemy@{Enemy}}
@@ -198,7 +209,7 @@ Enemy.\+cpp.
 \doxysubsubsection{\texorpdfstring{reduceSpeed()}{reduceSpeed()}}
 {\footnotesize\ttfamily void Enemy\+::reduce\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-
+Reduces the speed of the enemy based on its fill color. If the fill color is Cyan, the speed is set to 2. If the fill color is Black or Red, the speed is set to 1. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

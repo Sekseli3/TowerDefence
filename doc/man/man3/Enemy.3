@@ -74,6 +74,10 @@ Enemy \- \fBEnemy\fP class\&.
 .SH "Detailed Description"
 .PP 
 \fBEnemy\fP class\&. 
+
+Represents an enemy object in the game\&.
+.PP
+The \fBEnemy\fP class encapsulates the properties and behaviors of an enemy in the game\&. It includes information such as position, health, speed, and points awarded for defeating the enemy\&. Enemies can move, take damage, and have their speed reduced based on their fill color\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Enemy::Enemy (sf::Vector2f & position, double radius, int health, double speed, float x, float y, sf::Color & color, int points)"
@@ -132,13 +136,20 @@ Constructs an enemy object with the given parameters\&. Enemy\&.cpp\&.
 .SS "bool Enemy::isDead ()"
 
 .SS "void Enemy::lowerHealth (int h)"
+Decreases the health of the enemy by the specified amount\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP The amount to decrease the health by\&. 
+.RE
+.PP
 
 .SS "void Enemy::move (float x_dir, float y_dir)"
 
 .SS "void Enemy::moveEnemy (double timeStep, sf::RenderWindow & window)"
 
 .SS "void Enemy::reduceSpeed ()\fC [inline]\fP"
-
+Reduces the speed of the enemy based on its fill color\&. If the fill color is Cyan, the speed is set to 2\&. If the fill color is Black or Red, the speed is set to 1\&. 
 
 .SH "Author"
 .PP 

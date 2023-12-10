@@ -7,8 +7,7 @@ var indexSectionsWithContent =
   4: "cepst",
   5: "g",
   6: "abemt",
-  7: "g",
-  8: "dt"
+  7: "dt"
 };
 
 var indexSectionNames =
@@ -20,8 +19,7 @@ var indexSectionNames =
   4: "variables",
   5: "enums",
   6: "enumvalues",
-  7: "defines",
-  8: "pages"
+  7: "pages"
 };
 
 var indexSectionLabels =
@@ -33,7 +31,6 @@ var indexSectionLabels =
   4: "Variables",
   5: "Enumerations",
   6: "Enumerator",
-  7: "Macros",
-  8: "Pages"
+  7: "Pages"
 };
 

@@ -10,7 +10,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_tile}{Tile}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Represents a tile in the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,3 +25,15 @@ class \mbox{\hyperlink{class_tile}{Tile}}
 \doxysubsubsection{\texorpdfstring{findClosestTile()}{findClosestTile()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_tile}{Tile}} \& find\+Closest\+Tile (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $>$ \&}]{tiles,  }\item[{const sf\+::\+Vector2f \&}]{position }\end{DoxyParamCaption})}
 
+Finds the closest \doxylink{class_tile}{Tile} to the given position from the provided vector of Tiles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiles} & The vector of Tiles to search from. \\
+\hline
+{\em position} & The position to find the closest \doxylink{class_tile}{Tile} to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the closest \doxylink{class_tile}{Tile}. 
+\end{DoxyReturn}
