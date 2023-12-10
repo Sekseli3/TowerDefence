@@ -13,6 +13,17 @@ class EnemyType;
 /// Enemy class
 class Enemy  {
 public:
+ /**
+     * @brief Constructs an enemy object with the given parameters.
+     * @param position The initial position of the enemy.
+     * @param radius The radius of the enemy.
+     * @param health The initial health of the enemy.
+     * @param speed The speed of the enemy.
+     * @param x The x-coordinate of the enemy's position.
+     * @param y The y-coordinate of the enemy's position.
+     * @param color The color of the enemy.
+     * @param points The points awarded for defeating the enemy.
+     */
     Enemy(sf::Vector2f& position, double radius, int health, double speed, float x, float y, sf::Color& color,int points);   
     sf::CircleShape& getShape();
     sf::Vector2f& getPosition();

@@ -1,0 +1,162 @@
+.TH "src/Graphics/graphicFunctions.cpp" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/Graphics/graphicFunctions.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SFML/Graphics\&.hpp>\fP
+.br
+\fC#include <cstdlib>\fP
+.br
+\fC#include <ctime>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include <random>\fP
+.br
+\fC#include '\&.\&./Objects/tower\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/enemies\&.h'\fP
+.br
+\fC#include '\&.\&./tiles\&.cpp'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeA\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeB\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeC\&.h'\fP
+.br
+\fC#include '\&.\&./Objects/EnemyTypeD\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdrawTiles\fP (sf::RenderWindow &window, const int tileSize, const int windowWidth, const int windowHeight, int difficulty)"
+.br
+.ti -1c
+.RI "sf::RectangleShape \fBcreateButton\fP (float x, float y, float width, float height, sf::Color color)"
+.br
+.ti -1c
+.RI "sf::Text \fBcreateText\fP (float x, float y, std::string content, sf::Font &font, unsigned int size, sf::Color color)"
+.br
+.ti -1c
+.RI "void \fBaddTower\fP (sf::RenderWindow &window, \fBTile\fP tile, \fBTowerType\fP type)"
+.br
+.ti -1c
+.RI "void \fBaddEnemy\fP (sf::RenderWindow &window, int tileSize, int x, int y, int gameLevel, int difficulty)"
+.br
+.ti -1c
+.RI "void \fBplaceTower\fP (sf::Event event, sf::RenderWindow &window, int &money)"
+.br
+.ti -1c
+.RI "void \fBdrawTowers\fP (sf::RenderWindow &window, int &money)"
+.br
+.ti -1c
+.RI "void \fBonlyDrawTowers\fP (sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "void \fBmainMenu\fP (sf::RenderWindow &window, int difficulty)"
+.br
+.ti -1c
+.RI "void \fBdrawMoney\fP (sf::RenderWindow &window, int money)"
+.br
+.ti -1c
+.RI "void \fBendScreen\fP (sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "void \fBdeleteTower\fP (sf::Event event, sf::RenderWindow &window, int &money)"
+.br
+.ti -1c
+.RI "void \fBtutorial\fP (sf::RenderWindow &window)"
+.br
+.ti -1c
+.RI "void \fBdrawWave\fP (sf::RenderWindow &window, int &gameLevel)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBTile\fP > \fBtiles\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBTower\fP > \fBtowers\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBEnemy\fP > \fBenemies\fP"
+.br
+.ti -1c
+.RI "sf::RectangleShape \fBplayButton\fP"
+.br
+.ti -1c
+.RI "sf::RectangleShape \fBexitButton\fP"
+.br
+.ti -1c
+.RI "bool \fBtowerPlacementMode\fP = false"
+.br
+.ti -1c
+.RI "\fBTowerType\fP * \fBselectedTowerType\fP = nullptr"
+.br
+.ti -1c
+.RI "bool \fBtoMain\fP = false"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void addEnemy (sf::RenderWindow & window, int tileSize, int x, int y, int gameLevel, int difficulty)"
+
+.SS "void addTower (sf::RenderWindow & window, \fBTile\fP tile, \fBTowerType\fP type)"
+
+.SS "sf::RectangleShape createButton (float x, float y, float width, float height, sf::Color color)"
+
+.SS "sf::Text createText (float x, float y, std::string content, sf::Font & font, unsigned int size, sf::Color color)"
+
+.SS "void deleteTower (sf::Event event, sf::RenderWindow & window, int & money)"
+
+.SS "void drawMoney (sf::RenderWindow & window, int money)"
+
+.SS "void drawTiles (sf::RenderWindow & window, const int tileSize, const int windowWidth, const int windowHeight, int difficulty)"
+
+.SS "void drawTowers (sf::RenderWindow & window, int & money)"
+
+.SS "void drawWave (sf::RenderWindow & window, int & gameLevel)"
+
+.SS "void endScreen (sf::RenderWindow & window)"
+
+.SS "void mainMenu (sf::RenderWindow & window, int difficulty)"
+
+.SS "void onlyDrawTowers (sf::RenderWindow & window)"
+
+.SS "void placeTower (sf::Event event, sf::RenderWindow & window, int & money)"
+
+.SS "void tutorial (sf::RenderWindow & window)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "std::vector<\fBEnemy\fP> enemies"
+
+.SS "sf::RectangleShape exitButton"
+
+.SS "sf::RectangleShape playButton"
+
+.SS "\fBTowerType\fP* selectedTowerType = nullptr"
+
+.SS "std::vector<\fBTile\fP> tiles"
+
+.SS "bool toMain = false"
+
+.SS "bool towerPlacementMode = false"
+
+.SS "std::vector<\fBTower\fP> towers"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

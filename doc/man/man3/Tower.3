@@ -1,0 +1,67 @@
+.TH "Tower" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tower
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tower\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTower\fP (const sf::Vector2f &position, const \fBTowerType\fP &type)"
+.br
+.ti -1c
+.RI "sf::ConvexShape & \fBgetShape\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetAttack_range\fP () const"
+.br
+.ti -1c
+.RI "int \fBattackEnemy\fP (std::vector< \fBEnemy\fP > &\fBenemies\fP)"
+.br
+.ti -1c
+.RI "sf::CircleShape \fBgetAttackShape\fP ()"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBgetPosition\fP ()"
+.br
+.ti -1c
+.RI "void \fBaddClock\fP (\fBUniversalClock\fP &clock)"
+.br
+.ti -1c
+.RI "\fBTowerType\fP \fBgetType\fP () const"
+.br
+.ti -1c
+.RI "\fB~Tower\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Tower::Tower (const sf::Vector2f & position, const \fBTowerType\fP & type)"
+
+.SS "Tower::~Tower ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Tower::addClock (\fBUniversalClock\fP & clock)"
+
+.SS "int Tower::attackEnemy (std::vector< \fBEnemy\fP > & enemies)"
+
+.SS "double Tower::getAttack_range () const"
+
+.SS "sf::CircleShape Tower::getAttackShape ()"
+
+.SS "sf::Vector2f Tower::getPosition ()"
+
+.SS "sf::ConvexShape & Tower::getShape ()"
+
+.SS "\fBTowerType\fP Tower::getType () const\fC [inline]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

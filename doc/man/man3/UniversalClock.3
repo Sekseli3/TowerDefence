@@ -1,0 +1,62 @@
+.TH "UniversalClock" 3 "Tower Defence" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+UniversalClock \- The \fBUniversalClock\fP class represents a clock used for timing in the game engine\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <gameEngine\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBUniversalClock\fP ()"
+.br
+.RI "Constructs a \fBUniversalClock\fP object\&. "
+.ti -1c
+.RI "bool \fBisDelayFinished\fP (float delayTime)"
+.br
+.RI "Checks if the specified delay time has passed\&. "
+.ti -1c
+.RI "void \fBrestartClock\fP ()"
+.br
+.RI "Restarts the clock\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBUniversalClock\fP class represents a clock used for timing in the game engine\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "UniversalClock::UniversalClock ()\fC [inline]\fP"
+
+.PP
+Constructs a \fBUniversalClock\fP object\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "bool UniversalClock::isDelayFinished (float delayTime)\fC [inline]\fP"
+
+.PP
+Checks if the specified delay time has passed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdelayTime\fP The delay time in milliseconds\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if the delay time has passed, false otherwise\&. 
+.RE
+.PP
+
+.SS "void UniversalClock::restartClock ()\fC [inline]\fP"
+
+.PP
+Restarts the clock\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Tower Defence from the source code\&.

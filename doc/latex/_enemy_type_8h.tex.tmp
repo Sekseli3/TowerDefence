@@ -1,0 +1,12 @@
+\doxysection{src/\+Objects/\+Enemy\+Type.h File Reference}
+\hypertarget{_enemy_type_8h}{}\label{_enemy_type_8h}\index{src/Objects/EnemyType.h@{src/Objects/EnemyType.h}}
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+Include dependency graph for Enemy\+Type.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_enemy_type}{Enemy\+Type}}
+\begin{DoxyCompactList}\small\item\em The base class for different types of enemies in the game. \end{DoxyCompactList}\end{DoxyCompactItemize}

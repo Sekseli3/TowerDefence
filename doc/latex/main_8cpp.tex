@@ -1,0 +1,106 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include "{}Graphics/graphic\+Functions.\+cpp"{}}\newline
+{\ttfamily \#include "{}Objects/enemies.\+h"{}}\newline
+{\ttfamily \#include "{}game\+Engine.\+hpp"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \{ \newline
+\mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285aad1111b48f98329333237912fc3b371b}{Main\+Menu}}
+, \mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac39b56d4489fb2507289e7ae19567b80}{Building}}
+, \mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a8abd002ea36128383f3269de7e74039b}{Attacking}}
+, \mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a83918c373f328eda5d8b9204336f2478}{End\+Screen}}
+, \newline
+\mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a368fe771261fcb18f7988833c9294a20}{Tutorial}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_ae7536cd5536757c63a9e8536f4a5f464}{move\+Enemies}} (\mbox{\hyperlink{class_universal_clock}{Universal\+Clock}} \&clock, sf\+::\+Render\+Window \&window, std\+::vector$<$ \mbox{\hyperlink{class_enemy}{Enemy}} $>$ \&stored\+\_\+enemies, float delay\+Time, int \&Money)
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_universal_clock}{Universal\+Clock}} \mbox{\hyperlink{main_8cpp_a11cfacae6ad0846d5b74c305943f71c7}{clock1}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}\label{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285} 
+\index{main.cpp@{main.cpp}!GameState@{GameState}}
+\index{GameState@{GameState}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{GameState}{GameState}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MainMenu@{MainMenu}!main.cpp@{main.cpp}}\index{main.cpp@{main.cpp}!MainMenu@{MainMenu}}}\Hypertarget{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285aad1111b48f98329333237912fc3b371b}\label{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285aad1111b48f98329333237912fc3b371b} 
+Main\+Menu&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Building@{Building}!main.cpp@{main.cpp}}\index{main.cpp@{main.cpp}!Building@{Building}}}\Hypertarget{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac39b56d4489fb2507289e7ae19567b80}\label{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285ac39b56d4489fb2507289e7ae19567b80} 
+Building&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Attacking@{Attacking}!main.cpp@{main.cpp}}\index{main.cpp@{main.cpp}!Attacking@{Attacking}}}\Hypertarget{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a8abd002ea36128383f3269de7e74039b}\label{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a8abd002ea36128383f3269de7e74039b} 
+Attacking&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EndScreen@{EndScreen}!main.cpp@{main.cpp}}\index{main.cpp@{main.cpp}!EndScreen@{EndScreen}}}\Hypertarget{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a83918c373f328eda5d8b9204336f2478}\label{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a83918c373f328eda5d8b9204336f2478} 
+End\+Screen&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Tutorial@{Tutorial}!main.cpp@{main.cpp}}\index{main.cpp@{main.cpp}!Tutorial@{Tutorial}}}\Hypertarget{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a368fe771261fcb18f7988833c9294a20}\label{main_8cpp_a7899b65f1ea0f655e4bbf8d2a5714285a368fe771261fcb18f7988833c9294a20} 
+Tutorial&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ae7536cd5536757c63a9e8536f4a5f464}\label{main_8cpp_ae7536cd5536757c63a9e8536f4a5f464} 
+\index{main.cpp@{main.cpp}!moveEnemies@{moveEnemies}}
+\index{moveEnemies@{moveEnemies}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{moveEnemies()}{moveEnemies()}}
+{\footnotesize\ttfamily void move\+Enemies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_universal_clock}{Universal\+Clock}} \&}]{clock,  }\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_enemy}{Enemy}} $>$ \&}]{stored\+\_\+enemies,  }\item[{float}]{delay\+Time,  }\item[{int \&}]{Money }\end{DoxyParamCaption})}
+
+Moves the enemies on the screen based on the given clock, window, and delay time. Also updates the money based on the enemies killed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock} & The \doxylink{class_universal_clock}{Universal\+Clock} object used to track the delay time. \\
+\hline
+{\em window} & The sf\+::\+Render\+Window object used to draw the enemies. \\
+\hline
+{\em stored\+\_\+enemies} & The vector of \doxylink{class_enemy}{Enemy} objects representing the enemies on the screen. \\
+\hline
+{\em delay\+Time} & The delay time in seconds between enemy movements. \\
+\hline
+{\em Money} & The reference to the money variable to update based on enemies killed. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a11cfacae6ad0846d5b74c305943f71c7}\label{main_8cpp_a11cfacae6ad0846d5b74c305943f71c7} 
+\index{main.cpp@{main.cpp}!clock1@{clock1}}
+\index{clock1@{clock1}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{clock1}{clock1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_universal_clock}{Universal\+Clock}} clock1}
+

@@ -22,6 +22,16 @@ enum class GameState {
     Tutorial
 };
 
+/**
+ * Moves the enemies on the screen based on the given clock, window, and delay time.
+ * Also updates the money based on the enemies killed.
+ *
+ * @param clock The UniversalClock object used to track the delay time.
+ * @param window The sf::RenderWindow object used to draw the enemies.
+ * @param stored_enemies The vector of Enemy objects representing the enemies on the screen.
+ * @param delayTime The delay time in seconds between enemy movements.
+ * @param Money The reference to the money variable to update based on enemies killed.
+ */
 void moveEnemies(UniversalClock &clock, sf::RenderWindow &window, std::vector<Enemy> &stored_enemies, float delayTime,int &Money){
     
     
