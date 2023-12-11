@@ -211,6 +211,9 @@ The exit button that closes the program
 
 After starting a game, you will enter the building state, where you can build and remove towers. Building towers costs money and you can see the amount of money you have in the top right corner of the screen. 
 
+![diagram](diagram.png)
+Class relationship diagram
+
  
 
 Towers: 
